@@ -1,0 +1,747 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="cs">
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app12.us.archive.org';v.server_ms=335;archive_analytics.send_pageview({});});</script><script type="text/javascript" src="/_static/js/playback.bundle.js?v=SOX25l-I" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=cRqOKCOw" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("http://trific.ath.cx:80/tex,mf/tweak-latex/","20060719215358","http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link rel="stylesheet" type="text/css" href="http://trific.ath.cx/CSS/layout.css"/>
+<link rel="stylesheet" type="text/css" href="http://trific.ath.cx/CSS/colors.css"/>
+<title>Střeva LaTeXu</title>
+<link rel="shortcut icon" type="image/x-icon" href="http://trific.ath.cx/Img/favicon.ico"/>
+<meta name="Author" content="David Nečas (Yeti)"/>
+</head>
+<body><!-- END WAYBACK TOOLBAR INSERT -->
+<table class="main" cellspacing="0">
+<col class="left" width="13%"/><col class="main" width="74%"/><col class="right" width="13%"/>
+
+<tr>
+<td class="collapsed"></td>
+
+<td class="main" valign="top" rowspan="2">
+<div class="topline">
+<a href="http://trific.ath.cx/">Home</a>
+ &gt; 
+<a href="http://trific.ath.cx/tex,mf/">TeX &amp; Metafont</a>
+ &gt; 
+<a href="http://trific.ath.cx/tex,mf/tweak-latex/">Střeva LaTeXu</a>
+</div>
+<div xml:lang="cs">
+<h1>Střeva LaTeXu</h1>
+
+<p>Z diplomek mých spolužáků, a taky z mé, jsem
+posbíral různé běžné případy, kdy je třeba povrtat se LaTeXu ve střevech,
+a na které se mě pořád někdo ptá. Abych je nemusel každému pořád
+opakovat, zveřejňuji je tady.</p>
+
+<p>Dalším účelem této stránky je ověřit teorii, že k LaTeXu lze
+přistupovat kreativně, popsanou v pamfletu
+<a href="http://trific.ath.cx/tex,mf/latex-demyth/">Demýtizace LaTeXu</a>.</p>
+
+<p><a id="ltoc"></a>Témata:</p>
+
+<ul class="ltoc">
+<li><a href="#makeat">Zavináče aneb jak vůbec předefinovat interní makra LaTeXu</a></li>
+<li><a href="#captions">Popisky obrázků a tabulek</a>
+<ul>
+<li><a href="#captions::smaller">Sazba menším řezem písma</a></li>
+<li><a href="#captions::colon">Odstranění dvojtečky</a></li>
+<li><a href="#captions::maxwidth">Zmenšení maximální šířky</a></li>
+</ul>
+</li>
+<li><a href="#footnotes">Poznámky pod čarou</a>
+<ul>
+<li><a href="#footnotes::spaceabove">Mezera nad poznámkou</a></li>
+<li><a href="#footnotes::paren">Číslování se závorkou</a></li>
+<li><a href="#footnotes::resetcount">Číslování v každé sekci od jedničky</a></li>
+<li><a href="#footnotes::align">Změna zarovnání čísla a textu poznámky</a></li>
+<li><a href="#footnotes::indent">Odsazení celého textu poznámky vpravo od čísla</a></li>
+</ul>
+</li>
+<li><a href="#sectioning">Nadpisy</a>
+<ul>
+<li><a href="#sectioning::newpage">Sázení sekcí na novou (lichou) stránku</a></li>
+<li><a href="#sectioning::refname">Přejmenování „Reference“ na „Literatura“</a></li>
+<li><a href="#sectioning::tocadd">Přidávání do obsahu</a></li>
+<li><a href="#sectioning::the">Změna stylu číslování</a></li>
+</ul>
+</li>
+<li><a href="#eqnums">Číslování rovnic</a>
+<ul>
+<li><a href="#eqnums::refcheck">Tisk jmen návěští a automatická kontrola odkazů</a></li>
+<li><a href="#eqnums::subeqn">Číslování subrovnic</a></li>
+</ul>
+</li>
+<li><a href="#headings">Hlavičky a patičky</a>
+<ul>
+<li><a href="#headings::fancyhdr">Vlastní styl hlaviček a patiček</a></li>
+<li><a href="#headings::uppercase">Jak se zbavit těch ošklivých skloněných verzálek</a></li>
+<li><a href="#headings::localchg">Lokální změny textu hlavičky</a></li>
+</ul>
+</li>
+<li><a href="#unsorted">Neroztříděné</a>
+<ul>
+<li><a href="#unsorted::tocspacing">Změna vertikálních mezer v obsahu</a></li>
+<li><a href="#unsorted::floatflt">Obtékání obrázků</a></li>
+<li><a href="#unsorted::greeknum">Číslování řeckými písmeny</a></li>
+</ul>
+</li>
+</ul>
+
+<p>Řadu komplexnějších věcí týkajících se sazby matematiky přitom řeší
+můj balík <a href="http://trific.ath.cx/tex,mf/moremath/">MoreMath</a>.</p>
+
+<hr/>
+<h2 id="makeat">Zavináče aneb jak vůbec předefinovat interní makra
+LaTeXu</h2>
+
+<p>LaTeX se tváří jako „vyšší programovací jazyk“
+nad TeXem definující nějakou množinu „hezčích a chytřejších“
+maker a musí proto nějakým způsobem skrýt svoje vlastní
+interní marka, zejména proto, aby je uživatel nedopatřením nepředefinoval.
+Využívá přitom skutečnosti, že v TeXu je příkazem buď zpětné lomítko
+následované jedním ne-písmenem a nebo zpětné lomítko následované
+souvislou sekvencí písmen. To, který znak je či není považován za
+písmeno, si přitom můžeme nadefinovat.</p>
+
+<p>LaTeX si tedy (zhruba řečeno) na začátku nadefinuje, že zavináč (anglicky
+<i>at sign</i>, krátce <i>at</i>) je taky písmeno, a to příkazem
+<code class="TeX">\makeatletter</code>, pak ho zhusta používá ve svých
+interních makrech, která se tímpádem jmenují stylem
+<code class="TeX">\@makecaption</code>,
+<code class="TeX">\sixt@@n</code> či <code class="TeX">\hb@xt@</code>,
+a na konci zase vrátí kategorii znaku <code class="TeX">@</code> na
+ne-písmeno. Pokud by pak uživatel napsal v dokumentu
+<code class="TeX">\sixt@@n</code>, pochopí to TeX jako příkaz
+<code class="TeX">\sixt</code> (který bude nejspíš nedefinovaný)
+následovaný znaky <code class="TeX">@@n</code>
+a nikoli jako zmiňovaný interní příkaz.</p>
+
+<p>Chceme-li tedy pracovat s interními makry LaTeXu (např. je
+předefinovávat), musíme nejprve použít příkaz
+<code class="TeX">\makeatletter</code>, který nastaví kategorii
+znaku <code class="TeX">@</code> na písmeno.
+Poté, co se přestaneme vrtat ve střevech LaTeXu, to po sobě raději vrátíme
+do původního stavu příkazem
+<code class="TeX">\makeatother</code>, který nastaví kategorii
+znaku <code class="TeX">@</code> zpět na „ostatní“.</p>
+
+<p>Poznámka: uvedený výklad je <em>brutálně</em> zjednodušený.
+Pro přesnější popis kategorií znaků v TeXu
+viz například kapitolu 7 TeXbooku nebo odstavec 1.3 TeXbooku naruby.</p>
+
+<hr/>
+<h2 id="captions">Popisky obrázků a tabulek</h2>
+
+<h3 id="captions::smaller">Sazba menším řezem písma</h3>
+
+<p>Když změníme písmo
+v <code class="TeX">\caption</code>,
+tak to (naprosto logicky) nezmění písmo,
+kterým je vysázeno ono „Obrázek 1“ nebo
+„Tabulka 318“ před vlastním textem popisku.
+Nejlépe je tedy předefinovat
+<code class="TeX">\figurename</code> (resp.
+<code class="TeX">\tablename</code> pro tabulky)
+tak, že bude rovnou obsahovat příkaz pro nastavení správného
+písma – například</p>
+
+<pre class="TeX">\def\figurename{\small Obrázek}</pre>
+
+<p>Tím se zároveň zbavíme nutnosti psát příkaz pro nastavení
+písma do každého <code class="TeX">\caption</code> jak trubka. (Proč vlastně
+LaTeX sází defaultně popisky základní velikostí písma?)</p>
+
+<h3 id="captions::colon">Odstranění dvojtečky</h3>
+
+<p>Někdy potřebujeme změnit formát popisku trochu zásadněji,
+například se zbavit té dvojtečky za <code class="TeX">\figurename</code>
+a číslem. Ta je překvapivě zakopaná celkem
+hluboko – v interním makru
+<code class="TeX">\@makecaption</code>, které proto musíme předefinovat.</p>
+
+<p>Přitom je třeba si uvědomit, že makro <code class="TeX">\@makecaption</code>
+je závislé na třídě dokumentu, takže definici, z níž budeme vycházet,
+je třeba hledat v příslušných <code class="fnm">.cls</code> souborech.
+Například v souboru <code class="fnm">article.cls</code> najdeme</p>
+
+<pre class="TeX">
+ 1  \long\def\@makecaption#1#2{%
+ 2    \vskip\abovecaptionskip
+ 3    \sbox\@tempboxa{#1: #2}%
+ 4    \ifdim \wd\@tempboxa &gt;\hsize
+ 5      #1: #2\par
+ 6    \else
+ 7      \global \@minipagefalse
+ 8      \hb@xt@\hsize{\hfil\box\@tempboxa\hfil}%
+ 9    \fi
+10    \vskip\belowcaptionskip}
+</pre>
+
+<p>Vidíme, že stačí upravit oba výskyty <code class="TeX">#1: #2</code>
+(tj. řádky 3 a 5) a upravenou definici umístit do preambule svého
+dokumentu.</p>
+
+<p>Pokud vám není na první pohled jasné, co
+vlastně <code class="TeX">\@makecaption</code> dělá, zkusím to tu trochu
+rozebrat – bude se to hodit v následujícím odstavci.
+Řádky 2 a 9 jsou nezajímavé, pouze zařizují mezeru nad a pod
+popiskem. Na řádku 3 se celý text popisku umístí do pomocného boxu
+<code class="TeX">\@tempboxa</code>, jehož šířka
+(<code class="TeX">\wd\@tempboxa</code>) se na řádku 4 porovná
+s <code class="TeX">\hsize</code>, což je aktuální šířka sazebního
+obrazce. Pokud je větší, tak se text popisku normálně vysází do odstavce
+(řádek 5). V opačném případě se vyrobí box o šířce
+<code class="TeX">\hsize</code> a obsah boxu
+<code class="TeX">\@tempboxa</code> se v něm vycentruje pomocí
+<code class="TeX">\hfil</code> (řádek 8).
+Výsledkem tedy je, že popisky, které se vejdou
+na jeden řádek, jsou centrované, zatímco dlouhé popisky jsou sázené do
+odstavce.</p>
+
+<h3 id="captions::maxwidth">Zmenšení maximální šířky</h3>
+
+<p>Často se nám taky nehodí, že LaTeX sází delší popisky
+normálně na šířku ostatního textu a chtěli bychom je (přinejmenším)
+užší. Opět se vrhneme na oblíbené makro <code class="TeX">\@makecaption</code>,
+které tentokrát musíme spravit trochu složitěji. Řekněme, že bychom nechtěli
+měnit nic, pouze zmenšit maximální šířku o 3cm. Změníme tedy
+definici následovně:</p>
+
+<pre class="TeX">
+ 1  \long\def\@makecaption#1#2{%
+ 2    \vskip\abovecaptionskip
+ 3    \sbox\@tempboxa{#1: #2}%
+ 4    \@tempdimb\hsize
+ 5    \advance\@tempdimb by-3cm
+ 6    \ifdim \wd\@tempboxa &gt;\@tempdimb
+ 7      \hb@xt@\hsize{\hfil\parbox[t]\@tempdimb{#1: #2}\hfil}%
+ 8    \else
+ 9      \global \@minipagefalse
+10      \hb@xt@\hsize{\hfil\box\@tempboxa\hfil}%
+11    \fi
+12    \vskip\belowcaptionskip}
+</pre>
+
+<p>Na řádcích 4 a 5 jsem si spočítali maximální šířku (která už teď není
+<code class="TeX">\hsize</code>) do <code class="TeX">\@tempdimb</code>.
+Pak už postupujeme analogicky původnímu makru (viz výše), jen musíme popisek
+vysázet do odstavce šířky <code class="TeX">\@tempdimb</code> a ten
+vycentrovat (řádek 7).
+Různé další varianty už si každý může vyzkoušet jako cvičení ;-)</p>
+
+<hr/>
+<h2 id="footnotes">Poznámky pod čarou</h2>
+
+<h3 id="footnotes::spaceabove">Mezera nad poznámkou</h3>
+
+<p>Velikost vetikální mezery nad poznámkou pod čarou změníme
+na hodnotu <var class="TeX">délka</var> příkazem</p>
+
+<p>
+<code class="TeX">\skip\footins=</code><var class="TeX">délka</var>
+</p>
+
+<p>Pokud nastavíme tento paramter na nějakou absurdní hodnotu
+(třeba 10 cm), může to LaTeX docela slušně zmást,
+minimálně dokud nezměníme některá nastavení pro plovoucí
+objekty.</p>
+
+<h3 id="footnotes::paren">Číslování se závorkou</h3>
+
+<p>Chceme tedy, aby značky poznámek pod čarou vypadaly nějak
+takhle<sup>3)</sup>.
+Řešení je zde skutečně snadné. Stačí změnit definici</p>
+
+<pre class="TeX">\def\thefootnote{\@arabic\c@footnote}</pre>
+
+<p>na</p>
+
+<pre class="TeX">\def\thefootnote{\@arabic\c@footnote)}</pre>
+
+<p>Všimněte si té závorky.</p>
+
+<h3 id="footnotes::resetcount">Číslování v každé sekci od jedničky</h3>
+
+<p>Tady pro změnu stačí přidat čítač poznámek do seznamu
+čítačů, které se mají vynulovat na začátku sekce</p>
+
+<pre class="TeX">\@addtoreset{footnote}{section}</pre>
+
+<p>A je to.</p>
+
+<h3 id="footnotes::align">Změna zarovnání čísla a textu poznámky</h3>
+
+<p>Pokud nevyznačujeme odstavce odstavcovou zarážkou, ale
+třeba vertikální mezerou, nebo jsme velikost odstavcové zarážky změnili,
+nebude se nám asi defaultní zarovnání líbit. Makro sázející text poznámky pod
+čarou snadno najdeme v definici třídy, řekněme
+<code class="fnm">article.cls</code>:</p>
+
+<pre class="TeX">
+\newcommand\@makefntext[1]{%
+    \hb@xt@1.8em{\hss\@makefnmark}#1}
+</pre>
+
+<p>Pokud jsme pouze změnili velikost odstavcové zarážky, doporučuji pouze
+změnit <code class="TeX">1.8em</code> na její velikost.</p>
+
+<p>Já ovšem často odstavcovou zarážku nepoužívám, takže musím postupovat
+jinak. Vzhledem k tomu, že poznámkami pod čarou nijak neplýtvám (zejména
+mám pouze nejvýše jednu na stránce a nemám jich víc než devět), vystačím
+si s jednoduchou definicí</p>
+
+<pre class="TeX">\def\@makefntext#1{\leavevmode\@makefnmark\ #1}</pre>
+
+<p>která nic nikam neodsazuje.</p>
+
+<h3 id="footnotes::indent">Odsazení celého textu poznámky vpravo od čísla</h3>
+
+<p>Jde tedy o to, aby vysázená poznámka nevypadala</p>
+
+<pre>
+  1 Tohle je dlouhá poznámka, která se nevejde
+na jeden řádek,jasně vidíme, kde začíná druhý
+a další řádky.</pre>
+
+<p>ale spíš</p>
+
+<pre>
+  1 Tohle je dlouhá poznámka, která se nevejde
+    na jeden řádek, jasně vidíme, kde začíná
+    druhý a další řádky.</pre>
+
+<p>Toho lze dosánout celkem snadno, předefinováním makra
+<code class="TeX">\@makefntext</code> sázejícího text poznámky, které je např.
+v <code class="fnm">article.cls</code> definováno</p>
+
+<pre class="TeX">
+\long\def\@makefntext#1{\parindent 1em\noindent
+        \hb@xt@1.8em{%
+            \hss\@textsuperscript{\normalfont\@thefnmark}}#1}%
+</pre>
+
+<p>Protože odstavce v takto sázených poznámkách budou vypadat nechutně,
+předpokládejme, že naše poznámky budou jednoodstavcové, a pak můžeme snadno
+definovat</p>
+
+<pre class="TeX">
+\def\@makefntext#1{\leftskip 1.8em\noindent
+         \llap{\@textsuperscript{\normalfont\@thefnmark}\ }#1}%
+</pre>
+
+<p>Hodnotu <code class="TeX">1.8em</code> udávájící odsazení textu poznámky
+je vhodné změnit na velikost odstavcové zarážky, nebo jinou vhodnou
+délku.</p>
+
+<hr/>
+<h2 id="sectioning">Nadpisy</h2>
+
+<h3 id="sectioning::newpage">Sázení sekcí na novou (lichou) stránku</h3>
+
+<p>Toto je celkem častý požadavek, chceme-li nadpisy nejvyšší
+úrovně sázet jako <i>section</i> – z hlediska logického 
+členění ovšem představují spíš něco jako kapitolu.</p>
+
+<p>Kýžených výsledků zdánlivě dosáhneme předefinováním příkazu
+<code class="TeX">\section</code>, a to tak, že do něj dopíšeme
+<code class="TeX">\newpage</code> (někam na začátek).</p>
+
+<p>To ovšem není nejchytřejší řešení; lepší je, dopsat do něj
+<code class="TeX">\clearpage</code>
+(resp. <code class="TeX">\cleardoublepage</code>), který navíc způsobí
+vysázení všech dosud neumístěných plovoucích objektů
+(resp. navíc přechod na novou lichou stránku).</p>
+
+<p>Příkaz <code class="TeX">\section</code> je závislý na stylu, takže jeho
+definici je třeba hledat v příslušném <code class="fnm">.cls</code>
+souboru. Příklad předefinované verze
+z <code class="fnm">article.cls</code>:</p>
+<pre class="TeX">
+ 1  \def\section{\clearpage\@startsection {section}{1}{\z@}%
+ 2    {-3.5ex \@plus -1ex \@minus -.2ex}%
+ 3    {2.3ex \@plus.2ex}%
+ 4    {\normalfont\Large\bfseries}}
+</pre>
+
+<p>A ještě lepší řešení. Protože <code class="TeX">\clearpage</code> je to
+úplně první, co se má v <code class="TeX">\section</code> udělat, můžeme to
+tam vpašovat, aniž bychom se zajímali, co v té definici přesně je:</p>
+<pre class="TeX">
+ 1  \let\latexsection\section
+ 2  \def\section{\clearpage\latexsection}
+</pre>
+
+<h3 id="sectioning::refname">Přejmenování „Reference“ na „Literatura“</h3>
+
+<p>V třídě <i>article</i> se odkazy na literaturu jmenují
+„Reference“, kdežto v <i>report</i> a <i>book</i>
+„Literatura“. Většina lidí nicméně používá <i>article</i>
+a chce nadpis „Literatura“ ;-)</p>
+
+<p>Naštěstí stačí předefinovat <code class="TeX">\refname</code>:</p>
+
+<pre class="TeX">\def\refname{Literatura}</pre>
+
+<p>Pokud chceme změnit nějaká jiná automaticky sázená slova, podíváme se
+nejlépe do souboru <code class="fnm">czech.sty</code>, kde jsou všechna
+pěkně pohromadě, jak česky tak anglicky, a posupujeme analogicky.</p>
+
+<h3 id="sectioning::tocadd">Přidávání do obsahu</h3>
+
+<p>Na přidávání do obsahu slouží příkaz
+<code class="TeX">\addcontentsline</code>, kromě toho má
+<code class="TeX">\section</code> a podobné příkazy nepovinný parametr,
+který umožňuje přidat do obsahu něco jiného než text nadpisu. Je to popsané
+v každé příručce. Uvedu tu příklady prakticky všech možností, jak by
+mohl někdo něco chtít přidat do obsahu – vyzkoušejte
+a vyberte si:</p>
+
+<pre class="TeX">
+\addcontentsline{toc}{section}{Mezimluva}
+\addcontentsline{toc}{section}
+        {\numberline{3}Teoretický základ}
+\addcontentsline{toc}{subsection}
+        {Vedoucí úloha Strany ve státě a~společnosti}
+\addcontentsline{toc}{subsection}
+        {\numberline{3.5}Zaměření cíle}
+\addcontentsline{toc}{subsubsection}
+        {\numberline{}Smrt imperialistům!}
+\addcontentsline{toc}{subsubsection}
+        {\numberline{3.5.2}Střely vzduch-vzduch}
+</pre>
+
+<h3 id="sectioning::the">Změna stylu číslování</h3>
+
+<p>Čísla nadpisů sází příkazy <code class="TeX">\the</code><var class="TeX">něco</var>,
+kde <var class="TeX">něco</var> je třeba <code class="TeX">section</code>,
+<code class="TeX">subsection</code> apod. Definice závisí na třídě dokumentu,
+např. v <code class="fnm">article.cls</code> najdeme (mimo jiné):</p>
+
+<pre class="TeX">
+\renewcommand\thepart       {\@Roman\c@part}
+\renewcommand\thesection    {\@arabic\c@section}
+\renewcommand\thesubsection {\thesection.\@arabic\c@subsection}
+</pre>
+
+<p>S tím můžeme dělat různé triky. Např. odstraněním
+<code class="TeX">\thesection.</code> z definice
+<code class="TeX">\thesubsection</code> zařídíme, že se před čísla subsekcí
+nebude přídávat číslo sekce.  Zmizí ovšem i v obsahu, odkazech, …, což nám
+někdy vadí, jindy třeba ne. Pokud se chceme s problémem vypořádat pořádně,
+je potřeba něco jako můj <a href="http://trific.ath.cx/tex,mf/eqnref/">eqnref</a>, ovšem pro
+nadpisy.</p>
+
+<p>Snadno můžeme změnit číslování z arabských číslic na něco jiného, třeba
+na velká písmena, změnou <code class="TeX">\@arabic</code> na
+<code class="TeX">\@Alph</code>.</p>
+
+<hr/>
+<h2 id="eqnums">Číslování rovnic</h2>
+
+<h3 id="eqnums::refcheck">Tisk jmen návěští a automatická kontrola odkazů</h3>
+
+<p>Občas je taky dobré podívat se, co napsali jiní. Tisknout
+jména návěští (<code class="TeX">\label</code>) v místě, kde jsou
+definována a kontrolovat podezřelé jevy v odkazech umí
+balíček <b class="pack">refcheck</b>, který se dá najít na CTANu, taky je na
+CD TeXlive 5.</p>
+
+<p>Pokud stejně jako já číslujete kdeco, ale píšete
+<code class="TeX">\label</code> jen tam, kde ho opravdu potřebujete,
+je vhodné použít volbu <code class="TeX">ignoreunlbld</code>, která potlačí
+hlášky o očíslovaných, ale neonávěšťovaných rovnicích
+(já vlastně <code class="TeX">\label</code>
+nepoužívám vůbec, viz <a href="http://trific.ath.cx/tex,mf/moremath/#eqn">\eqn</a>.)</p>
+
+<p>Upozorňuji, že mi občas <b class="pack">refcheck</b> píše návěští
+o jednu rovnici dál, než kam patří. Nevím, čím to
+je – pokud to někdo zjistíte, dejte mi vědět.</p>
+
+<h3 id="eqnums::secnum">Číslování rovnic (<var>sekce</var>.<var>rovnice</var>)</h3>
+
+<p>Řešení je opět jednoduché. Stačí přidat čítač rovnic do
+seznamu věcí, které se mají vynulovat na začátku nové sekce a změnit
+formát číslování rovnic:</p>
+
+<pre class="TeX">
+\@addtoreset{equation}{section}
+\def\theequation{\@arabic\c@section.\@arabic\c@equation}
+</pre>
+
+<p>Makro <code class="TeX">\@arabic</code> vypisuje hodnotu čítače arabskými
+číslicemi (to jsou ty, co normálně používáme ;-), čítače jsou pojmenované
+<code class="TeX">\c@</code><var class="TeX">jméno</var>, takže je jasné,
+jak postupovat,
+kdybychom chtěli číslovat třeba (<var>kapitola</var>.<var>rovnice</var>) nebo
+(<var>sekce</var>.<var>odstavec</var>.<var>rovnice</var>).</p>
+
+<p>Osobně nicméně preferuji uvnitř sekce lokální odkazy, což umí zařídit můj
+<a href="http://trific.ath.cx/tex,mf/eqnref/">eqnref</a>.</p>
+
+<h3 id="eqnums::subeqn">Číslování subrovnic</h3>
+
+<p>Existují snad desítky balíčků různé složitosti
+a kvality, které se tento problém snaží řešit. Jeden z použitelných
+je třeba <b class="pack">subeqn</b> dostupný na CTANu i na CD
+TeXlive 5. Z něho jsem víceméně převzal následující definice
+prostředí <i>subequations</i> a <i>subeqnarray</i>,
+které dělají to, co očekáváme, a za normálních okolností naprosto
+postačují:</p>
+
+<pre class="TeX">
+ 1  \newenvironment{subequations}{%
+ 2    \refstepcounter{equation}%
+ 3    \mathchardef\c@mainequation\c@equation
+ 4    \protected@edef\themainequation{\theequation}%
+ 5    \let\theequation\thesubequation
+ 6    \global\c@equation\z@}%
+ 7    {\global\c@equation\c@mainequation
+ 8     \global\@ignoretrue}
+ 9  \newcommand{\thesubequation}{\themainequation\alph{equation}}
+10  \newenvironment{subeqnarray}{%
+11    \subequations
+12    \@ifnextchar\label{\@lab@subeqnarray}{\eqnarray}}%
+13    {\endeqnarray\endsubequations}
+14  \newcommand*{\@lab@subeqnarray}[2]{#1{#2}\eqnarray}
+</pre>
+
+<hr/>
+<h2 id="headings">Hlavičky a patičky</h2>
+
+<h3 id="headings::fancyhdr">Vlastní styl hlaviček a patiček</h3>
+
+<p>Téměř jakoukoli rozumnou hlavičku či patičku lze vyrobit
+pomocí balíčku <b class="pack">fancyhdr</b> dostupného na CTANu i CD
+TeXlive 5. Je celkem dobře zdokumentovaný, včetně příkladů, takže
+RTFM.</p>
+
+<h3 id="headings::uppercase">Jak se zbavit těch ošklivých skloněných verzálek</h3>
+
+<p>Nevím, kdo chce mít v hlavičce názvy sekcí skloněnými
+verzálkami, ale já tedy ne. Řez písma je změníme pomocí
+<b class="pack">fancyhdr</b>, ale verzálky ne. Zakopaný pes je v makrech
+<code class="TeX">\</code><var class="TeX">něco</var><code class="TeX">mark</code>,
+která vyrábí značky pro použití v hlavičce. Například
+v <code class="fnm">article.cls</code> najdeme:</p>
+
+<pre class="TeX">
+ 1  \def\sectionmark##1{%
+ 2    \markboth {\MakeUppercase{%
+ 3      \ifnum \c@secnumdepth &gt;\z@
+ 4        \thesection\quad
+ 5      \fi
+ 6      ##1}}{}}%
+</pre>
+
+<p>Tady je zjevně potřeba zbavit se onoho ošklivého
+<code class="TeX">\MakeUppercase</code> (řádek 2), čímž dostaneme.</p>
+
+<pre class="TeX">
+ 1  \def\sectionmark##1{%
+ 2    \markboth {%
+ 3      \ifnum \c@secnumdepth &gt;\z@
+ 4        \thesection\quad
+ 5      \fi
+ 6      ##1}{}}%
+</pre>
+
+<p>Co je mnohem horší, <code class="TeX">\MakeUppercase</code> je natvrdo
+nacpané i v dalších příkazech vytvářejících nové logické oddíly
+jako <code class="TeX">\tableofcontents</code> nebo prostředí
+<i>thebibliography</i>. Můžeme je všechny předefinovat, předefinovat
+<code class="TeX">\MakeUppercase</code> na <code class="TeX">\relax</code> (což
+je obskurní), nebo použít postup naznačený v následujícím odstavci.</p>
+
+<h3 id="headings::localchg">Lokální změny textu hlavičky</h3>
+
+<p>Nejčastěji potřebujeme lokálně změnit hlavičku
+a patičku tak, že prostě žádné nechceme – na to stačí
+obyčejné <code class="TeX">\pagestyle{empty}</code>. Někdy ovšem chceme
+pouze nějak změnit název logického oddílu, který nám tam LaTeX nacpal sám od
+sebe (příklad viz výše).</p>
+
+<p>K tomu lze použít příkazy
+<code class="TeX">\markright{</code><var class="TeX">hlavička</var><code class="TeX">}</code>,
+<code class="TeX">\markboth{</code><var class="TeX">levá</var><code class="TeX">}{</code><var class="TeX">pravá</var><code class="TeX">}</code>.
+První z nich nastavuje pravou/lichou hlavičku (obvykle sekce či
+odstavec), druhý navíc i levou/sudou (obvykle kapitola či sekce).
+To, jak tyto příkazy defaultně používá sám LaTeX silně závisí na třídě
+dokumentu. Nicméně to, co máme v hlavičce k disposici jako
+<code class="TeX">\leftmark</code> je dáno <em>prvním</em> výskytem definice
+„levé“ hlavičky na stánce, zatímco
+<code class="TeX">\rightmark</code> je naopak dáno <em>posledním</em> výskytem
+definice „pravé“ hlavičky na stránce, z čehož je potřeba
+vycházet, když něco z toho chceme měnit. Pro podrobnější diskusi viz
+dokumentaci k <b class="pack">fancyhdr</b>.</p>
+
+<hr/>
+<h2 id="unsorted">Neroztříděné</h2>
+
+<h3 id="unsorted::tocspacing">Změna vertikálních mezer v obsahu</h3>
+
+<p>Mezery mezi řádky obsahu bychom správně neměli měnit,
+abychom nenarušili řádkový rejstřík. Vzhledem k tomu, že defaultní
+nastavení LaTeXu na řádkový rejstřík stejně kašle, klidně je změníme, zejména
+když nám jako na potvoru vyjdou jedna či dvě položky obsahu na novou
+stránku (a nebo chceme naopak udělat dojem, že máme hodně kapitol ;-)</p>
+
+<p>Položky obsahu sází makra <code class="TeX">\l@</code><var class="TeX">něco</var>, která
+samozřejmě závisí na třídě dokumentu. Například pro <var>section</var> najdeme
+v <code class="fnm">article.cls</code>:</p>
+
+<pre class="TeX">
+ 1  \newcommand*\l@section[2]{%
+ 2    \ifnum \c@tocdepth &gt;\z@
+ 3      \addpenalty\@secpenalty
+ 4      \addvspace{1.0em \@plus\p@}%
+ 5      \setlength\@tempdima{1.5em}%
+ 6      \begingroup
+ 7        \parindent \z@ \rightskip \@pnumwidth
+ 8        \parfillskip -\@pnumwidth
+ 9        \leavevmode \bfseries
+10        \advance\leftskip\@tempdima
+11        \hskip -\leftskip
+12        #1\nobreak\hfil \nobreak\hb@xt@\@pnumwidth{\hss #2}\par
+13      \endgroup
+14    \fi}
+</pre>
+
+<p>Ugh!, řekne si asi každý na první pohled. Nicméně vertikální mezera je
+zjevně vyráběna na řádku 4 pomocí <code class="TeX">\addvspace</code>.
+Místo <code class="TeX">1.0em \@plus\p@</code> tam můžeme napsat, co
+chceme – přičemž je možná dobré vědět, že
+<code class="TeX">\@plus</code> a <code class="TeX">\p@</code> jsou zkratky
+LaTeXu znamenající <code class="TeX">plus</code>
+a <code class="TeX">1pt</code>. Při předefinovávání musíme samozřejme
+použít <code class="TeX">\renewcommand</code> a ne
+<code class="TeX">\newcommand</code>, protože předefinováváme existující
+příkaz.</p>
+
+<h3 id="unsorted::floatflt">Obtékání obrázků</h3>
+
+<p>Obtékání obrázků je jedna z věcí, které většinou nemá
+cenu hackovat jen tak z hlavy. V naprosté většině případů si
+vystačíme s tím, co umí balíček <b class="pack">floatflt</b> dostupný na
+CTANu i na CD TeXlive 5. Je celkem dobře zdokumentovaný, včetně
+příkladů, takže RTFM.</p>
+
+<h3 id="unsorted::greeknum">Číslování řeckými písmeny</h3>
+
+<p>Občas se hodí číslování řeckými písmeny, tj. α, β, γ, δ, …, zejména tedy
+v matematických textech, jinde by to bylo dost výstřední.</p>
+
+<p>Po vzoru definice <code class="TeX">\alph</code>
+a <code class="TeX">\Alph</code> můžeme nadefinovat
+<code class="TeX">\greek</code></p>
+
+<pre class="TeX">
+\def\greek#1{\@greek{\@nameuse{c@#1}}}
+\def\@greek#1{\ifcase#1\or \alpha\or \beta\or \gamma\or \delta
+  \else\@igreek{#1}\fi}
+\def\@igreek#1{\ifcase#1\or \or \or \or \or \varepsilon\or
+  \zeta\or \eta\or \vartheta\or \iota\or \kappa\or \lambda\or
+  \mu\or \nu\or \xi\or o\or \pi\or \varrho\or \sigma\or
+  \tau\or \upsilon\or \varphi\or \chi\or \psi\or \omega
+  \else\@ctrerr\fi}
+</pre>
+
+<p>pro malá řecká písmena, resp. <code class="TeX">\Greek</code></p>
+
+<pre class="TeX">
+\def\Greek#1{\@Greek{\@nameuse{c@#1}}}
+\def\@Greek#1{\ifcase#1\or A\or B\or \Gamma\or \Delta
+  \else\@iGreek{#1}\fi}
+\def\@iGreek#1{\ifcase#1\or \or \or \or \or E\or Z\or
+  H\or \Theta\or I\or K\or \Lambda\or M\or N\or \Xi\or
+  O\or \Pi\or P\or \Sigma\or T\or Y\or \Phi\or X\or
+  \Psi\or \Omega
+  \else\@ctrerr\fi}
+</pre>
+
+<p>pro velká.</p>
+</div>
+</td>
+
+<td class="collapsed"></td>
+</tr>
+
+<tr>
+<td class="bar-left" valign="top">
+<p class="nohl" style="margin-bottom: 8pt; background: #dcdcdc;"><a href="http://trific.ath.cx/"><img src="http://trific.ath.cx/Img/foot3.png" alt="[Trific net]" width="115" height="50"/></a></p>
+<div xml:lang="en">
+<h4><a href="http://trific.ath.cx/software/">Software</a></h4>
+<p><a href="http://trific.ath.cx/software/enca/">Enca</a></p>
+<p><a href="http://trific.ath.cx/software/gimp-plugins/">Gimp plug-ins</a></p>
+<p><a href="http://gwyddion.net/">Gwyddion</a></p>
+<p><a href="http://trific.ath.cx/software/dendrofit/">DendroFit</a></p>
+<p><a href="http://trific.ath.cx/resources/python/levenshtein/">Levenshtein</a></p>
+<p><a href="http://trific.ath.cx/software/ifsgr/">IFSgr</a></p>
+<h4><a href="http://trific.ath.cx/resources/">Resources</a></h4>
+<p><a href="http://trific.ath.cx/resources/vim/">Vim</a></p>
+<p><a href="http://trific.ath.cx/resources/bash/">Bash</a></p>
+<p><a href="http://trific.ath.cx/resources/python/">Python</a></p>
+<p><a href="http://trific.ath.cx/resources/spamassassin/">SpamAssassin</a></p>
+<h4><a href="http://trific.ath.cx/tex-mf/">TeX &amp; MF</a></h4>
+<p><a href="http://trific.ath.cx/tex-mf/enctex/">EncTeX</a></p>
+<p><a href="http://trific.ath.cx/tex-mf/mitered-join/">Mitered join</a></p>
+<h4><a href="http://trific.ath.cxhttp://trific.ath.cxhttp://trific.ath.cx/yeti/">Yeti</a></h4>
+<p><a href="http://trific.ath.cx/yeti/gnupg-pubkey/">GnuPG Keys</a></p>
+</div><hr/><div xml:lang="cs">
+<h4><a href="http://trific.ath.cx/texts/">Texty</a></h4>
+<p><a href="http://trific.ath.cx/texts/absurd/">Absurdní</a></p>
+<p><a href="http://trific.ath.cx/texts/parody/">Parodie</a></p>
+<p><a href="http://trific.ath.cx/texts/opinion/">Názory</a></p>
+<p><a href="http://trific.ath.cx/texts/poem/">Ostatní</a></p>
+<p><a href="http://trific.ath.cx/texts/xml/">XML</a></p>
+<p><a href="http://trific.ath.cx/yeti/diary/">Deníček</a></p>
+<h4><a href="http://trific.ath.cx/tex,mf/">TeX &amp; MF</a></h4>
+<p><a href="http://trific.ath.cx/tex,mf/bestiary/">Bestiář</a></p>
+<p><a href="http://trific.ath.cx/tex,mf/moremath/">MoreMath</a></p>
+<p class="menuhl"><a href="http://trific.ath.cx/tex,mf/tweak-latex/">Střeva LaTeXu</a></p>
+<p><a href="http://trific.ath.cx/tex,mf/other/">Ostatní</a></p>
+</div>
+</td>
+
+<td class="bar-right" valign="top">
+<h4><a href="http://trific.ath.cx/tex,mf/">TeX &amp; MF</a></h4>
+<p><a href="http://trific.ath.cx/tex,mf/bestiary/">Bestiář</a></p>
+<p><a href="http://trific.ath.cx/tex,mf/moremath/">MoreMath</a></p>
+<p><a href="http://trific.ath.cx/tex,mf/latex-demyth/">Demýtizace LaTeXu</a></p>
+<p><a href="http://trific.ath.cx/tex,mf/tweak-latex/">Střeva LaTeXu</a></p>
+<p><a href="http://trific.ath.cx/tex,mf/picto/">Piktogramy IOF</a></p>
+<p><a href="http://trific.ath.cx/tex,mf/song/">Akordy</a></p>
+<p><a href="http://trific.ath.cx/tex,mf/catcode-everymath/">Catcode potíže</a></p>
+<p><a href="http://trific.ath.cx/tex,mf/eqnref/">Eqnref</a></p>
+<p><a href="http://trific.ath.cx/tex,mf/other/">Ostatní</a></p>
+<hr/>
+<h4 class="nohl">Naposled změněno</h4><p class="nohl">2004-04-16</p>
+<p style="margin-top: 5pt; margin-bottom: 5pt;"><a href="http://trific.ath.cx/copyright/">© Yeti</a></p>
+<p style="margin-top: 5pt;"><a href="http://trific.ath.cx/printable/tex,mf/tweak-latex/">Verze pro tisk</a></p>
+<p><a href="mailto:webmaster-at-trific-dot-ath-dot-cx">Webmaster</a></p>
+<p class="nohl" style="margin-bottom: 2pt;"><a href="http://www.eff.org/blueribbon/"><img src="http://br.eff.org/br.png" alt="[Join the Blue Ribbon Online Free Speech Campaign!]" height="76" width="112"/></a></p>
+<p class="nohl" style="margin-bottom: 2pt;"><a href="http://petition.eurolinux.org/"><img src="http://aful.org/images/patent_button.png" alt="[Sign the Petition for a Software Patent Free Europe!]"/></a></p>
+<p><a href="http://validator.w3.org/check?uri=http%3A%2F%2Ftrific.ath.cx%2Ftex%2Cmf%2Ftweak-latex%2F&amp;charset=%28detect+automatically%29&amp;doctype=Inline">Valid XHTML 1.1</a></p>
+<p><a href="http://jigsaw.w3.org/css-validator/validator?uri=http%3A%2F%2Ftrific.ath.cx%2Ftex%2Cmf%2Ftweak-latex%2F&amp;warning=1&amp;profile=css2">Valid CSS2</a></p>
+</td>
+
+</tr>
+<tr>
+<td class="bar-left-bot"></td>
+<td class="main">
+<div class="navline">
+<a href="http://trific.ath.cx/">Home</a>
+ &gt; 
+<a href="http://trific.ath.cx/tex,mf/">TeX &amp; Metafont</a>
+ &gt; 
+<a href="http://trific.ath.cx/tex,mf/tweak-latex/">Střeva LaTeXu</a>
+</div>
+</td>
+<td class="bar-right-bot"></td>
+</tr>
+</table>
+</body>
+</html>
+>

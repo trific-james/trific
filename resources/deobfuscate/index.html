@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app200.us.archive.org';v.server_ms=238;archive_analytics.send_pageview({});});</script><script type="text/javascript" src="/_static/js/playback.bundle.js?v=SOX25l-I" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=cRqOKCOw" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("http://trific.ath.cx:80/resources/deobfuscate/","20051125095554","http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link rel="stylesheet" type="text/css" href="http://trific.ath.cx/CSS/layout.css"/>
+<link rel="stylesheet" type="text/css" href="http://trific.ath.cx/CSS/colors.css"/>
+<title>E-mail address deobfuscator</title>
+<link rel="shortcut icon" type="image/x-icon" href="http://trific.ath.cx/Img/favicon.ico"/>
+<meta name="Author" content="David Nečas (Yeti)"/>
+<meta name="ICBM" content="49.22283, 16.62547"/>
+<meta name="DC.title" content="Trific net (Yeti's personal pages)"/>
+</head>
+<body><!-- END WAYBACK TOOLBAR INSERT -->
+<table class="main" cellspacing="0">
+<col class="left" width="13%"/><col class="main" width="74%"/><col class="right" width="13%"/>
+
+<tr>
+<td class="collapsed"></td>
+
+<td class="main" valign="top" rowspan="2">
+<div class="topline">
+<a href="http://trific.ath.cx/">Home</a>
+ &gt; 
+<a href="http://trific.ath.cx/resources/">Resources</a>
+ &gt; 
+<a href="http://trific.ath.cx/resources/deobfuscate/">E-mail address deobfuscator</a>
+</div>
+<div xml:lang="en">
+<h1>E-mail address deobfuscator</h1>
+
+<p>This is a tool making easier deobfuscation of obfuscated e-mails addesses
+from this site,
+<a href="http://slashdot.org/">Slashdot</a>,
+<a href="http://freshmeat.net/">Freshmeat</a>,
+and other sources.
+See below for <a href="#conditions">conditions of use</a>.</p>
+
+<form id="deobfuscator" action="http://trific.ath.cx/resources/deobfuscate/" method="get" accept-charset="utf-8, ascii">
+<table><tr><td>E-mail:</td>
+<td><input id="oemail" name="oemail" type="text" size="60" maxlength="200" tabindex="2" value=""/></td></tr>
+<tr><td></td><td><input type="submit" tabindex="3" value="Decrypt"/></td></tr>
+</table>
+</form>
+
+<p>To observe the deobfuscator in action, you can type (or paste) some of
+following examples:</p>
+<pre>
+%79%65%74%69%40%70%68%79%73%69%63%73%2e%6d%75%6e%69%2e%63%7a
+yeti(at)physics[dot]muni{dot}cz
+yeti physics muni cz
+yeti @ NOSPAMphysics ; muni ; cz
+</pre>
+<p>into the prompt.  You'll see how it can be transformed to my normal
+e-mail address.</p>
+
+<p><small>This hint is normally hidden when there are some results to
+display. Just run the deobfuscator without any address to see it
+again.</small></p>
+
+<hr/>
+<h2 id="about">About</h2>
+
+<p>This is an α‐version.</p>
+
+<p>It should be able to defeat all
+<a href="http://slashdot.org/">Slashdot</a> methods of
+e-mail address obfuscation (and not only them, but the Slashdot ones are
+quite profound).  They constantly add new methods, some are just
+variations and combinations of old methods, and for some I'll have to add
+explicit support.</p>
+
+<p>If you obfuscated your e-mail address manually, you should be safe. Also
+if you use a shell script printing the address as the obfuscation, since
+I'm not going to run it just to see what it does ;-)</p>
+
+<hr/>
+<h2 id="conditions">Conditions of use</h2>
+
+<p>You can use the deobfuscator to decrypt any address you want, provided
+you do it completely at your own risk and it would be legal for you to
+deobfuscate it by other means.</p>
+
+<p>I'm an inhabitant of
+<a href="http://www.czech.cz/index.php?section=3&amp;menu=112">Czech Republic</a>,
+so I can legally read things written backwards, even when they were
+written backwards digitally – at least for now.
+This may be not true for inhabitants of other countries, namely USA.
+Please consult with your lawyer, whether you can legally read
+(i.e., decrypt) texts written backwards, when they were written backwards
+(i.e., encrypted) digitally.
+If not, you probably can't legally use this service either.</p>
+
+<h3>No warranty</h3>
+<p>This service is provided in the hope it will be useful, but your are using
+it completely at your own risk.
+There is absolutely no warranty, not even implicit warranties for
+merchantability and fitness for a particular purpose.
+I'm particuarly not liable for anyone's misuse, misunderstanding,
+misinterpretation, or just plain stupidity.</p>
+
+<p>If the law imposes unavoidable warranties on this service due to its mere
+usage, then you are not allowed to use it.</p>
+
+<h3>Logging and privacy</h3>
+<p>The strings entered to the prompt are logged. These logs will be used
+exclusively for statistical purposes, to improve the engine, and to avoid
+abuse. Namely, the e-mail addresses won't be used for mass-mailing and won't
+be transferred to third parties without address owner permission.  You should
+be aware of the fact the e-mail address may leak by many other ways, e.g.
+from Web caches/proxies along the way.  Take it or leave it.</p>
+
+<h3>Mass deobfuscation</h3>
+<p>This server is on a 96kbaud line. Beside that, there other limits
+placed on the HTTP server.
+I doubt a really mass abuse of this service is technically possible,
+and it definitely wouldn't go unnoticed.
+Even just trying it is enough for blocking you, so you'd rather not try.
+I reserve the right to block anyone.</p>
+
+<hr/>
+<p><small>Needless to say, I have a <em>really good</em> and well configured
+<a href="http://spamassassin.org/">spam-filter</a>.
+Namely because all spammers in the world already have my address.
+So, don't bother.</small></p>
+
+</div>
+</td>
+
+<td class="collapsed"></td>
+</tr>
+
+<tr>
+<td class="bar-left" valign="top">
+<p class="nohl" style="margin-bottom: 8pt; background: #dcdcdc;"><a href="http://trific.ath.cx/"><img src="http://trific.ath.cx/Img/foot3.png" alt="[Trific net]" width="115" height="50"/></a></p>
+<div xml:lang="en">
+<h4><a href="http://trific.ath.cx/software/">Software</a></h4>
+<p><a href="http://trific.ath.cx/software/enca/">Enca</a></p>
+<p><a href="http://trific.ath.cx/software/gimp-plugins/">Gimp plug-ins</a></p>
+<p><a href="http://trific.ath.cx/software/gwyddion/">Gwyddion</a></p>
+<p><a href="http://trific.ath.cx/software/dendrofit/">DendroFit</a></p>
+<p><a href="http://trific.ath.cx/resources/python/levenshtein/">Levenshtein</a></p>
+<p><a href="http://trific.ath.cx/software/ifsgr/">IFSgr</a></p>
+<p><a href="http://trific.ath.cx/software/shmclean/">Shmclean</a></p>
+<p><a href="http://trific.ath.cx/software/wtch/">Wtch</a></p>
+<h4><a href="http://trific.ath.cx/resources/">Resources</a></h4>
+<p class="menuhl"><a href="http://trific.ath.cx/resources/deobfuscate/">Deobfuscator</a></p>
+<p><a href="http://trific.ath.cx/resources/perl2rpm/">Perl2RPM</a></p>
+<p><a href="http://trific.ath.cx/resources/vim/">Vim</a></p>
+<p><a href="http://trific.ath.cx/resources/bash/">Bash</a></p>
+<p><a href="http://trific.ath.cx/resources/rpm/">RPM packages</a></p>
+<p><a href="http://trific.ath.cx/resources/python/">Python</a></p>
+<p><a href="http://trific.ath.cx/resources/spamassassin/">SpamAssassin</a></p>
+<h4><a href="http://trific.ath.cx/tex-mf/">TeX &amp; MF</a></h4>
+<p><a href="http://trific.ath.cx/tex-mf/enctex/">EncTeX</a></p>
+<p><a href="http://trific.ath.cx/tex-mf/mitered-join/">Mitered join</a></p>
+<h4><a href="http://trific.ath.cx/graphics/">Graphics</a></h4>
+<p><a href="http://trific.ath.cx/graphics/povray/">PoV-Ray</a></p>
+<h4><a href="http://trific.ath.cx/toys/">Random Toys</a></h4>
+<p><a href="http://trific.ath.cx/toys/gtkanim/">Gtkanim</a></p>
+<h4><a href="http://trific.ath.cxhttp://trific.ath.cxhttp://trific.ath.cxhttp://trific.ath.cxhttp://trific.ath.cx/yeti/">Yeti</a></h4>
+<p><a href="http://trific.ath.cx/yeti/gnupg-pubkey/">GnuPG Keys</a></p>
+<p><a href="http://trific.ath.cx/yeti/trific/">What is Trific</a></p>
+</div><hr/><div xml:lang="cs">
+<h4><a href="http://trific.ath.cx/texts/">Texty</a></h4>
+<p><a href="http://trific.ath.cx/texts/absurd/">Absurdní</a></p>
+<p><a href="http://trific.ath.cx/texts/parody/">Parodie</a></p>
+<p><a href="http://trific.ath.cx/texts/opinion/">Názory</a></p>
+<p><a href="http://trific.ath.cx/texts/poem/">Ostatní</a></p>
+<p><a href="http://trific.ath.cx/texts/xml/">XML</a></p>
+<p><a href="http://trific.ath.cx/yeti/diary/">Deníček</a></p>
+<h4><a href="http://trific.ath.cx/tex,mf/">TeX &amp; MF</a></h4>
+<p><a href="http://trific.ath.cx/tex,mf/bestiary/">Bestiář</a></p>
+<p><a href="http://trific.ath.cx/tex,mf/moremath/">MoreMath</a></p>
+<p><a href="http://trific.ath.cx/tex,mf/tweak-latex/">Střeva LaTeXu</a></p>
+<p><a href="http://trific.ath.cx/tex,mf/other/">Ostatní</a></p>
+</div>
+</td>
+
+<td class="bar-right" valign="top">
+<h4 class="nohl">Links</h4>
+<p><a href="http://trific.ath.cx/software/arfeagen/">Arfeagen</a></p>
+<p><a href="http://www.czech.cz/index.php?section=3&amp;menu=112">Czech Republic</a></p>
+<p><a href="http://freshmeat.net/">Freshmeat</a></p>
+<p><a href="http://slashdot.org/">Slashdot</a></p>
+<p><a href="http://spamassassin.org/">SpamAssassin</a></p>
+<hr/>
+<h4 class="nohl">Last modified</h4><p class="nohl">2004-03-15</p>
+<p style="margin-top: 5pt; margin-bottom: 5pt;"><a href="http://trific.ath.cx/copyright/">© Yeti</a></p>
+<p style="margin-top: 5pt;"><a href="http://trific.ath.cx/printable/resources/deobfuscate/">Printable version</a></p>
+<p><a href="http://trific.ath.cx/preferences/">Preferences</a></p>
+<p><a href="mailto:webmaster at trific dot ath dot cx">Webmaster</a></p>
+<p style="margin-bottom: 8pt;"><a href="http://trific.ath.cx/fuckoffspam/?id=2004431254">Fakemails!</a></p>
+<p class="nohl" style="margin-bottom: 2pt;"><a href="http://www.eff.org/blueribbon/"><img src="http://br.eff.org/br.png" alt="[Join the Blue Ribbon Online Free Speech Campaign!]" height="76" width="112"/></a></p>
+<p class="nohl" style="margin-bottom: 2pt;"><a href="http://petition.eurolinux.org/"><img src="http://aful.org/images/patent_button.png" alt="[Sign the Petition for a Software Patent Free Europe!]"/></a></p>
+<p><a href="http://validator.w3.org/check?uri=http%3A%2F%2Ftrific.ath.cx%2Fresources%2Fdeobfuscate%2F&amp;charset=%28detect+automatically%29&amp;doctype=Inline">Valid XHTML 1.1</a></p>
+<p><a href="http://jigsaw.w3.org/css-validator/validator?uri=http%3A%2F%2Ftrific.ath.cx%2Fresources%2Fdeobfuscate%2F&amp;warning=1&amp;profile=css2">Valid CSS2</a></p>
+<p><a href="http://burnallgifs.org/">No GIFs</a></p>
+<p><a href="http://geourl.org/near/alt.html?p=http://trific.ath.cx/&amp;dist=200">GeoURL</a></p>
+</td>
+
+</tr>
+<tr>
+<td class="bar-left-bot"></td>
+<td class="main">
+<div class="navline">
+<a href="http://trific.ath.cx/">Home</a>
+ &gt; 
+<a href="http://trific.ath.cx/resources/">Resources</a>
+ &gt; 
+<a href="http://trific.ath.cx/resources/deobfuscate/">E-mail address deobfuscator</a>
+</div>
+</td>
+<td class="bar-right-bot"></td>
+</tr>
+</table>
+</body>
+</html>
+>

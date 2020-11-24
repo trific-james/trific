@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app102.us.archive.org';v.server_ms=3606;archive_analytics.send_pageview({});});</script><script type="text/javascript" src="/_static/js/playback.bundle.js?v=SOX25l-I" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=cRqOKCOw" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("http://trific.ath.cx:80/software/dendrofit/data-format/","20060821161401","http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link rel="stylesheet" type="text/css" href="http://trific.ath.cx/CSS/layout.css"/>
+<link rel="stylesheet" type="text/css" href="http://trific.ath.cx/CSS/colors.css"/>
+<title>DendroFit data file format</title>
+<link rel="shortcut icon" type="image/x-icon" href="http://trific.ath.cx/Img/favicon.ico"/>
+<meta name="Author" content="David Nečas (Yeti)"/>
+</head>
+<body><!-- END WAYBACK TOOLBAR INSERT -->
+<table class="main" cellspacing="0">
+<col class="left" width="13%"/><col class="main" width="74%"/><col class="right" width="13%"/>
+
+<tr>
+<td class="collapsed"></td>
+
+<td class="main" valign="top" rowspan="2">
+<div class="topline">
+<a href="http://trific.ath.cx/">Home</a>
+ &gt; 
+<a href="http://trific.ath.cx/software/">Software</a>
+ &gt; 
+<a href="http://trific.ath.cx/software/dendrofit/">DendroFit</a>
+ &gt; 
+<a href="http://trific.ath.cx/software/dendrofit/data-format/">DendroFit data file format</a>
+</div>
+<div xml:lang="en">
+<h1>DendroFit data file format</h1>
+
+<div class="img-right" style="float: right; width: 72px;">
+<img src="http://trific.ath.cx/Img/software/dendrofit/stock_dfit_72.png" alt="" width="72" height="72"/>
+</div>
+<p>This document is also available as
+<code class="fnm">README.datafiles</code> in the DendroFit distribution.</p>
+
+<p>The format of data files is following:</p>
+
+<ul>
+<li>Data files are ASCII text files, each file contains data from one
+  needle.</li>
+<li>Each line in the file represents one time sample.</li>
+<li>The first line does not contain data but starts with a magic header
+  <pre>EMS ASCII TEXT FILE</pre>
+  The rest of the first line is taken as comment.</li>
+<li>Lines starting with the `#' character in the first column are taken as
+  comments.</li>
+<li>Each data sample consists of a date/time specification followed by voltage
+  or temperature data.  Individual values on the line are separated by
+  whitespace.  There can be also whitespace before the first and after
+  the last items on the line.</li>
+<li>The format of date/time is a slightly relaxed ISO 8601 format:
+  <pre>YYYY-[M]M-[D]D [H]H:MM[:SS]</pre>
+  In other words, it starts with a date in ISO 8601 standard format, with
+  the possibility to omit the starting 0's from months and days (though
+  this is not recommended). Its second part contains time in ISO 8601
+  24-hour format, with the possibility to omit the leading 0 from hours;
+  seconds can be omitted too (they are assumed to be zero then).  There
+  can be any [nonzero] amount of whitespace between the two parts.</li>
+<li>The date/time is followed by 2<var>m</var> data values.</li>
+<li>First <var>m</var> values are symmetric temperature (voltage)
+  differences, starting from the deepest point and ending with the nearest
+  to cambium.  They are in standard `scientific' notation; comma can be
+  used in place of decimal point.</li>
+<li>Sencond <var>m</var> values are asymmetric temperature (voltage)
+  differences, ordered exactly as the symmetric ones.</li>
+<li>Nothing (except eventual whitespace) follows the 2<var>m</var> values
+  on the line.</li>
+</ul>
+
+<p>Example valid data file:</p>
+
+<pre class="example">
+EMS ASCII TEXT FILE
+# Date       Time       Symm       Asymm
+  2004-03-10 10:30      0,15 0,16  0,23 0,24
+  2004-03-10 10:45      0,14 0,14  0,25 0,24
+  2004-03-10 11:00      0,13 0,14  0,22 0,23
+  2004-03-10 11:15      0,12 0,12  0,20 0,21
+</pre>
+</div>
+</td>
+
+<td class="collapsed"></td>
+</tr>
+
+<tr>
+<td class="bar-left" valign="top">
+<p class="nohl" style="margin-bottom: 8pt; background: #dcdcdc;"><a href="http://trific.ath.cx/"><img src="http://trific.ath.cx/Img/foot3.png" alt="[Trific net]" width="115" height="50"/></a></p>
+<div xml:lang="en">
+<h4><a href="http://trific.ath.cx/software/">Software</a></h4>
+<p><a href="http://trific.ath.cx/software/enca/">Enca</a></p>
+<p><a href="http://trific.ath.cx/software/gimp-plugins/">Gimp plug-ins</a></p>
+<p><a href="http://gwyddion.net/">Gwyddion</a></p>
+<p class="menuhl"><a href="http://trific.ath.cx/software/dendrofit/">DendroFit</a></p>
+<p><a href="http://trific.ath.cx/resources/python/levenshtein/">Levenshtein</a></p>
+<p><a href="http://trific.ath.cx/software/ifsgr/">IFSgr</a></p>
+<h4><a href="http://trific.ath.cx/resources/">Resources</a></h4>
+<p><a href="http://trific.ath.cx/resources/vim/">Vim</a></p>
+<p><a href="http://trific.ath.cx/resources/bash/">Bash</a></p>
+<p><a href="http://trific.ath.cx/resources/python/">Python</a></p>
+<p><a href="http://trific.ath.cx/resources/spamassassin/">SpamAssassin</a></p>
+<h4><a href="http://trific.ath.cx/tex-mf/">TeX &amp; MF</a></h4>
+<p><a href="http://trific.ath.cx/tex-mf/enctex/">EncTeX</a></p>
+<p><a href="http://trific.ath.cx/tex-mf/mitered-join/">Mitered join</a></p>
+<h4><a href="http://trific.ath.cxhttp://trific.ath.cxhttp://trific.ath.cx/yeti/">Yeti</a></h4>
+<p><a href="http://trific.ath.cx/yeti/gnupg-pubkey/">GnuPG Keys</a></p>
+</div><hr/><div xml:lang="cs">
+<h4><a href="http://trific.ath.cx/texts/">Texty</a></h4>
+<p><a href="http://trific.ath.cx/texts/absurd/">Absurdní</a></p>
+<p><a href="http://trific.ath.cx/texts/parody/">Parodie</a></p>
+<p><a href="http://trific.ath.cx/texts/opinion/">Názory</a></p>
+<p><a href="http://trific.ath.cx/texts/poem/">Ostatní</a></p>
+<p><a href="http://trific.ath.cx/texts/xml/">XML</a></p>
+<p><a href="http://trific.ath.cx/yeti/diary/">Deníček</a></p>
+<h4><a href="http://trific.ath.cx/tex,mf/">TeX &amp; MF</a></h4>
+<p><a href="http://trific.ath.cx/tex,mf/bestiary/">Bestiář</a></p>
+<p><a href="http://trific.ath.cx/tex,mf/moremath/">MoreMath</a></p>
+<p><a href="http://trific.ath.cx/tex,mf/tweak-latex/">Střeva LaTeXu</a></p>
+<p><a href="http://trific.ath.cx/tex,mf/other/">Ostatní</a></p>
+</div>
+</td>
+
+<td class="bar-right" valign="top">
+<h4><a href="http://trific.ath.cx/software/dendrofit/">DendroFit</a></h4>
+<p><a href="http://trific.ath.cx/software/dendrofit/data-format/">Data Format</a></p>
+<hr/>
+<h4 class="nohl">Last modified</h4><p class="nohl">2004-02-19</p>
+<p style="margin-top: 5pt; margin-bottom: 5pt;"><a href="http://trific.ath.cx/copyright/">© Yeti</a></p>
+<p style="margin-top: 5pt;"><a href="http://trific.ath.cx/printable/software/dendrofit/data-format/">Printable version</a></p>
+<p><a href="mailto:webmaster-at-trific-dot-ath-dot-cx">Webmaster</a></p>
+<p class="nohl" style="margin-bottom: 2pt;"><a href="http://www.eff.org/blueribbon/"><img src="http://br.eff.org/br.png" alt="[Join the Blue Ribbon Online Free Speech Campaign!]" height="76" width="112"/></a></p>
+<p class="nohl" style="margin-bottom: 2pt;"><a href="http://petition.eurolinux.org/"><img src="http://aful.org/images/patent_button.png" alt="[Sign the Petition for a Software Patent Free Europe!]"/></a></p>
+<p><a href="http://validator.w3.org/check?uri=http%3A%2F%2Ftrific.ath.cx%2Fsoftware%2Fdendrofit%2Fdata-format%2F&amp;charset=%28detect+automatically%29&amp;doctype=Inline">Valid XHTML 1.1</a></p>
+<p><a href="http://jigsaw.w3.org/css-validator/validator?uri=http%3A%2F%2Ftrific.ath.cx%2Fsoftware%2Fdendrofit%2Fdata-format%2F&amp;warning=1&amp;profile=css2">Valid CSS2</a></p>
+</td>
+
+</tr>
+<tr>
+<td class="bar-left-bot"></td>
+<td class="main">
+<div class="navline">
+<a href="http://trific.ath.cx/">Home</a>
+ &gt; 
+<a href="http://trific.ath.cx/software/">Software</a>
+ &gt; 
+<a href="http://trific.ath.cx/software/dendrofit/">DendroFit</a>
+ &gt; 
+<a href="http://trific.ath.cx/software/dendrofit/data-format/">DendroFit data file format</a>
+</div>
+</td>
+<td class="bar-right-bot"></td>
+</tr>
+</table>
+</body>
+</html>
+>

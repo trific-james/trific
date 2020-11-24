@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app202.us.archive.org';v.server_ms=512;archive_analytics.send_pageview({});});</script><script type="text/javascript" src="/_static/js/playback.bundle.js?v=SOX25l-I" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=cRqOKCOw" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("http://trific.ath.cx:80/software/ifsgr/","20060719215241","http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link rel="stylesheet" type="text/css" href="http://trific.ath.cx/CSS/layout.css"/>
+<link rel="stylesheet" type="text/css" href="http://trific.ath.cx/CSS/colors.css"/>
+<title>IFSgr</title>
+<link rel="shortcut icon" type="image/x-icon" href="http://trific.ath.cx/Img/favicon.ico"/>
+<meta name="Author" content="David Nečas (Yeti)"/>
+</head>
+<body><!-- END WAYBACK TOOLBAR INSERT -->
+<table class="main" cellspacing="0">
+<col class="left" width="13%"/><col class="main" width="74%"/><col class="right" width="13%"/>
+
+<tr>
+<td class="collapsed"></td>
+
+<td class="main" valign="top" rowspan="2">
+<div class="topline">
+<a href="http://trific.ath.cx/">Home</a>
+ &gt; 
+<a href="http://trific.ath.cx/software/">Software</a>
+ &gt; 
+<a href="http://trific.ath.cx/software/ifsgr/">IFSgr</a>
+ &gt; 
+<a href="http://trific.ath.cx/software/ifsgr/">IFSgr</a>
+</div>
+<div xml:lang="en">
+<h1>IFSgr</h1>
+
+<div class="img-right" style="float: right; width: 120px;">
+<a href="gallery/">
+<img src="http://trific.ath.cx/Img//ifsgr/ifsgr-fm-s.png" alt="" width="120" height="120"/>
+<br/>
+</a></div>
+<p>Current version of IFSgr, the high-quality iterated function system
+grayscale renderer, is 1.1,
+<a href="NEWS/">News</a>, <a href="#download">download</a>.</p>
+
+<p><small><i>One day I crashed
+<a href="http://www.math.utah.edu/~beebe/fonts/metafont.html">METAFONT</a> by
+overflowing its total number of variables by IFS renderer I wrote.<br/>
+Other day I found
+<a href="http://www.gimp.org/">Gimp</a> IFS Compose
+singular matrix handling to be fundamentally flawed.<br/>
+Yet another day I found a collection of old
+<a href="http://spanky.triumf.ca/www/fractint/fractint.html">Fractint</a> IFS files
+in a dark corner of my HD.</i></small></p>
+
+<p><small>These events might happen in different order, I don't remember.
+But at the end it was clear nothing could save the world from yet
+another iterated function system renderer, ifsgr.</small></p>
+
+<h2 id="features">Features</h2>
+<ul>
+<li>Reads and writes
+  <a href="http://spanky.triumf.ca/www/fractint/fractint.html">Fractint</a> 2D IFS files,
+  allowing to select particular fractals from them with easy
+  <code>::</code> notation.</li>
+<li>Reads <a href="http://archives.math.utk.edu/software/msdos/fractals/fdesign/.html">FDESIGN</a> TRN files.</li>
+<li>Reads and writes
+  <a href="http://www.gimp.org/">Gimp</a> IFS Compose
+  (IFSC) files.</li>
+<li>Renders high-quality grayscale images
+  (see the <a href="gallery/">IFS gallery</a>), automatically scaling the
+  fractals to fit to the canvas and adjusting gray levels.</li>
+<li>Writes Portable GrayMap images with bit depth 8 or 16, or raw pixel hit
+  counts in pseudo-PGM format (like PGM but with 32bit depth).</li>
+<li>Can rotate, skew, asymmetricaly scale or flip the fractal before
+  rendering or exporting to another format</li>
+<li>Allows selection of speed/quality trade-off and gamma (darkness)
+  modification.</li>
+<li>Keeps consistent image impression the same when changing size or the
+  number of iterations (quality).</li>
+<li>Can estimate box-counting dimension of the fractals.</li>
+<li>Its functionality is available as a library, libifsgr.</li>
+</ul>
+
+<p>See the <a href="gallery/">IFS gallery</a> for examples.</p>
+
+<p>See TODO in the source tarball for missing features…</p>
+
+<h2 id="download">Download</h2>
+<table><tr>
+<td>Source tarball (gzip):</td>
+<td><a href="http://trific.ath.cx/Ftp//ifsgr/ifsgr-1.1.tar.gz">ifsgr-1.1.tar.gz</a></td><td>(81 kB)</td>
+</tr><tr>
+<td>Source tarball (gzip) signature:</td>
+<td><a href="http://trific.ath.cx/Ftp//ifsgr/ifsgr-1.1.tar.gz.sig">ifsgr-1.1.tar.gz.sig</a></td><td>(65 B)</td>
+</tr><tr>
+<td>Source tarball (bzip2):</td>
+<td><a href="http://trific.ath.cx/Ftp//ifsgr/ifsgr-1.1.tar.bz2">ifsgr-1.1.tar.bz2</a></td><td>(63.3 kB)</td>
+</tr><tr>
+<td>Source tarball (bzip2) signature:</td>
+<td><a href="http://trific.ath.cx/Ftp//ifsgr/ifsgr-1.1.tar.bz2.sig">ifsgr-1.1.tar.bz2.sig</a></td><td>(65 B)</td>
+</tr><tr>
+<td>Fractint IFS files:</td>
+<td><a href="http://trific.ath.cx/Ftp//ifsgr/fractint-ifs.tar.gz">fractint-ifs.tar.gz</a></td><td>(16.2 kB)</td>
+</tr><tr>
+<td>FDESIGN TRN files:</td>
+<td><a href="http://trific.ath.cx/Ftp//ifsgr/fdesign-trn.tar.gz">fdesign-trn.tar.gz</a></td><td>(4.55 kB)</td>
+</tr></table>
+
+<p>Note the the Fractint IFS files came from <a href="http://spanky.triumf.ca/www/fractint/fractint.html">Fractint</a> and thus they
+are not GNU GPL licensed nor in public domain. Well, they <em>may</em> be in
+public domain.
+They may be copyrighted by Stone Soup Group or by ohter individuals.
+Who knows whether a dozen of real numbers can be copyrighted at all.
+IANAL and as I read the Fractint source license it at least seems OK to me to
+put them here for download. Please use your own brain (and lawyer).</p>
+
+<p>The FDESIGN TRN files should be in public domain, as FDESIGN itself is
+now.</p>
+
+<h2 id="requirements">Requirements</h2>
+<p>A GNU/Linux system (because I'm such a lazy bastard), namely
+GNU CC (version 3.x or newer is prefered), GNU make, GNU libc, GNU coreutils.
+Beside that,
+GNU <a href="http://www.gnu.org/software/libtool/libtool.html">libtool</a>.</p>
+
+<h2 id="miscellaneous">Miscellaneous</h2>
+<p><b>What IFSgr means?</b>
+IFS means Iterated Function System, of course. R stands for Renderer.
+G can mean anything; for instance: Grayscale, GNU, Gamma, Garbage.</p>
+
+<p><b>Documentation.</b>
+Currently doesn't exist, except a <a href="ifsgr.1/">manual page</a>.
+There are some my notes about IFSgr internals and formulas in the
+<code class="fnm">doc/</code> subdirectory, in the form of plain TeX
+sources.</p>
+
+<h2 id="copying">Copying</h2>
+<p>Copyright © 2004 Yeti (David Nečas) &lt;yeti at physics dot muni dot cz&gt;.</p>
+<p>IFSgr is free software; you can redistribute it and/or modify it under the terms of the
+<a href="http://www.gnu.org/licenses/gpl.html">GNU General Public License</a> as published by the Free Software Foundation;
+either version 2 of the License, or (at your option) any later version. For full license text see file <code class="fnm">COPYING</code> included in the source tarball.</p>
+
+
+</div>
+</td>
+
+<td class="collapsed"></td>
+</tr>
+
+<tr>
+<td class="bar-left" valign="top">
+<p class="nohl" style="margin-bottom: 8pt; background: #dcdcdc;"><a href="http://trific.ath.cx/"><img src="http://trific.ath.cx/Img/foot3.png" alt="[Trific net]" width="115" height="50"/></a></p>
+<div xml:lang="en">
+<h4><a href="http://trific.ath.cx/software/">Software</a></h4>
+<p><a href="http://trific.ath.cx/software/enca/">Enca</a></p>
+<p><a href="http://trific.ath.cx/software/gimp-plugins/">Gimp plug-ins</a></p>
+<p><a href="http://gwyddion.net/">Gwyddion</a></p>
+<p><a href="http://trific.ath.cx/software/dendrofit/">DendroFit</a></p>
+<p><a href="http://trific.ath.cx/resources/python/levenshtein/">Levenshtein</a></p>
+<p class="menuhl"><a href="http://trific.ath.cx/software/ifsgr/">IFSgr</a></p>
+<h4><a href="http://trific.ath.cx/resources/">Resources</a></h4>
+<p><a href="http://trific.ath.cx/resources/vim/">Vim</a></p>
+<p><a href="http://trific.ath.cx/resources/bash/">Bash</a></p>
+<p><a href="http://trific.ath.cx/resources/python/">Python</a></p>
+<p><a href="http://trific.ath.cx/resources/spamassassin/">SpamAssassin</a></p>
+<h4><a href="http://trific.ath.cx/tex-mf/">TeX &amp; MF</a></h4>
+<p><a href="http://trific.ath.cx/tex-mf/enctex/">EncTeX</a></p>
+<p><a href="http://trific.ath.cx/tex-mf/mitered-join/">Mitered join</a></p>
+<h4><a href="http://trific.ath.cxhttp://trific.ath.cxhttp://trific.ath.cx/yeti/">Yeti</a></h4>
+<p><a href="http://trific.ath.cx/yeti/gnupg-pubkey/">GnuPG Keys</a></p>
+</div><hr/><div xml:lang="cs">
+<h4><a href="http://trific.ath.cx/texts/">Texty</a></h4>
+<p><a href="http://trific.ath.cx/texts/absurd/">Absurdní</a></p>
+<p><a href="http://trific.ath.cx/texts/parody/">Parodie</a></p>
+<p><a href="http://trific.ath.cx/texts/opinion/">Názory</a></p>
+<p><a href="http://trific.ath.cx/texts/poem/">Ostatní</a></p>
+<p><a href="http://trific.ath.cx/texts/xml/">XML</a></p>
+<p><a href="http://trific.ath.cx/yeti/diary/">Deníček</a></p>
+<h4><a href="http://trific.ath.cx/tex,mf/">TeX &amp; MF</a></h4>
+<p><a href="http://trific.ath.cx/tex,mf/bestiary/">Bestiář</a></p>
+<p><a href="http://trific.ath.cx/tex,mf/moremath/">MoreMath</a></p>
+<p><a href="http://trific.ath.cx/tex,mf/tweak-latex/">Střeva LaTeXu</a></p>
+<p><a href="http://trific.ath.cx/tex,mf/other/">Ostatní</a></p>
+</div>
+</td>
+
+<td class="bar-right" valign="top">
+<h4><a href="http://trific.ath.cx/software/ifsgr/">IFSgr</a></h4>
+<p><a href="http://trific.ath.cx/software/ifsgr/NEWS/">News</a></p>
+<p><a href="http://trific.ath.cx/software/ifsgr/ifsgr.1/">ifsgr(1)</a></p>
+<p><a href="http://trific.ath.cx/software/ifsgr/ifs.5/">ifs(5)</a></p>
+<p><a href="http://trific.ath.cx/software/ifsgr/gallery/">IFS Gallery</a></p>
+<hr/>
+<h4 class="nohl">Links</h4>
+<p><a href="http://archives.math.utk.edu/software/msdos/fractals/fdesign/.html">FDESIGN</a></p>
+<p><a href="http://spanky.triumf.ca/www/fractint/fractint.html">Fractint</a></p>
+<p><a href="http://www.gnu.org/licenses/gpl.html">GNU GPL</a></p>
+<p><a href="http://www.gimp.org/">Gimp</a></p>
+<p><a href="http://www.math.utah.edu/~beebe/fonts/metafont.html">METAFONT</a></p>
+<p><a href="http://www.gnu.org/software/libtool/libtool.html">libtool</a></p>
+<hr/>
+<h4 class="nohl">Last modified</h4><p class="nohl">2006-04-09</p>
+<p style="margin-top: 5pt; margin-bottom: 5pt;"><a href="http://trific.ath.cx/copyright/">© Yeti</a></p>
+<p style="margin-top: 5pt;"><a href="http://trific.ath.cx/printable/software/ifsgr/">Printable version</a></p>
+<p><a href="mailto:webmaster-at-trific-dot-ath-dot-cx">Webmaster</a></p>
+<p class="nohl" style="margin-bottom: 2pt;"><a href="http://www.eff.org/blueribbon/"><img src="http://br.eff.org/br.png" alt="[Join the Blue Ribbon Online Free Speech Campaign!]" height="76" width="112"/></a></p>
+<p class="nohl" style="margin-bottom: 2pt;"><a href="http://petition.eurolinux.org/"><img src="http://aful.org/images/patent_button.png" alt="[Sign the Petition for a Software Patent Free Europe!]"/></a></p>
+<p><a href="http://validator.w3.org/check?uri=http%3A%2F%2Ftrific.ath.cx%2Fsoftware%2Fifsgr%2F&amp;charset=%28detect+automatically%29&amp;doctype=Inline">Valid XHTML 1.1</a></p>
+<p><a href="http://jigsaw.w3.org/css-validator/validator?uri=http%3A%2F%2Ftrific.ath.cx%2Fsoftware%2Fifsgr%2F&amp;warning=1&amp;profile=css2">Valid CSS2</a></p>
+</td>
+
+</tr>
+<tr>
+<td class="bar-left-bot"></td>
+<td class="main">
+<div class="navline">
+<a href="http://trific.ath.cx/">Home</a>
+ &gt; 
+<a href="http://trific.ath.cx/software/">Software</a>
+ &gt; 
+<a href="http://trific.ath.cx/software/ifsgr/">IFSgr</a>
+ &gt; 
+<a href="http://trific.ath.cx/software/ifsgr/">IFSgr</a>
+</div>
+</td>
+<td class="bar-right-bot"></td>
+</tr>
+</table>
+</body>
+</html>
+>

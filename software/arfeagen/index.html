@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app105.us.archive.org';v.server_ms=294;archive_analytics.send_pageview({});});</script><script type="text/javascript" src="/_static/js/playback.bundle.js?v=SOX25l-I" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=cRqOKCOw" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("http://trific.ath.cx:80/software/arfeagen/","20050906221353","http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link rel="stylesheet" type="text/css" href="http://trific.ath.cx/CSS/layout.css"/>
+<link rel="stylesheet" type="text/css" href="http://trific.ath.cx/CSS/colors.css"/>
+<title>Arfeagen</title>
+<link rel="shortcut icon" type="image/x-icon" href="http://trific.ath.cx/Img/favicon.ico"/>
+<meta name="Author" content="David Nečas (Yeti)"/>
+<meta name="ICBM" content="49.22283, 16.62547"/>
+<meta name="DC.title" content="Trific net (Yeti's personal pages)"/>
+<meta name="Description" content="Arfeagen is A Realistic Fake E-mail Addres GENerator.  It's fast and generates realistically looking email addresses."/>
+</head>
+<body><!-- END WAYBACK TOOLBAR INSERT -->
+<table class="main" cellspacing="0">
+<col class="left" width="13%"/><col class="main" width="74%"/><col class="right" width="13%"/>
+
+<tr>
+<td class="collapsed"></td>
+
+<td class="main" valign="top" rowspan="2">
+<div class="topline">
+<a href="http://trific.ath.cx/">Home</a>
+ &gt; 
+<a href="http://trific.ath.cx/software/">Software</a>
+ &gt; 
+<a href="http://trific.ath.cx/software/arfeagen/">Arfeagen</a>
+</div>
+<div xml:lang="en">
+<h1>Arfeagen</h1>
+
+<p>Current version of Arfeagen is 1.0.</p>
+
+<h2>Download</h2>
+<table><tr>
+<td>Source tarball (gzip):</td>
+<td><a href="http://trific.ath.cx/Ftp//arfeagen/arfeagen-1.0.tar.gz">arfeagen-1.0.tar.gz</a></td><td>(5.71 kB)</td>
+</tr><tr>
+<td>Source tarball (bzip2):</td>
+<td><a href="http://trific.ath.cx/Ftp//arfeagen/arfeagen-1.0.tar.bz2">arfeagen-1.0.tar.bz2</a></td><td>(5.67 kB)</td>
+</tr></table>
+
+<h2>Description</h2>
+<p>Arfeagen is A Realistic Fake E-mail Addres GENerator.</p>
+
+<p>It generates e-mail addresses that</p>
+<ul>
+<li>with a very high probability don't exist, however</li>
+<li>look like they could exist at the first sight</li>
+</ul>
+
+<p>It's written in C, it compiles to one selfcontained binary, it's fast, and
+it never outputs the same sequence of e-mail addresses. It can be used e.g.
+to fight spam bots.</p>
+
+<h2>Example</h2>
+<p>By default, arfeagen outputs a plain text list:</p>
+
+<pre>
+~$ arfeagen | sort
+Adnrei@ralosbeed.nf
+Bessie-too@eur-iklobits.ve
+Chepaest@usrs.skkr.mv
+Colorad@vk.sb
+Galois.lomb@34gbjz.org
+M.agn.et@jnnnh.jp
+Nora@l8.ph
+P4R41@schole.bz
+Puling@pub7a.com
+Wallis79@tensinng.org
+conce7@yi-93l2.edu
+dj60@cityuxcb.org.uy
+foejb@euro.tagnn.hm.com
+hacks@jfuicee.com
+nodxr@mail.qtnnbgf.kr
+ohp@euorslppers.cr
+rraptl.y@ywn.lr
+rw5@rndolh.org
+sincerest.wretc@maxi-ovvanovich.coop.be
+ww2@6e9jkphs.es
+</pre>
+
+<p>You can also <a href="http://trific.ath.cx/fuckoffspam/">watch arfeagen in action</a>.</p>
+
+<h2>Requirements</h2>
+<p><code class="fnm">/dev/urandom</code> or its functional equivalent.
+Such a device should be available on all modern Unices.</p>
+
+<p>A word list. It tries to use <code class="fnm">/usr/share/dict/words</code>
+by default.</p>
+
+<p>GCC or some other compiler able to compile 500 kiloitems long array
+initializers.</p>
+
+<p>Who knows, it was tested only on Linux…
+But the good news are you don't need Perl :o)</p>
+
+<h2>Similar tools</h2>
+<p><a href="http://www.hackles.org/spam/">addies and spamtricker</a>,
+two Perl generators, one intended as a CGI script, one as a cron job. They
+generate really ugly e-mail addresses from random numbers and letters.</p>
+
+<p><a href="http://www.monkeys.com/wpoison/">Wpoison</a>,
+a sofisticated Perl generator, it can create an infinite virtual web full of
+fake e-mail addresses. It can be also simply linked from your pages.
+It uses words from a dictionary thus I'm afraid it generates some
+<em>real</em> addresses too.</p>
+
+<p><a href="http://members.hostedscripts.com/antispam.html">Anti-spam</a>,
+a generator intended for linking from your pages. It generates addresses from
+random letters.</p>
+
+<p><a href="http://ktmatu.com/software/rea/">REA</a>,
+a Perl generator. It generates e-mail addresses from random letters, and it
+adds a few like root@localhost and postmaster@127.0.0.1 at the end, just for
+fun ;-)</p>
+
+<h2>Copying</h2>
+<p>Arfeagen is in the public domain.</p>
+
+</div>
+</td>
+
+<td class="collapsed"></td>
+</tr>
+
+<tr>
+<td class="bar-left" valign="top">
+<p class="nohl" style="margin-bottom: 8pt; background: #dcdcdc;"><a href="http://trific.ath.cx/"><img src="http://trific.ath.cx/Img/foot3.png" alt="[Trific net]" width="115" height="50"/></a></p>
+<div xml:lang="en">
+<h4 class="menuhl"><a href="http://trific.ath.cx/software/">Software</a></h4>
+<p><a href="http://trific.ath.cx/software/enca/">Enca</a></p>
+<p><a href="http://trific.ath.cx/software/gimp-plugins/">Gimp plug-ins</a></p>
+<p><a href="http://trific.ath.cx/software/gwyddion/">Gwyddion</a></p>
+<p><a href="http://trific.ath.cx/software/dendrofit/">DendroFit</a></p>
+<p><a href="http://trific.ath.cx/resources/python/levenshtein/">Levenshtein</a></p>
+<p><a href="http://trific.ath.cx/software/ifsgr/">IFSgr</a></p>
+<p><a href="http://trific.ath.cx/software/shmclean/">Shmclean</a></p>
+<p><a href="http://trific.ath.cx/software/wtch/">Wtch</a></p>
+<h4><a href="http://trific.ath.cx/resources/">Resources</a></h4>
+<p><a href="http://trific.ath.cx/resources/deobfuscate/">Deobfuscator</a></p>
+<p><a href="http://trific.ath.cx/resources/perl2rpm/">Perl2RPM</a></p>
+<p><a href="http://trific.ath.cx/resources/vim/">Vim</a></p>
+<p><a href="http://trific.ath.cx/resources/bash/">Bash</a></p>
+<p><a href="http://trific.ath.cx/resources/rpm/">RPM packages</a></p>
+<p><a href="http://trific.ath.cx/resources/python/">Python</a></p>
+<p><a href="http://trific.ath.cx/resources/spamassassin/">SpamAssassin</a></p>
+<h4><a href="http://trific.ath.cx/tex-mf/">TeX &amp; MF</a></h4>
+<p><a href="http://trific.ath.cx/tex-mf/enctex/">EncTeX</a></p>
+<p><a href="http://trific.ath.cx/tex-mf/mitered-join/">Mitered join</a></p>
+<h4><a href="http://trific.ath.cx/graphics/">Graphics</a></h4>
+<p><a href="http://trific.ath.cx/graphics/povray/">PoV-Ray</a></p>
+<h4><a href="http://trific.ath.cx/toys/">Random Toys</a></h4>
+<p><a href="http://trific.ath.cx/toys/gtkanim/">Gtkanim</a></p>
+<h4><a href="http://trific.ath.cxhttp://trific.ath.cxhttp://trific.ath.cxhttp://trific.ath.cxhttp://trific.ath.cx/yeti/">Yeti</a></h4>
+<p><a href="http://trific.ath.cx/yeti/gnupg-pubkey/">GnuPG Keys</a></p>
+<p><a href="http://trific.ath.cx/yeti/trific/">What is Trific</a></p>
+</div><hr/><div xml:lang="cs">
+<h4><a href="http://trific.ath.cx/texts/">Texty</a></h4>
+<p><a href="http://trific.ath.cx/texts/absurd/">Absurdní</a></p>
+<p><a href="http://trific.ath.cx/texts/parody/">Parodie</a></p>
+<p><a href="http://trific.ath.cx/texts/opinion/">Názory</a></p>
+<p><a href="http://trific.ath.cx/texts/poem/">Ostatní</a></p>
+<p><a href="http://trific.ath.cx/texts/xml/">XML</a></p>
+<p><a href="http://trific.ath.cx/yeti/diary/">Deníček</a></p>
+<h4><a href="http://trific.ath.cx/tex,mf/">TeX &amp; MF</a></h4>
+<p><a href="http://trific.ath.cx/tex,mf/bestiary/">Bestiář</a></p>
+<p><a href="http://trific.ath.cx/tex,mf/moremath/">MoreMath</a></p>
+<p><a href="http://trific.ath.cx/tex,mf/tweak-latex/">Střeva LaTeXu</a></p>
+<p><a href="http://trific.ath.cx/tex,mf/other/">Ostatní</a></p>
+</div>
+</td>
+
+<td class="bar-right" valign="top">
+<h4 class="nohl">Links</h4>
+<p><a href="http://members.hostedscripts.com/antispam.html">Anti-spam</a></p>
+<p><a href="http://trific.ath.cx/resources/deobfuscate/">Deobfuscator</a></p>
+<p><a href="http://ktmatu.com/software/rea/">REA</a></p>
+<p><a href="http://www.monkeys.com/wpoison/">Wpoison</a></p>
+<p><a href="http://www.hackles.org/spam/">addies and spamtricker</a></p>
+<hr/>
+<h4 class="nohl">Last modified</h4><p class="nohl">2003-08-11</p>
+<p style="margin-top: 5pt; margin-bottom: 5pt;"><a href="http://trific.ath.cx/copyright/">© Yeti</a></p>
+<p style="margin-top: 5pt;"><a href="http://trific.ath.cx/printable/software/arfeagen/">Printable version</a></p>
+<p><a href="http://trific.ath.cx/preferences/">Preferences</a></p>
+<p><a href="mailto:webmaster at trific dot ath dot cx">Webmaster</a></p>
+<p style="margin-bottom: 8pt;"><a href="http://trific.ath.cx/fuckoffspam/?id=564906286">Fakemails!</a></p>
+<p class="nohl" style="margin-bottom: 2pt;"><a href="http://www.eff.org/blueribbon/"><img src="http://br.eff.org/br.png" alt="[Join the Blue Ribbon Online Free Speech Campaign!]" height="76" width="112"/></a></p>
+<p class="nohl" style="margin-bottom: 2pt;"><a href="http://petition.eurolinux.org/"><img src="http://aful.org/images/patent_button.png" alt="[Sign the Petition for a Software Patent Free Europe!]"/></a></p>
+<p><a href="http://validator.w3.org/check?uri=http%3A%2F%2Ftrific.ath.cx%2Fsoftware%2Farfeagen%2F&amp;charset=%28detect+automatically%29&amp;doctype=Inline">Valid XHTML 1.1</a></p>
+<p><a href="http://jigsaw.w3.org/css-validator/validator?uri=http%3A%2F%2Ftrific.ath.cx%2Fsoftware%2Farfeagen%2F&amp;warning=1&amp;profile=css2">Valid CSS2</a></p>
+<p><a href="http://burnallgifs.org/">No GIFs</a></p>
+<p><a href="http://geourl.org/near/alt.html?p=http://trific.ath.cx/&amp;dist=200">GeoURL</a></p>
+</td>
+
+</tr>
+<tr>
+<td class="bar-left-bot"></td>
+<td class="main">
+<div class="navline">
+<a href="http://trific.ath.cx/">Home</a>
+ &gt; 
+<a href="http://trific.ath.cx/software/">Software</a>
+ &gt; 
+<a href="http://trific.ath.cx/software/arfeagen/">Arfeagen</a>
+</div>
+</td>
+<td class="bar-right-bot"></td>
+</tr>
+</table>
+</body>
+</html>
+>

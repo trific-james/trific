@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app43.us.archive.org';v.server_ms=845;archive_analytics.send_pageview({});});</script><script type="text/javascript" src="/_static/js/playback.bundle.js?v=SOX25l-I" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=cRqOKCOw" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("http://trific.ath.cx:80/software/gimp-plugins/fourier-compose/parameters/","20060904225819","http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link rel="stylesheet" type="text/css" href="http://trific.ath.cx/CSS/layout.css"/>
+<link rel="stylesheet" type="text/css" href="http://trific.ath.cx/CSS/colors.css"/>
+<title>Parameters</title>
+<link rel="shortcut icon" type="image/x-icon" href="http://trific.ath.cx/Img/favicon.ico"/>
+<meta name="Author" content="David Nečas (Yeti)"/>
+</head>
+<body><!-- END WAYBACK TOOLBAR INSERT -->
+<table class="main" cellspacing="0">
+<col class="left" width="13%"/><col class="main" width="74%"/><col class="right" width="13%"/>
+
+<tr>
+<td class="collapsed"></td>
+
+<td class="main" valign="top" rowspan="2">
+<div class="topline">
+<a href="http://trific.ath.cx/">Home</a>
+ &gt; 
+<a href="http://trific.ath.cx/software/">Software</a>
+ &gt; 
+<a href="http://trific.ath.cx/software/gimp-plugins/">Gimp plug-ins</a>
+ &gt; 
+<a href="http://trific.ath.cx/software/gimp-plugins/fourier-compose/">Fourier Compose</a>
+ &gt; 
+<a href="http://trific.ath.cx/software/gimp-plugins/fourier-compose/parameters/">Parameters</a>
+</div>
+<div xml:lang="en">
+<!-- <h1>Parameters</h1> -->
+<h1>Fourier Compose Gimp plug-in: Parameters</h1>
+
+<p>Parameter description:</p>
+
+<dl>
+<dt>
+Minimum frequency
+</dt>
+<dd>
+<p>
+The minimum frequency of simple high-pass filter.  The value is relative,
+0.5 corresponds to Nyquist frequency (the same applies to all other
+frequency parameters).
+</p>
+
+<p>
+The use of frequency units relative to maximum frequency has one
+interesting, but perhaps a bit confusing consequence: The same [relative]
+frequency values lead to the same <em>absolute</em> feature size on resulting
+images, not relative.  In other words, a choice of parameters that makes
+characteristic feature size 40 pixels on image of one size, will make
+characteristic feature 40 pixels on images of all sizes.  The only thing
+that will change with changing image size is the number of periods that
+will fit in.
+</p>
+</dd>
+
+<dt>
+Maximum frequency
+</dt>
+<dd>
+<p>
+The maximum frequency of simple low-pass filter.
+</p>
+</dd>
+
+<dt>
+Enable Gaussian ring multiplier
+</dt>
+<dd>
+<p>
+Gaussian ring multiplier is a frequency filter of form
+</p>
+
+<p>exp(−(<var class="math">f</var> − <var class="math">f</var><sub>0</sub>)<sup>2</sup>/2σ<sup>2</sup>)</p>
+
+<p>
+where <var class="math">f</var> denotes the length of frequency vector.
+</p>
+</dd>
+
+<dt>
+Offset
+</dt>
+<dd>
+<p>
+The value of <var class="math">f</var><sub>0</sub> in Gaussian multiplier.
+</p>
+</dd>
+
+<dt>
+Sigma
+</dt>
+<dd>
+<p>
+The value of σ in Gaussian multiplier.
+</p>
+</dd>
+
+<dt>
+Enable power multiplier
+</dt>
+<dd>
+<p>
+Power multiplier is a frequency filter of form
+</p>
+
+<p>1/<var class="math">f</var><var class="math"><sup> p</sup></var></p>
+
+<p>
+where <var class="math">f</var> denotes the length of frequency vector.
+</p>
+</dd>
+
+<dt>
+Inverse power
+</dt>
+<dd>
+<p>
+The value of <var class="math">p</var> in power multiplier.
+</p>
+</dd>
+
+<dt>
+Enable directional multiplier
+</dt>
+<dd>
+<p>
+Directional multiplier is a frequency filter of form
+</p>
+
+<p>(cos(<var class="math">n</var>(φ − φ<sub>0</sub>)) + 1)/2)<var class="math"><sup>s</sup></var></p>
+
+<p>
+where φ denotes the direction of frequency vector.
+</p>
+</dd>
+
+<dt>
+Number of directions
+</dt>
+<dd>
+<p>
+The value of <var class="math">n</var> in directional multiplier (an integer).
+</p>
+</dd>
+
+<dt>
+Strength
+</dt>
+<dd>
+<p>
+The value of <var class="math">s</var> in directional multiplier.  The actual
+strength of the effect on the texture depends on <var class="math">n</var>.
+For example, for 4 the effect is quite strong, while for an odd number it is
+weaker.
+</p>
+</dd>
+
+<dt>
+Rotation
+</dt>
+<dd>
+<p>
+The value of φ<sub>0</sub> in directional multiplier (in degrees).
+</p>
+</dd>
+</dl>
+</div>
+</td>
+
+<td class="collapsed"></td>
+</tr>
+
+<tr>
+<td class="bar-left" valign="top">
+<p class="nohl" style="margin-bottom: 8pt; background: #dcdcdc;"><a href="http://trific.ath.cx/"><img src="http://trific.ath.cx/Img/foot3.png" alt="[Trific net]" width="115" height="50"/></a></p>
+<div xml:lang="en">
+<h4><a href="http://trific.ath.cx/software/">Software</a></h4>
+<p><a href="http://trific.ath.cx/software/enca/">Enca</a></p>
+<p class="menuhl"><a href="http://trific.ath.cx/software/gimp-plugins/">Gimp plug-ins</a></p>
+<p><a href="http://gwyddion.net/">Gwyddion</a></p>
+<p><a href="http://trific.ath.cx/software/dendrofit/">DendroFit</a></p>
+<p><a href="http://trific.ath.cx/resources/python/levenshtein/">Levenshtein</a></p>
+<p><a href="http://trific.ath.cx/software/ifsgr/">IFSgr</a></p>
+<h4><a href="http://trific.ath.cx/resources/">Resources</a></h4>
+<p><a href="http://trific.ath.cx/resources/vim/">Vim</a></p>
+<p><a href="http://trific.ath.cx/resources/bash/">Bash</a></p>
+<p><a href="http://trific.ath.cx/resources/python/">Python</a></p>
+<p><a href="http://trific.ath.cx/resources/spamassassin/">SpamAssassin</a></p>
+<h4><a href="http://trific.ath.cx/tex-mf/">TeX &amp; MF</a></h4>
+<p><a href="http://trific.ath.cx/tex-mf/enctex/">EncTeX</a></p>
+<p><a href="http://trific.ath.cx/tex-mf/mitered-join/">Mitered join</a></p>
+<h4><a href="http://trific.ath.cxhttp://trific.ath.cxhttp://trific.ath.cx/yeti/">Yeti</a></h4>
+<p><a href="http://trific.ath.cx/yeti/gnupg-pubkey/">GnuPG Keys</a></p>
+</div><hr/><div xml:lang="cs">
+<h4><a href="http://trific.ath.cx/texts/">Texty</a></h4>
+<p><a href="http://trific.ath.cx/texts/absurd/">Absurdní</a></p>
+<p><a href="http://trific.ath.cx/texts/parody/">Parodie</a></p>
+<p><a href="http://trific.ath.cx/texts/opinion/">Názory</a></p>
+<p><a href="http://trific.ath.cx/texts/poem/">Ostatní</a></p>
+<p><a href="http://trific.ath.cx/texts/xml/">XML</a></p>
+<p><a href="http://trific.ath.cx/yeti/diary/">Deníček</a></p>
+<h4><a href="http://trific.ath.cx/tex,mf/">TeX &amp; MF</a></h4>
+<p><a href="http://trific.ath.cx/tex,mf/bestiary/">Bestiář</a></p>
+<p><a href="http://trific.ath.cx/tex,mf/moremath/">MoreMath</a></p>
+<p><a href="http://trific.ath.cx/tex,mf/tweak-latex/">Střeva LaTeXu</a></p>
+<p><a href="http://trific.ath.cx/tex,mf/other/">Ostatní</a></p>
+</div>
+</td>
+
+<td class="bar-right" valign="top">
+<h4><a href="http://trific.ath.cx/software/gimp-plugins/">Gimp plug-ins</a></h4>
+<p><a href="http://trific.ath.cx/software/gimp-plugins/fourier-compose/">Fourier Compose</a></p>
+<p><a href="http://trific.ath.cx/software/gimp-plugins/particle-deposition/">Particle Deposition</a></p>
+<p><a href="http://trific.ath.cx/software/gimp-plugins/plasma2/">Plasma2</a></p>
+<p><a href="http://trific.ath.cx/software/gimp-plugins/stereograph/">Stereograph</a></p>
+<p><a href="http://trific.ath.cx/software/gimp-plugins/self-som/">Self-SOM</a></p>
+<p><a href="http://trific.ath.cx/software/gimp-plugins/turing-pattern/">Turing Pattern</a></p>
+<p><a href="http://trific.ath.cx/software/gimp-plugins/tileably-shrink/">Tileably Shrink</a></p>
+<p><a href="http://trific.ath.cx/software/gimp-plugins/voronoi/">Voronoi</a></p>
+<p><a href="http://trific.ath.cx/software/gimp-plugins/water-surface/">Water Surface 2</a></p>
+<p><a href="http://trific.ath.cx/software/gimp-plugins/waves-of-chaos/">Waves of Chaos</a></p>
+<hr/>
+<h4 class="nohl">Last modified</h4><p class="nohl">2005-12-28</p>
+<p style="margin-top: 5pt; margin-bottom: 5pt;"><a href="http://trific.ath.cx/copyright/">© Yeti</a></p>
+<p style="margin-top: 5pt;"><a href="http://trific.ath.cx/printable/software/gimp-plugins/fourier-compose/parameters/">Printable version</a></p>
+<p><a href="mailto:webmaster-at-trific-dot-ath-dot-cx">Webmaster</a></p>
+<p class="nohl" style="margin-bottom: 2pt;"><a href="http://www.eff.org/blueribbon/"><img src="http://br.eff.org/br.png" alt="[Join the Blue Ribbon Online Free Speech Campaign!]" height="76" width="112"/></a></p>
+<p class="nohl" style="margin-bottom: 2pt;"><a href="http://petition.eurolinux.org/"><img src="http://aful.org/images/patent_button.png" alt="[Sign the Petition for a Software Patent Free Europe!]"/></a></p>
+<p><a href="http://validator.w3.org/check?uri=http%3A%2F%2Ftrific.ath.cx%2Fsoftware%2Fgimp-plugins%2Ffourier-compose%2Fparameters%2F&amp;charset=%28detect+automatically%29&amp;doctype=Inline">Valid XHTML 1.1</a></p>
+<p><a href="http://jigsaw.w3.org/css-validator/validator?uri=http%3A%2F%2Ftrific.ath.cx%2Fsoftware%2Fgimp-plugins%2Ffourier-compose%2Fparameters%2F&amp;warning=1&amp;profile=css2">Valid CSS2</a></p>
+</td>
+
+</tr>
+<tr>
+<td class="bar-left-bot"></td>
+<td class="main">
+<div class="navline">
+<a href="http://trific.ath.cx/">Home</a>
+ &gt; 
+<a href="http://trific.ath.cx/software/">Software</a>
+ &gt; 
+<a href="http://trific.ath.cx/software/gimp-plugins/">Gimp plug-ins</a>
+ &gt; 
+<a href="http://trific.ath.cx/software/gimp-plugins/fourier-compose/">Fourier Compose</a>
+ &gt; 
+<a href="http://trific.ath.cx/software/gimp-plugins/fourier-compose/parameters/">Parameters</a>
+</div>
+</td>
+<td class="bar-right-bot"></td>
+</tr>
+</table>
+</body>
+</html>
+>

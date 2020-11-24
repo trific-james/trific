@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="cs">
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app57.us.archive.org';v.server_ms=324;archive_analytics.send_pageview({});});</script><script type="text/javascript" src="/_static/js/playback.bundle.js?v=SOX25l-I" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=cRqOKCOw" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("http://trific.ath.cx:80/tex,mf/moremath/","20060719215307","http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link rel="stylesheet" type="text/css" href="http://trific.ath.cx/CSS/layout.css"/>
+<link rel="stylesheet" type="text/css" href="http://trific.ath.cx/CSS/colors.css"/>
+<title>Bundle MoreMath</title>
+<link rel="shortcut icon" type="image/x-icon" href="http://trific.ath.cx/Img/favicon.ico"/>
+<meta name="Author" content="David Nečas (Yeti)"/>
+</head>
+<body><!-- END WAYBACK TOOLBAR INSERT -->
+<table class="main" cellspacing="0">
+<col class="left" width="13%"/><col class="main" width="74%"/><col class="right" width="13%"/>
+
+<tr>
+<td class="collapsed"></td>
+
+<td class="main" valign="top" rowspan="2">
+<div class="topline">
+<a href="http://trific.ath.cx/">Home</a>
+ &gt; 
+<a href="http://trific.ath.cx/tex,mf/">TeX &amp; Metafont</a>
+ &gt; 
+<a href="http://trific.ath.cx/tex,mf/moremath/">Bundle MoreMath</a>
+</div>
+<div xml:lang="cs">
+<h1>Bundle MoreMath</h1>
+
+<p><a href="http://trific.ath.cx/Ftp//tex/moremath/moremath-1.2.3.tar.gz">moremath-1.2.3.tar.gz</a> (39,5 kB) je
+jméno balíku mých
+matematických LaTeXových maker plus nějakých fontů, který neustále
+nabývá na objemu (i když v poslední době už trochu pomaleji).
+Zde zveřejněná verze je 1.2.3 z 2006-01-18.
+Některé věci, které umí, a některé související problémy
+jsou zde dále rozebrány – konkrétně</p>
+
+<ul class="ltoc">
+<li><a href="#install">Instalace</a> balíku MoreMath</li>
+<li>Inteligentní sazba <a href="#vectors">vektorů</a></li>
+<li>Tučná a netučná <a href="#boldgreek">řecká písmena</a>
+  v jednom vzorci</li>
+<li>Diracova <a href="#dirac">braketová symbolika</a></li>
+<li><a href="#binbreak">Opakování binárních relací</a> a operátorů na
+  druhém řádku při zlomu</li>
+<li><a href="#exscale">Správné fungování
+  <code class="TeX">\bigl</code>,
+  <code class="TeX">\bigr</code></a>, <i>etc.</i>
+  při 11pt a 12pt sazbě?</li>
+<li><a href="#eqn">Pohodlnější číslování rovnic</a>
+  aneb jak se vyhnout přepisování
+<code class="TeX">equation</code> na
+<code class="TeX">displaymath</code>
+  a zpátky?</li>
+<li>Jak se nenadřít při sazbě hnusných <a href="#valform">číslených hodnot
+  veličin?</a></li>
+</ul>
+
+<hr/>
+<h2 id="install">Instalace MoreMath</h2>
+<p>Bundle MoreMath – což je skupina mých matematických
+packages – je tu všude podsouván
+k downloadnutí ve fromě dokumentovaného TeXovského
+zdrojáku <code class="fname">moremath.dtx</code>,
+a instalačního skriptu
+<code class="fname">moremath.ins</code>, takže musíte projet TeXem
+<code class="fname">moremath.ins</code>,
+abyste dostali package a zdrojáky fontů, zdrojáky
+fontů musíte projtet METAFONTem, abyste dostali metriky
+<code class="fname">.tfm</code>, toto vše
+musíte nahrát někam, kde to vaše instalace LaTeXu najde, a abyste
+dostali dokumentaci, musíte projet LaTeXem
+<code class="fname">moremath.dtx</code>.</p>
+
+<p>Z tohoto důvodu tu býval ke stažení v již vygenerované formě,
+ale tato možnost opět pominula.
+Zahrnul jsem totiž do distribuce <code class="fname">Makefile</code>,
+který všechno (snad) udělá za vás (v *NIXu) a jeho obdobu
+<code class="fnm">make.bat</code> pro em-TeX (podle dosavadních ohlasů
+obojí funguje, alespoň na testovaných platformách).</p>
+
+<hr/>
+<h2 id="vectors">Inteligentní sazba vektorů</h2>
+
+<p>Označovaní vektorů šipečkou je dobré, píšu-li rukou.
+V sazbě se takové věci mohu dopustit pouze z neznalosti či zoufalství.
+Jinak je běžné vyznačovat vektory jiným typem (či spíše řezem) písma,
+obvykle skloněným tučným bezpatkovým písmem
+(v knihách o lineární algebře taky tučnou antikvou).</p>
+
+<div class="img-center" style="margin-left: auto; margin-right: auto; width: 331px;">
+<img src="http://trific.ath.cx/Img/tex/vec1.png" alt="" width="331" height="142"/>
+<br/>Maxwellovy rovnice s Slanted Sans Serif Bold Extended CM vektory
+</div>
+
+<p>Kde takové písmo ovšem vzít? (Ve standardní distribuci TeXu nic takového
+nenajdete.)</p>
+
+<p>Toto písmo je součástí balíku MoreMath,
+jehož package <b class="pack">newvec</b> umožňuje sázet
+vektory nejen tímto písmem, ale podle vkusu/fontových možností i tučným
+bezpatkovým písmem nebo tučnou matematickou italikou nebo již zmíněnou tučnou
+antikvou.</p>
+
+<hr/>
+<h2 id="boldgreek">Tučná a netučná řecká písmena v jednom vzorci</h2>
+
+<p>Jak dostat do jednoho vzorce zároveň tučná a netučná malá řecká
+písmena?
+Existují sice krkolomná řešení pomocí LaTeXovského
+<code class="TeX">\mathversion</code>, ale
+pokud to potřebujete časteji, je jasné, že je třeba definovat novou <i>math
+family</i></p>
+
+<div class="img-center" style="margin-left: auto; margin-right: auto; width: 273px;">
+<img src="http://trific.ath.cx/Img/tex/boldomega.png" alt="" width="273" height="43"/>
+<br/>Vzoreček s omega a bold omega
+</div>
+
+<p>Moje package <b class="pack">newvec</b>
+definuje (za cenu nové math-font-family) příkazy přímo
+přístupující k tučným řeckým písmenům – například
+<code class="TeX">\Bomega</code>
+udělá malou tučnou omegu,
+<code class="TeX">\BOmega</code> velkou.</p>
+
+<hr/>
+<h2 id="dirac">Diracova braketová symbolika</h2>
+
+<p>Pokud jste někdy zkoušeli sázet bra a ket vektory, asi jste zjistili,
+že je problém ve dvou věcech: defaultní mezerování symbolů je nevhodné (nebo
+aspoň nezvyklé) a samotné lomené závorky
+<code class="TeX">\langle</code>
+a <code class="TeX">\rangle</code>
+jsou poněkud příliš otevřené.</p>
+
+<p>Mezerování se dá spravit celkem jednoduše – docela dobře
+vypadající výsledky vytváří makra z package
+<b class="pack">bracketsym</b>.
+Navíc umožňuje psát bra
+jako <code class="TeX">&lt;</code>
+a ket
+jako <code class="TeX">&gt;</code>,
+což se šikne.</p>
+
+<p>Závorky jsem vyřešil celkem dost
+brutálně – v <code class="fname">msbm</code> fontu
+(tedy AmS symbolovém fontu b) je volných několik pozic, takže jsem prostě
+udělal v METAFONTu „ty správné“ závorky a nacpal je tam.
+Abych dodržel licenční podmínky (změny povoleny, ale musí se změnit název),
+musel jsem přejmenovat asi dvacet souborů a tak vznikly
+<code class="fname">ymsbm</code> fonty a package
+<b class="pack">amssyymb</b>,
+k downloadu jako
+<a href="http://trific.ath.cx/Ftp//tex/ymsbm.zip">ymsbm.zip</a> (44,3 kB)(BTW font <code class="fname">ymsbm</code> obsahuje ještě
+pokus o neskloněné (malé) řecké pí
+<code class="TeX">\upi</code>, kdyby někdo chtěl
+odlišovat pí ve smyslu konstanty 3,14159265358979323...
+a proměnné – třeba projekce).</p>
+
+<p>Výsledek vypadá zhruba následovně:</p>
+
+<div class="img-center" style="margin-left: auto; margin-right: auto; width: 391px;">
+<img src="http://trific.ath.cx/Img/tex/braket.png" alt="" width="391" height="122"/>
+<br/>Vzoreček s bra a kety
+</div>
+
+<hr/>
+<h2 id="binbreak">Opakování binárních relací a operátorů na druhém řádku při
+zlomu</h2>
+
+<p>TeX povoluje zlom řádku po binární relaci resp. binárním operátoru,
+i když s jistou <em>penalty</em>. Lepší by ale bylo, kdyby se
+inkriminovaný operátor opakoval na začátku následujícího řádku, tj. pokud
+by došlo ke zlomu řádku po druhém +
+ve vzorci <var>x</var> + <var>y</var> + <var>z</var> + <var>w</var>,
+nedostali bychom <var>x</var> + <var>y</var> +
+a <var>z</var> + <var>w</var>,
+ale <var>x</var> + <var>y</var> +
+a + <var>z</var> + <var>w</var>.
+Myšlenku, jak to zařídit, publikoval už Petr Olšák ve svém TeXbooku naruby na
+str. 160; já jsem ji ve značně propracovanější podobě implementoval
+v package <b class="pack">binbreak</b>.
+Verze 1.3.0 už je k disposici.</p>
+
+<hr/>
+<h2 id="exscale">Správné fungování <code class="TeX">\bigl</code>,
+<code class="TeX">\bigr</code>, etc. při 11pt a 12pt sazbě?</h2>
+
+<p>Tady je řešení jednoduché: stačí načíst package
+<b class="pack">exscale</b>, která je standardní součástí distribuce LaTeXu.
+V preambuli dokumentu uveďte
+<code class="TeX">\usepackage{exscale}</code>.</p>
+
+<p>Package <b class="pack">mathabbr</b>
+ze stejnojmenného balíku dokáže o potřebě načtení exscale
+rozhodnout sama (nechápu proč to nedělá sám LaTeX).</p>
+
+<hr/>
+<h2><a id="eqn">Jak se vyhnout přepisování
+<code class="TeX">equation</code> na
+<code class="TeX">displaymath</code>
+a zpátky?</a></h2>
+
+<p>Když chcete v LaTeXu číslovanou rovnici, musíte použít
+<code class="TeX">\begin{equation}</code>
+a <code class="TeX">\end{equation}</code>;
+když chcete nečíslovanou, můžete použít
+<code class="TeX">\begin{displaymath}</code>
+a <code class="TeX">\end{displaymath}</code>;
+nebo jen
+<code class="TeX">$$</code>
+a <code class="TeX">$$</code>.
+Měníte-li číslovanou rovnci na nečíslovanou nebo naopak,
+je s tím spousta práce tak jako tak.</p>
+
+<p>Ideální by bylo používat jenom
+<code class="TeX">$$</code>
+a mít něco jako Plain TeXovské
+<code class="TeX">\eqno</code>,
+jenomže by číslovalo rovnice automaticky
+jako LaTeXovské prostředí <code class="TeX">equation</code>.
+Takové makro popisuje Petr Olšák ve svém TeXbooku naruby na str. 238,
+ale pro Plain, takže se nedá míchat s LaTeXovským číslováním.
+Takže jsem napsal makro pro LaTeX, jmenuje se
+<code class="TeX">\eqn</code>
+a je součástí package <b class="pack">mathabbr</b>.
+Když před
+<code class="TeX">$$</code>
+dopíšete <code class="TeX">\eqn</code>,
+rovnice se očísluje, a to <em>kompatibilně</em>
+s LaTeXovým číslováním, takže se to dá míchat.
+Když ho smažete, rovnice se stane nečíslovanou. Makro má navíc
+nepovinný paramter – label,
+takže jeho používáním zabijete dvě mouchy jednou ranou.</p>
+
+<hr/>
+<h2 id="valform">Jak se nenadřít při sazbě hnusných číslených hodnot
+veličin?</h2>
+
+<p>Tohle řeší package <b class="pack">valform</b>.
+Následující dva příklady byly vysázeny ze zdrojáku</p>
+<pre>
+\f\lambda_{\rm He}=142.3e-3 W m^{-1} K^{-1}|
+</pre>
+
+<p>akorát s jinými paramtery package.
+Všimněte si hlavně, jak je vyřešeno psaní 10^něco.</p>
+
+<div class="img-center" style="margin-left: auto; margin-right: auto; width: 333px;">
+<img src="http://trific.ath.cx/Img/tex/form1.png" alt="" width="333" height="44"/>
+<br/>Makro \f – ukázka 1, česká forma.
+</div>
+<div class="img-center" style="margin-left: auto; margin-right: auto; width: 328px;">
+<img src="http://trific.ath.cx/Img/tex/form2.png" alt="" width="328" height="45"/>
+<br/>Makro \f – ukázka 2, anglosaská forma s hranatými závorkami.
+</div>
+</div>
+</td>
+
+<td class="collapsed"></td>
+</tr>
+
+<tr>
+<td class="bar-left" valign="top">
+<p class="nohl" style="margin-bottom: 8pt; background: #dcdcdc;"><a href="http://trific.ath.cx/"><img src="http://trific.ath.cx/Img/foot3.png" alt="[Trific net]" width="115" height="50"/></a></p>
+<div xml:lang="en">
+<h4><a href="http://trific.ath.cx/software/">Software</a></h4>
+<p><a href="http://trific.ath.cx/software/enca/">Enca</a></p>
+<p><a href="http://trific.ath.cx/software/gimp-plugins/">Gimp plug-ins</a></p>
+<p><a href="http://gwyddion.net/">Gwyddion</a></p>
+<p><a href="http://trific.ath.cx/software/dendrofit/">DendroFit</a></p>
+<p><a href="http://trific.ath.cx/resources/python/levenshtein/">Levenshtein</a></p>
+<p><a href="http://trific.ath.cx/software/ifsgr/">IFSgr</a></p>
+<h4><a href="http://trific.ath.cx/resources/">Resources</a></h4>
+<p><a href="http://trific.ath.cx/resources/vim/">Vim</a></p>
+<p><a href="http://trific.ath.cx/resources/bash/">Bash</a></p>
+<p><a href="http://trific.ath.cx/resources/python/">Python</a></p>
+<p><a href="http://trific.ath.cx/resources/spamassassin/">SpamAssassin</a></p>
+<h4><a href="http://trific.ath.cx/tex-mf/">TeX &amp; MF</a></h4>
+<p><a href="http://trific.ath.cx/tex-mf/enctex/">EncTeX</a></p>
+<p><a href="http://trific.ath.cx/tex-mf/mitered-join/">Mitered join</a></p>
+<h4><a href="http://trific.ath.cxhttp://trific.ath.cxhttp://trific.ath.cx/yeti/">Yeti</a></h4>
+<p><a href="http://trific.ath.cx/yeti/gnupg-pubkey/">GnuPG Keys</a></p>
+</div><hr/><div xml:lang="cs">
+<h4><a href="http://trific.ath.cx/texts/">Texty</a></h4>
+<p><a href="http://trific.ath.cx/texts/absurd/">Absurdní</a></p>
+<p><a href="http://trific.ath.cx/texts/parody/">Parodie</a></p>
+<p><a href="http://trific.ath.cx/texts/opinion/">Názory</a></p>
+<p><a href="http://trific.ath.cx/texts/poem/">Ostatní</a></p>
+<p><a href="http://trific.ath.cx/texts/xml/">XML</a></p>
+<p><a href="http://trific.ath.cx/yeti/diary/">Deníček</a></p>
+<h4><a href="http://trific.ath.cx/tex,mf/">TeX &amp; MF</a></h4>
+<p><a href="http://trific.ath.cx/tex,mf/bestiary/">Bestiář</a></p>
+<p class="menuhl"><a href="http://trific.ath.cx/tex,mf/moremath/">MoreMath</a></p>
+<p><a href="http://trific.ath.cx/tex,mf/tweak-latex/">Střeva LaTeXu</a></p>
+<p><a href="http://trific.ath.cx/tex,mf/other/">Ostatní</a></p>
+</div>
+</td>
+
+<td class="bar-right" valign="top">
+<h4><a href="http://trific.ath.cx/tex,mf/">TeX &amp; MF</a></h4>
+<p><a href="http://trific.ath.cx/tex,mf/bestiary/">Bestiář</a></p>
+<p><a href="http://trific.ath.cx/tex,mf/moremath/">MoreMath</a></p>
+<p><a href="http://trific.ath.cx/tex,mf/latex-demyth/">Demýtizace LaTeXu</a></p>
+<p><a href="http://trific.ath.cx/tex,mf/tweak-latex/">Střeva LaTeXu</a></p>
+<p><a href="http://trific.ath.cx/tex,mf/picto/">Piktogramy IOF</a></p>
+<p><a href="http://trific.ath.cx/tex,mf/song/">Akordy</a></p>
+<p><a href="http://trific.ath.cx/tex,mf/catcode-everymath/">Catcode potíže</a></p>
+<p><a href="http://trific.ath.cx/tex,mf/eqnref/">Eqnref</a></p>
+<p><a href="http://trific.ath.cx/tex,mf/other/">Ostatní</a></p>
+<hr/>
+<h4 class="nohl">Naposled změněno</h4><p class="nohl">2006-01-18</p>
+<p style="margin-top: 5pt; margin-bottom: 5pt;"><a href="http://trific.ath.cx/copyright/">© Yeti</a></p>
+<p style="margin-top: 5pt;"><a href="http://trific.ath.cx/printable/tex,mf/moremath/">Verze pro tisk</a></p>
+<p><a href="mailto:webmaster-at-trific-dot-ath-dot-cx">Webmaster</a></p>
+<p class="nohl" style="margin-bottom: 2pt;"><a href="http://www.eff.org/blueribbon/"><img src="http://br.eff.org/br.png" alt="[Join the Blue Ribbon Online Free Speech Campaign!]" height="76" width="112"/></a></p>
+<p class="nohl" style="margin-bottom: 2pt;"><a href="http://petition.eurolinux.org/"><img src="http://aful.org/images/patent_button.png" alt="[Sign the Petition for a Software Patent Free Europe!]"/></a></p>
+<p><a href="http://validator.w3.org/check?uri=http%3A%2F%2Ftrific.ath.cx%2Ftex%2Cmf%2Fmoremath%2F&amp;charset=%28detect+automatically%29&amp;doctype=Inline">Valid XHTML 1.1</a></p>
+<p><a href="http://jigsaw.w3.org/css-validator/validator?uri=http%3A%2F%2Ftrific.ath.cx%2Ftex%2Cmf%2Fmoremath%2F&amp;warning=1&amp;profile=css2">Valid CSS2</a></p>
+</td>
+
+</tr>
+<tr>
+<td class="bar-left-bot"></td>
+<td class="main">
+<div class="navline">
+<a href="http://trific.ath.cx/">Home</a>
+ &gt; 
+<a href="http://trific.ath.cx/tex,mf/">TeX &amp; Metafont</a>
+ &gt; 
+<a href="http://trific.ath.cx/tex,mf/moremath/">Bundle MoreMath</a>
+</div>
+</td>
+<td class="bar-right-bot"></td>
+</tr>
+</table>
+</body>
+</html>
+>

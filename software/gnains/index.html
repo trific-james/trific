@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app12.us.archive.org';v.server_ms=630;archive_analytics.send_pageview({});});</script><script type="text/javascript" src="/_static/js/playback.bundle.js?v=SOX25l-I" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=cRqOKCOw" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("http://trific.ath.cx:80/software/gnains/","20060717013209","http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link rel="stylesheet" type="text/css" href="http://trific.ath.cx/CSS/layout.css"/>
+<link rel="stylesheet" type="text/css" href="http://trific.ath.cx/CSS/colors.css"/>
+<title>Gnains</title>
+<link rel="shortcut icon" type="image/x-icon" href="http://trific.ath.cx/Img/favicon.ico"/>
+<meta name="Author" content="David Nečas (Yeti)"/>
+</head>
+<body><!-- END WAYBACK TOOLBAR INSERT -->
+<table class="main" cellspacing="0">
+<col class="left" width="13%"/><col class="main" width="74%"/><col class="right" width="13%"/>
+
+<tr>
+<td class="collapsed"></td>
+
+<td class="main" valign="top" rowspan="2">
+<div class="topline">
+<a href="http://trific.ath.cx/">Home</a>
+ &gt; 
+<a href="http://trific.ath.cx/software/">Software</a>
+ &gt; 
+<a href="http://trific.ath.cx/software/gnains/">Gnains</a>
+</div>
+<div xml:lang="en">
+<h1>Gnains</h1>
+
+<p>Gnains means Gtk-doc Naive Approximative INdex Search.</p>
+
+<p>Current version of gnains is 0.4.1.</p>
+
+<h2>Download</h2>
+<table><tr>
+<td>Source tarball (gzip):</td>
+<td><a href="http://trific.ath.cx/Ftp//python/gnains-0.4.1.tar.gz">gnains-0.4.1.tar.gz</a></td><td>(11.3 kB)</td>
+</tr><tr>
+<td>Source tarball (gzip) signature:</td>
+<td><a href="http://trific.ath.cx/Ftp//python/gnains-0.4.1.tar.gz.sig">gnains-0.4.1.tar.gz.sig</a></td><td>(65 B)</td>
+</tr><tr>
+<td>Source tarball (bzip2):</td>
+<td><a href="http://trific.ath.cx/Ftp//python/gnains-0.4.1.tar.bz2">gnains-0.4.1.tar.bz2</a></td><td>(10.8 kB)</td>
+</tr><tr>
+<td>Source tarball (bzip2) signature:</td>
+<td><a href="http://trific.ath.cx/Ftp//python/gnains-0.4.1.tar.bz2.sig">gnains-0.4.1.tar.bz2.sig</a></td><td>(65 B)</td>
+</tr></table>
+
+<h2>Description</h2>
+<p>Gnains finds stuff in <a href="http://www.gtk.org/rdp">gtk-doc</a>-generated HTML documentation.
+The Naive and Approximative are important characteristics.
+Naive means really naive and Approximative means it uses an inexact match
+algorithm useful for finding things when you don't remember their names
+exactly.
+Exact matches are of course tried first.</p>
+
+<p>It uses <code class="fnm">index.sgml</code> for indexing.
+It doesn't use <code class="fnm">.devhelp</code> files. This is a compromise.
+Unfortunately, gtk-doc can't index <code>enum</code> constants, so gnains
+shares this deficiency with
+<a href="http://devhelp.codefactory.se/">Devhelp</a> (and
+any other gtk-doc documentation browser).
+It's however still better than Devhelp, since you can search e.g. for
+<code>"clicked"</code> signal <em>of a particular widget</em> and not have to
+wade through a list of identical <em>The "clicked" signal</em> links.</p>
+
+<p>It is intended to be used with
+<a href="http://wp.netscape.com/newsref/std/x-remote.html">Unix Netscape remote control</a>,
+there's an example <code class="fnm">gnains-netscape</code> script in the
+tarball. But it's easy to use it with e.g.
+<a href="http://dillo.org/">Dillo</a> too.</p>
+
+<h2>Examples</h2>
+<p>Let's assume you have
+<a href="http://www.gtk.org/api/">Gtk+ docs</a> in
+<code class="fnm">/usr/share/gtk-doc/html/</code>. Generating the index is easy:</p>
+<pre>
+$ gnains-mkindex -f gtk.gnains /usr/share/gtk-doc/html/{gtk,gobject,glib,gdk}
+</pre>
+
+<p>You could also add Atk, Pango, gdk-pixbuf, Gnome-libs, etc.</p>
+
+<p>Now searching:</p>
+<pre>
+$ gnains -f gtk.gnains g_slist_free
+/usr/share/gtk-doc/html/glib/glib-singly-linked-lists.html#g-slist-free
+</pre>
+
+<p>That was too easy. Let's try something “approximate”:</p>
+<pre>
+$ gnains -f gtk.gnains hash remove
+/usr/share/gtk-doc/html/glib/glib-hash-tables.html#g-hash-table-remove
+</pre>
+
+<p>You can also run it interactively, just don't give it anything to search:</p>
+<pre>
+$ gnains -f gtk.gnains
+signl Buton click
+/usr/share/gtk-doc/html/gtk/gtkbutton.html#GtkButton-clicked
+gtk arrow types
+/usr/share/gtk-doc/html/gtk/gtk-standard-enumerations.html#GtkArrowType
+stock items
+/usr/share/gtk-doc/html/gtk/gtk-stock-items.html#gtk-Stock-Items
+Foobar
+/usr/share/gtk-doc/html/gtk/gtktoolbar.html#GtkToolbar
+</pre>
+
+<p>Regarding the last example – yes, it has an option to require some minimal quality of the match, but who really
+needs it…</p>
+
+<p>It is posible to build several independent indices and give
+<code class="fnm">gnains</code> more <code>-f</code> arguments to search
+in.</p>
+
+<h2>Requirements</h2>
+<p>Python-2.<var>x</var>, the value of <var>x</var> is probably 2, but I'm
+not sure.
+<a href="http://trific.ath.cx/resources/python/levenshtein/">Levenshtein</a> Python
+C extension module.
+A remotely-controllable HTML viewer (Web browser) is a big win.</p>
+
+<h2>Copying</h2>
+<p>Copyright © 2003 Yeti (David Nečas) &lt;yeti at physics dot muni dot cz&gt;.</p>
+<p>Gnains is free software; you can redistribute it and/or modify it under the terms of the
+<a href="http://www.gnu.org/licenses/gpl.html">GNU General Public License</a> as published by the Free Software Foundation;
+either version 2 of the License, or (at your option) any later version. For full license text see file <code class="fnm">COPYING</code> included in the source tarball.</p>
+</div>
+</td>
+
+<td class="collapsed"></td>
+</tr>
+
+<tr>
+<td class="bar-left" valign="top">
+<p class="nohl" style="margin-bottom: 8pt; background: #dcdcdc;"><a href="http://trific.ath.cx/"><img src="http://trific.ath.cx/Img/foot3.png" alt="[Trific net]" width="115" height="50"/></a></p>
+<div xml:lang="en">
+<h4 class="menuhl"><a href="http://trific.ath.cx/software/">Software</a></h4>
+<p><a href="http://trific.ath.cx/software/enca/">Enca</a></p>
+<p><a href="http://trific.ath.cx/software/gimp-plugins/">Gimp plug-ins</a></p>
+<p><a href="http://gwyddion.net/">Gwyddion</a></p>
+<p><a href="http://trific.ath.cx/software/dendrofit/">DendroFit</a></p>
+<p><a href="http://trific.ath.cx/resources/python/levenshtein/">Levenshtein</a></p>
+<p><a href="http://trific.ath.cx/software/ifsgr/">IFSgr</a></p>
+<h4><a href="http://trific.ath.cx/resources/">Resources</a></h4>
+<p><a href="http://trific.ath.cx/resources/vim/">Vim</a></p>
+<p><a href="http://trific.ath.cx/resources/bash/">Bash</a></p>
+<p><a href="http://trific.ath.cx/resources/python/">Python</a></p>
+<p><a href="http://trific.ath.cx/resources/spamassassin/">SpamAssassin</a></p>
+<h4><a href="http://trific.ath.cx/tex-mf/">TeX &amp; MF</a></h4>
+<p><a href="http://trific.ath.cx/tex-mf/enctex/">EncTeX</a></p>
+<p><a href="http://trific.ath.cx/tex-mf/mitered-join/">Mitered join</a></p>
+<h4><a href="http://trific.ath.cxhttp://trific.ath.cxhttp://trific.ath.cx/yeti/">Yeti</a></h4>
+<p><a href="http://trific.ath.cx/yeti/gnupg-pubkey/">GnuPG Keys</a></p>
+</div><hr/><div xml:lang="cs">
+<h4><a href="http://trific.ath.cx/texts/">Texty</a></h4>
+<p><a href="http://trific.ath.cx/texts/absurd/">Absurdní</a></p>
+<p><a href="http://trific.ath.cx/texts/parody/">Parodie</a></p>
+<p><a href="http://trific.ath.cx/texts/opinion/">Názory</a></p>
+<p><a href="http://trific.ath.cx/texts/poem/">Ostatní</a></p>
+<p><a href="http://trific.ath.cx/texts/xml/">XML</a></p>
+<p><a href="http://trific.ath.cx/yeti/diary/">Deníček</a></p>
+<h4><a href="http://trific.ath.cx/tex,mf/">TeX &amp; MF</a></h4>
+<p><a href="http://trific.ath.cx/tex,mf/bestiary/">Bestiář</a></p>
+<p><a href="http://trific.ath.cx/tex,mf/moremath/">MoreMath</a></p>
+<p><a href="http://trific.ath.cx/tex,mf/tweak-latex/">Střeva LaTeXu</a></p>
+<p><a href="http://trific.ath.cx/tex,mf/other/">Ostatní</a></p>
+</div>
+</td>
+
+<td class="bar-right" valign="top">
+<h4 class="nohl">Links</h4>
+<p><a href="http://devhelp.codefactory.se/">Devhelp</a></p>
+<p><a href="http://dillo.org/">Dillo</a></p>
+<p><a href="http://www.gnu.org/licenses/gpl.html">GNU GPL</a></p>
+<p><a href="http://www.gtk.org/api/">Gtk+ docs</a></p>
+<p><a href="http://trific.ath.cx/resources/python/levenshtein/">Levenshtein</a></p>
+<p><a href="http://wp.netscape.com/newsref/std/x-remote.html">Netscape X-remote</a></p>
+<p><a href="http://www.gtk.org/rdp">gtk-doc</a></p>
+<hr/>
+<h4 class="nohl">Last modified</h4><p class="nohl">2005-07-10</p>
+<p style="margin-top: 5pt; margin-bottom: 5pt;"><a href="http://trific.ath.cx/copyright/">© Yeti</a></p>
+<p style="margin-top: 5pt;"><a href="http://trific.ath.cx/printable/software/gnains/">Printable version</a></p>
+<p><a href="mailto:webmaster-at-trific-dot-ath-dot-cx">Webmaster</a></p>
+<p class="nohl" style="margin-bottom: 2pt;"><a href="http://www.eff.org/blueribbon/"><img src="http://br.eff.org/br.png" alt="[Join the Blue Ribbon Online Free Speech Campaign!]" height="76" width="112"/></a></p>
+<p class="nohl" style="margin-bottom: 2pt;"><a href="http://petition.eurolinux.org/"><img src="http://aful.org/images/patent_button.png" alt="[Sign the Petition for a Software Patent Free Europe!]"/></a></p>
+<p><a href="http://validator.w3.org/check?uri=http%3A%2F%2Ftrific.ath.cx%2Fsoftware%2Fgnains%2F&amp;charset=%28detect+automatically%29&amp;doctype=Inline">Valid XHTML 1.1</a></p>
+<p><a href="http://jigsaw.w3.org/css-validator/validator?uri=http%3A%2F%2Ftrific.ath.cx%2Fsoftware%2Fgnains%2F&amp;warning=1&amp;profile=css2">Valid CSS2</a></p>
+</td>
+
+</tr>
+<tr>
+<td class="bar-left-bot"></td>
+<td class="main">
+<div class="navline">
+<a href="http://trific.ath.cx/">Home</a>
+ &gt; 
+<a href="http://trific.ath.cx/software/">Software</a>
+ &gt; 
+<a href="http://trific.ath.cx/software/gnains/">Gnains</a>
+</div>
+</td>
+<td class="bar-right-bot"></td>
+</tr>
+</table>
+</body>
+</html>
+>

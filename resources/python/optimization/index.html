@@ -1,0 +1,511 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app57.us.archive.org';v.server_ms=375;archive_analytics.send_pageview({});});</script><script type="text/javascript" src="/_static/js/playback.bundle.js?v=SOX25l-I" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=cRqOKCOw" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("http://trific.ath.cx:80/resources/python/optimization/","20060717063657","http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link rel="stylesheet" type="text/css" href="http://trific.ath.cx/CSS/layout.css"/>
+<link rel="stylesheet" type="text/css" href="http://trific.ath.cx/CSS/colors.css"/>
+<title>Python optimization tips</title>
+<link rel="shortcut icon" type="image/x-icon" href="http://trific.ath.cx/Img/favicon.ico"/>
+<meta name="Author" content="David Nečas (Yeti)"/>
+</head>
+<body><!-- END WAYBACK TOOLBAR INSERT -->
+<table class="main" cellspacing="0">
+<col class="left" width="13%"/><col class="main" width="74%"/><col class="right" width="13%"/>
+
+<tr>
+<td class="collapsed"></td>
+
+<td class="main" valign="top" rowspan="2">
+<div class="topline">
+<a href="http://trific.ath.cx/">Home</a>
+ &gt; 
+<a href="http://trific.ath.cx/resources/">Resources</a>
+ &gt; 
+<a href="http://trific.ath.cx/resources/python/">Python</a>
+ &gt; 
+<a href="http://trific.ath.cx/resources/python/optimization/">Python optimization tips</a>
+</div>
+<div xml:lang="en">
+<h1>Python optimization tips</h1>
+
+
+<p>Some random remarks about making
+<a href="http://python.org/">Python</a> programs
+run faster.  This not a complete guide, in any sense.  Moreover, this is a
+<a href="#about"><em>controversal</em> one</a>.
+And the usual YMMV caution applies, of course.</p>
+
+<p>Contents:</p>
+<ul class="ltoc">
+<li><a href="#about">About</a></li>
+<li><a href="#profiler">Use the profiler</a></li>
+<li><a href="#algorithm">Improve the algorithm</a></li>
+<li><a href="#dont-trust">Trust nobody</a></li>
+<li><a href="#small-func">Don't repeatedly call small user functions</a></li>
+<li><a href="#loc-namespace">Make aliases in the local namespace</a></li>
+<li><a href="#exceptions">Exceptions shouldn't happen</a></li>
+<li><a href="#overkill">Don't use library functions</a></li>
+<li><a href="#c-extension">Create a C extension</a></li>
+<li><a href="#list-tuple">Choose containers carefully</a></li>
+<li><a href="#get-setdefault">Beware of get() and his fellows</a></li>
+<li><a href="#in-list">Don't use in to scan sequences</a></li>
+</ul>
+
+<hr/>
+<h2 id="about">About</h2>
+<p>Don't panic.  This is just another conspiration theory.</p>
+
+<p>I've read several other Python optimization guides, and successfully made
+my programs slower using the advices they offer.  So I wrote this one.  It
+often suggests the contrary of what others may tell you.</p>
+
+<p>All presented advices are based on my experiences with Python-2.2.
+I didn't include any exact profiling data, because they depend on too
+many things.  When I state something is faster, it means I consistently
+observe it's faster ― but the same code may be 10% faster one one machine
+and 30% faster on another.</p>
+
+<hr/>
+<h2 id="profiler">Use the profiler</h2>
+<p>I mean <em>always</em> use the profiler.</p>
+
+<p>Python has an excellent
+<a href="http://python.org/doc/2.2/lib/profile.html">profiler</a>.
+Python also has very suprising behaviour when execution times of various
+reformulations of the same code are compared.  Thus if you are not a really
+experienced Python programmer, you can easily end up optimizing a completely
+wrong part of the code, and worse, making it only slower and slower.</p>
+
+<p>This advice is of course independent on language, but it's especially
+important for Python.  For people used to more classic
+languages (like C/C++), the optimization methods may seem unnatural.
+And not only the methods, even the things which can be subject of optimization
+themselves are sometimes strange ― one never needs to think about variable
+name lookup time in C.<a class="footnote" href="#fn::1">1</a></p>
+
+<hr/>
+<h2 id="algorithm">Improve the algorithm</h2>
+<p>This is a notorious one, and also language independent.</p>
+
+<p>Optimizations may make your code to run 20% faster, 2× faster, or ever 20×
+faster, depending on how unoptimized it was.  But does it help when you use
+an exponential algorithm where you could use a cubic one?  Definitely not.</p>
+
+<p>So, before you start messing up with local aliases to global variables and
+functions to gain another few percent, stop and think if you are not doing
+something wrong.  And if you don't, think about doing it better.  Can't you
+cache results, store things in a hash table, use balanced trees, split the
+process to several (much simplier) steps, represent large data sets with
+a single object, <i>etc.</i>?  So what you are waiting for?</p>
+
+<hr/>
+<h2 id="dont-trust">Trust nobody</h2>
+<p>At least when it comes to Python optimization.</p>
+
+<p>First, Python evolves and what was a good advice for version <i>x</i>, may
+be not so good for version <i>y</i>.  Second, every rule has some exceptions,
+and in nontrivial cases one has to profile to find the truth.  And last but
+not least, the person who wrote the advice might not be such an expert as you
+think (e.g., I'm not expert at all :o)</p>
+
+<p>I'll present at least one example for all.  Most Python optimization docs
+try to fool you into thinking like <i>small is good</i>,
+<i>elegant code is faster</i>,
+<i>I should use
+<a href="http://python.org/doc/current/lib/built-in-funcs.html#l2h-26"><code>filter()</code></a> and <a href="http://python.org/doc/current/lib/built-in-funcs.html#l2h-58"><code>reduce()</code></a> a lot</i>,
+<i>for-loops are slow</i>, <i>etc</i>.  Well, these statements may be true ―
+sometimes.</p>
+
+<p>Say, we have an user function <code>foo()</code>, which we need to call
+over all characters in a string and sum up the results.  Easy, isn't it?
+For concretness I'll use following (mostly nonsense) function, which is
+neither trivial nor too complex:</p>
+<pre><b class="keyword">def</b> foo(c):
+    z = ord(c)
+    <b class="keyword">if</b> z &lt; 32: z += 32
+    <b class="keyword">elif</b> z &gt; 128: z -= 128
+    <b class="keyword">elif</b> z &gt; 64: z = 128 - z
+    <b class="keyword">return</b> z</pre>
+
+<p>The straightforward (C-like) solution is simple:</p>
+<pre>m = 0
+<b class="keyword">for</b> c <b class="keyword">in</b> lst:
+    m += foo(c)</pre>
+
+<p>But then we remember about <code>reduce()</code> and use it to code it in
+a really elegant way:</p>
+<pre>m = reduce(<b class="keyword">lambda</b> b, c: b + foo(c), lst, 0)</pre>
+
+<p>What?  It's 15% slower!  Never mind, we'll cache the results:</p>
+<pre>d = dict([(c, 0) <b class="keyword">for</b> c <b class="keyword">in</b> lst])
+<b class="keyword">for</b> c <b class="keyword">in</b> d.keys():
+    d[c] = foo(c)
+m = 0
+<b class="keyword">for</b> c <b class="keyword">in</b> lst:
+    m += d[c]</pre>
+
+<p>OK, this is somewhat faster than the first (depends on <code>lst</code>
+size), the code is significantly more complex.  Wouldn't it be better to
+set the dictionary values just as we encounter them?</p>
+<pre>d = {}
+m = 0
+s = d.setdefault
+<b class="keyword">for</b> c <b class="keyword">in</b> lst:
+    m += s(c, foo(c))</pre>
+
+<p>Oh no!  This is the slowest of all.  Of course, <code>foo(c)</code> is now
+computed always.  So we return to the previous solution and give
+<code>reduce()</code> one more chance:</p>
+<pre>d = dict([(c, 0) <b class="keyword">for</b> c <b class="keyword">in</b> lst])
+<b class="keyword">for</b> c <b class="keyword">in</b> d.keys():
+    d[c] = foo(c)
+m = reduce(<b class="keyword">lambda</b> b, c: b + d[c], lst, 0)</pre>
+
+<p>Nothing changes, <code>reduce()</code> makes it again slower than the
+simple C-like cycle.  So is the third one really the best of all?</p>
+
+<p>Fortunately no.  But the point is, the fastest is the least elegant (it's
+almost twice as fast):</p>
+<pre>d = {}
+m = 0
+h = d.has_key
+<b class="keyword">for</b> c <b class="keyword">in</b> lst:
+    <b class="keyword">if</b> h(c):
+        m += d[c]
+    <b class="keyword">else</b>:
+        z = foo(c)
+        d[c] = z
+        m += z</pre>
+
+<p>Yes, this is really ugly ― no one can tell we are summing
+<code>foo()</code> over <code>lst</code> elements at the first sight.
+Instead, he/she would think it's some new kind of hash torture.
+And we had to wipe out anything resembling functional programming.</p>
+
+<p>And what the conclusion is?  Anyone can make his/her own, I think.</p>
+
+<hr/>
+<h2 id="small-func">Don't repeatedly call small user functions</h2>
+<p>Calling an user-defined functions is extremely costly in Python.</p>
+
+<p>This can't be overemphasized.  Small user-defined functions are
+bane of Python code.</p>
+
+<h3>Inline</h3>
+<p>You are lucky if this simple solution is possible.  But sometimes it is.
+Inline if you can.</p>
+
+<p>Particulary, create functions operating of whole lists/dictionaries,
+instead of repeatedly called functions operating on single items.</p>
+
+<h3>Beware of filter() and his fellows</h3>
+<p>If you can do the same with list comprehension, don't linger.</p>
+
+<p>This is very slow:</p>
+<pre><b class="keyword">def</b> foo(z):
+    <b class="keyword">return</b> z % 4 == z % 7
+list2 = filter(foo, list1)</pre>
+
+<p>This is slightly faster:</p>
+<pre>list2 = filter(<b class="keyword">lambda</b> z: z % 4 == z % 7, list1)</pre>
+
+<p>But this is much faster (about twice):</p>
+<pre>list2 = [z <b class="keyword">for</b> z <b class="keyword">in</b> list1 <b class="keyword">if</b> z % 4 == z % 7]</pre>
+
+<p>Also, for-cycle is faster than <code>reduce()</code> for built-in
+operations (and not only in this case).</p>
+
+<h3>Cache results</h3>
+<p>Often the same slow user function is feeded with the same values again and
+again (e.g. characters in a string ― a string usually contains many identical
+characters).  If the values can be easily used as hash keys, create a hash
+mapping all values to function results, and use the hash instead.</p>
+
+<p>This approach is not possible when the function has side effects.
+It can also increase execution time if the function is really simple
+and/or the sequences are short.</p>
+
+<hr/>
+<h2 id="loc-namespace">Make aliases in the local namespace</h2>
+<p>Looking is not free in Python.</p>
+
+<p>Local variables and functions are found faster than global ones.  Built-in
+functions are also global, so it may be useful to alias them in local
+namespace too.  Always alias things like
+<code>xml.sax.saxutils.quoteattr()</code> if you are going to use them
+frequently.  Attribute lookup also isn't free, aliases like</p>
+<pre>h = some_dict.has_key
+a = some_list.append</pre>
+
+<p>may save considerable amout of time in the innermost loop.</p>
+
+<hr/>
+<h2 id="exceptions">Exceptions shouldn't happen</h2>
+<p>At least in Python.  Don't confuse exceptions with if-then.</p>
+
+<p>Let's say we need reciprocal value and want to set the result to
+<code>None</code> if we would have to divide by zero.  So, we have two
+possibilities.  Exception:</p>
+<pre><b class="keyword">try</b>:
+    y = 1.0/x
+<b class="keyword">except</b> ZeroDivisionError:
+    y = None</pre>
+
+<p>And classic if-then:</p>
+<pre><b class="keyword">if</b> x == 0:
+    y = None
+<b class="keyword">else</b>:
+    y = 1.0/x</pre>
+
+<p>Which one is faster depends on how often <code>x</code> is zero.
+If never, then exception is about twice faster.  If always, if-then is at
+least 20× faster.</p>
+
+<hr/>
+<h2 id="overkill">Don't use library functions</h2>
+<p>And what would the library be good for then?</p>
+
+<p>Of course, you <em>should</em> use library functions.  Nonetheless, they
+are often quite general ― a way too general, I would say.  They can easily
+become the bottleneck of your code if used in the innermost loop.</p>
+
+<p>An allmighty superclever automagical library function comes handy if you
+just want to put some code together fast.  But it's overkill if you use only
+a tiny part of its features and abilities ― think about writing a more
+specialized function serving exactly the specific purpose (and then inlining
+it after realizing it's in fact quite short) if you want your program to
+<em>run fast</em> too.  There's also often a possibility to use several, but
+much simplier, library functions.</p>
+
+<hr/>
+<h2 id="c-extension">Create a C extension</h2>
+<p>Orthodox Pythoners won't like me for this one ;-)</p>
+
+<p>Seriously, often the bottleneck is a relatively simple operation,
+which must be carried out many times.  It may be impossible to code it in
+Python without repeated function calls and all the other ugly stuff.  Maybe
+it's something you can easily implement as a
+<a href="http://python.org/doc/current/ext/ext.html">C extension</a>.</p>
+
+<p>This of course makes sense only if the C extension can be written without
+doing the same costly things, only in C API.  If it would repeatedly call a
+user-defined Python function, or have to extract elements from a list and
+then compose the list together again, you may not gain as much as you would
+think.</p>
+
+<hr/>
+<h2 id="list-tuple">Choose containers carefully</h2>
+<p>Read: Don't use tuples, use attributes.</p>
+
+<p>Everyone expects dictionaries to be slower than lists, and they really
+are.  Similarly, everyone expects tuples to be faster than lists (because
+lists are mutable) and especially than dictionaries.  Well, this is true only
+sometimes.</p>
+
+<p>Creation of a tuple by literal enumeration is really faster (say 30% or
+so) than list creation and about twice as fast as dictionary creation.
+Lists are fastest when you create containers using some rule because nothing
+is faster than list comprehension, but list to tuple conversion is very fast.
+Again, dictionaries are about twice slower.</p>
+
+<p>But when it comes to container <em>access</em>, everything is upside down.
+Lists are the fastest, without debate.  Tuples are the second, closely
+followed by dictionaries ― it depends on the keys, but while dictionaries are
+normally somewhat slower than tuples, they may be sometimes as fast as tuples.
+The differences are not very big, but I was able to speed up some my programs
+by using lists instead of tuples.</p>
+
+<p>If you iterate over some container often, and the indices/keys don't
+change often, keeping them in a separate list may sometimes help ― depends on
+whether you iterate only over values, indices/keys, or both.</p>
+
+<p>If you need something like C <code>struct</code> (but much better), define
+a class Bunch (taken from a <a href="http://aspn.activestate.com/ASPN/Cookbook/Python/Recipe/52308">Python ‘Bunch’ recipe</a>)</p>
+<pre><b class="keyword">class</b> Bunch:
+    <b class="keyword">def</b> __init__(self, **keywords):
+        self.__dict__.update(keywords)</pre>
+
+<p>and store arbitrary items in attributes of its instances:</p>
+<pre>x = Bunch(answer=42)
+x.bane = 'Dinsdale'</pre>
+
+<p>It significantly improves code readability, and is usually considerably
+faster than lists or dictionaries (I mean access, creation is slower, but not
+drastically).</p>
+
+<hr/>
+<h2 id="get-setdefault">Beware of get() and his fellows</h2>
+<p>The worst possible usage of <a href="http://www.python.org/doc/current/lib/typesmapping.html"><code>get()</code></a> and
+<a href="http://www.python.org/doc/current/lib/typesmapping.html"><code>setdefault()</code></a> is following:</p>
+<pre>value = dictionary.get(key, gimme_alternate_value(key))
+value = dictionary.setdefault(key, gimme_alternate_value(key))</pre>
+
+<p>This way <code>gimme_alternate_value()</code> is called
+<em>regardless</em> of whether the alternate value is needed or not.
+Moreover, if it has some side effect, your code becomes not only terribly
+slow, but incorrect in addition.</p>
+
+<p>Unfortunately this usage is commonly suggested, and it even appears
+in the <a href="http://www.python.org/doc/FAQ.html">Python FAQ</a>.
+You can relatively safely use <code>get()</code> when the alternate value is
+a constant or a variable, e.g.:</p>
+<pre>value = dictionary.get(key, None)</pre>
+
+<p>Anyway, this is still slower than any of the two possibilities below.</p>
+
+<p>If the key is almost always present in the dictionary,
+use an exception:</p>
+<pre><b class="keyword">try</b>:
+    value = dictionary[key]
+<b class="keyword">except</b> KeyError:
+    value = <i>something_else</i></pre>
+
+<p>If you expect to use the alternate value quite frequently, use if-then
+(<code>h</code> is alias for <code>dictionary.has_key</code>):</p>
+<pre><b class="keyword">if</b> h(key):
+    value = dictionary[key]
+<b class="keyword">else</b>:
+    value = <i>something_else</i></pre>
+
+<hr/>
+<h2 id="in-list">Don't use in to scan sequences</h2>
+<p>[This entry was suggested and uses material by Preston Landers.]<br/>
+The mere fact an operation is implemented does not automatically make it
+fast.</p>
+
+<p>The <code><b class="keyword">in</b></code>
+operator is implemented for both mapping and sequence types. But although
+Python sometimes seems to work like magic, it does not use magic and have to
+<em>scan</em> the complete sequence to find whether an item is present
+or not, like any mortal would have to.  So the operator is much slower for
+sequences than for mappings.</p>
+
+<p>The canonical example of misuse is extraction of list items which
+are also members of some other list:</p>
+
+<pre>members = []
+<b class="keyword">for</b> x <b class="keyword">in</b> small_list:
+    <b class="keyword">if</b> x <b class="keyword">in</b> very_long_list:
+        members.append(x)</pre>
+
+<p>It works fine if <code>very_long_list</code> is a very short list
+(less than 5 items).  But as it gets bigger and bigger, the operation
+gets slower and slower.</p>
+
+<p>The fix is to replace <code>very_long_list</code> with a dictionary.
+It is best if you can do it globally, but even a local dictionarization
+can help a lot (though if the list is really long, there are memory
+consequences):</p>
+
+<pre>members = []
+dictionary = dict([(x, 1) <b class="keyword">for</b> x <b class="keyword">in</b> very_long_list])
+<b class="keyword">for</b> x <b class="keyword">in</b> small_list:
+    <b class="keyword">if</b> x <b class="keyword">in</b> dictionary:
+        members.append(x)</pre>
+
+<p>Once you note you are doing a set intersection, you can be tempted to
+use sets (in Python 2.3).  It would be much faster than using
+<code><b class="keyword">in</b></code> with a list,
+but there is still some overhead as they are themselves implemented in Python
+on top of dictionaries.  However Python-2.4 will have built-in sets, so
+they will be probably faster.</p>
+
+<p>Assuming you have a dictionary, just do:</p>
+
+<pre>members = [x <b class="keyword">for</b> x <b class="keyword">in</b> small_list <b class="keyword">if</b> x <b class="keyword">in</b> dictionary]</pre>
+
+<hr/>
+<p><a id="fn::1" class="footnote">1</a> Actually, one has to, and sometimes
+quite seriously. See “How to write shared libraries” by
+<a href="http://people.redhat.com/~drepper/">Ulrich Drepper</a>.</p>
+
+</div>
+</td>
+
+<td class="collapsed"></td>
+</tr>
+
+<tr>
+<td class="bar-left" valign="top">
+<p class="nohl" style="margin-bottom: 8pt; background: #dcdcdc;"><a href="http://trific.ath.cx/"><img src="http://trific.ath.cx/Img/foot3.png" alt="[Trific net]" width="115" height="50"/></a></p>
+<div xml:lang="en">
+<h4><a href="http://trific.ath.cx/software/">Software</a></h4>
+<p><a href="http://trific.ath.cx/software/enca/">Enca</a></p>
+<p><a href="http://trific.ath.cx/software/gimp-plugins/">Gimp plug-ins</a></p>
+<p><a href="http://gwyddion.net/">Gwyddion</a></p>
+<p><a href="http://trific.ath.cx/software/dendrofit/">DendroFit</a></p>
+<p><a href="http://trific.ath.cx/resources/python/levenshtein/">Levenshtein</a></p>
+<p><a href="http://trific.ath.cx/software/ifsgr/">IFSgr</a></p>
+<h4><a href="http://trific.ath.cx/resources/">Resources</a></h4>
+<p><a href="http://trific.ath.cx/resources/vim/">Vim</a></p>
+<p><a href="http://trific.ath.cx/resources/bash/">Bash</a></p>
+<p class="menuhl"><a href="http://trific.ath.cx/resources/python/">Python</a></p>
+<p><a href="http://trific.ath.cx/resources/spamassassin/">SpamAssassin</a></p>
+<h4><a href="http://trific.ath.cx/tex-mf/">TeX &amp; MF</a></h4>
+<p><a href="http://trific.ath.cx/tex-mf/enctex/">EncTeX</a></p>
+<p><a href="http://trific.ath.cx/tex-mf/mitered-join/">Mitered join</a></p>
+<h4><a href="http://trific.ath.cxhttp://trific.ath.cxhttp://trific.ath.cx/yeti/">Yeti</a></h4>
+<p><a href="http://trific.ath.cx/yeti/gnupg-pubkey/">GnuPG Keys</a></p>
+</div><hr/><div xml:lang="cs">
+<h4><a href="http://trific.ath.cx/texts/">Texty</a></h4>
+<p><a href="http://trific.ath.cx/texts/absurd/">Absurdní</a></p>
+<p><a href="http://trific.ath.cx/texts/parody/">Parodie</a></p>
+<p><a href="http://trific.ath.cx/texts/opinion/">Názory</a></p>
+<p><a href="http://trific.ath.cx/texts/poem/">Ostatní</a></p>
+<p><a href="http://trific.ath.cx/texts/xml/">XML</a></p>
+<p><a href="http://trific.ath.cx/yeti/diary/">Deníček</a></p>
+<h4><a href="http://trific.ath.cx/tex,mf/">TeX &amp; MF</a></h4>
+<p><a href="http://trific.ath.cx/tex,mf/bestiary/">Bestiář</a></p>
+<p><a href="http://trific.ath.cx/tex,mf/moremath/">MoreMath</a></p>
+<p><a href="http://trific.ath.cx/tex,mf/tweak-latex/">Střeva LaTeXu</a></p>
+<p><a href="http://trific.ath.cx/tex,mf/other/">Ostatní</a></p>
+</div>
+</td>
+
+<td class="bar-right" valign="top">
+<h4 class="nohl">Links</h4>
+<p><a href="http://python.org/doc/current/lib/built-in-funcs.html#l2h-26"><code>filter()</code></a></p>
+<p><a href="http://python.org/doc/current/lib/built-in-funcs.html#l2h-58"><code>reduce()</code></a></p>
+<p><a href="http://www.python.org/doc/current/lib/typesmapping.html"><code>setdefault()</code></a></p>
+<p><a href="http://python.org/doc/current/ext/ext.html">C extension</a></p>
+<p><a href="http://python.org/">Python</a></p>
+<p><a href="http://www.python.org/doc/FAQ.html">Python FAQ</a></p>
+<p><a href="http://python.org/doc/2.2/lib/profile.html">Python profiler</a></p>
+<p><a href="http://aspn.activestate.com/ASPN/Cookbook/Python/Recipe/52308">Python ‘Bunch’ recipe</a></p>
+<p><a href="http://people.redhat.com/~drepper/">Ulrich Drepper</a></p>
+<hr/>
+<h4 class="nohl">Last modified</h4><p class="nohl">2004-12-09</p>
+<p style="margin-top: 5pt; margin-bottom: 5pt;"><a href="http://trific.ath.cx/copyright/">© Yeti</a></p>
+<p style="margin-top: 5pt;"><a href="http://trific.ath.cx/printable/resources/python/optimization/">Printable version</a></p>
+<p><a href="mailto:webmaster-at-trific-dot-ath-dot-cx">Webmaster</a></p>
+<p class="nohl" style="margin-bottom: 2pt;"><a href="http://www.eff.org/blueribbon/"><img src="http://br.eff.org/br.png" alt="[Join the Blue Ribbon Online Free Speech Campaign!]" height="76" width="112"/></a></p>
+<p class="nohl" style="margin-bottom: 2pt;"><a href="http://petition.eurolinux.org/"><img src="http://aful.org/images/patent_button.png" alt="[Sign the Petition for a Software Patent Free Europe!]"/></a></p>
+<p><a href="http://validator.w3.org/check?uri=http%3A%2F%2Ftrific.ath.cx%2Fresources%2Fpython%2Foptimization%2F&amp;charset=%28detect+automatically%29&amp;doctype=Inline">Valid XHTML 1.1</a></p>
+<p><a href="http://jigsaw.w3.org/css-validator/validator?uri=http%3A%2F%2Ftrific.ath.cx%2Fresources%2Fpython%2Foptimization%2F&amp;warning=1&amp;profile=css2">Valid CSS2</a></p>
+</td>
+
+</tr>
+<tr>
+<td class="bar-left-bot"></td>
+<td class="main">
+<div class="navline">
+<a href="http://trific.ath.cx/">Home</a>
+ &gt; 
+<a href="http://trific.ath.cx/resources/">Resources</a>
+ &gt; 
+<a href="http://trific.ath.cx/resources/python/">Python</a>
+ &gt; 
+<a href="http://trific.ath.cx/resources/python/optimization/">Python optimization tips</a>
+</div>
+</td>
+<td class="bar-right-bot"></td>
+</tr>
+</table>
+</body>
+</html>
+>

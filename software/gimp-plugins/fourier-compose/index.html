@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app39.us.archive.org';v.server_ms=511;archive_analytics.send_pageview({});});</script><script type="text/javascript" src="/_static/js/playback.bundle.js?v=SOX25l-I" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=cRqOKCOw" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("http://trific.ath.cx:80/software/gimp-plugins/fourier-compose/","20060717023013","http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link rel="stylesheet" type="text/css" href="http://trific.ath.cx/CSS/layout.css"/>
+<link rel="stylesheet" type="text/css" href="http://trific.ath.cx/CSS/colors.css"/>
+<title>Fourier Compose Gimp plug-in</title>
+<link rel="shortcut icon" type="image/x-icon" href="http://trific.ath.cx/Img/favicon.ico"/>
+<meta name="Author" content="David Nečas (Yeti)"/>
+<meta name="Description" content="Fourier Compose is a GIMP plug-in rendering tileable textures by means of FFT synthesis."/>
+</head>
+<body><!-- END WAYBACK TOOLBAR INSERT -->
+<table class="main" cellspacing="0">
+<col class="left" width="13%"/><col class="main" width="74%"/><col class="right" width="13%"/>
+
+<tr>
+<td class="collapsed"></td>
+
+<td class="main" valign="top" rowspan="2">
+<div class="topline">
+<a href="http://trific.ath.cx/">Home</a>
+ &gt; 
+<a href="http://trific.ath.cx/software/">Software</a>
+ &gt; 
+<a href="http://trific.ath.cx/software/gimp-plugins/">Gimp plug-ins</a>
+ &gt; 
+<a href="http://trific.ath.cx/software/gimp-plugins/fourier-compose/">Fourier Compose</a>
+ &gt; 
+<a href="http://trific.ath.cx/software/gimp-plugins/fourier-compose/">Fourier Compose Gimp plug-in</a>
+</div>
+<div xml:lang="en">
+<!-- <h1>Fourier Compose Gimp plug-in</h1> -->
+<h1>Fourier Compose</h1>
+
+<p>Current version of Fourier Compose is 1.2:
+<a href="NEWS/">NEWS</a>.</p>
+
+<p>GIMP plug-in registry record:
+<a href="http://registry.gimp.org/plugin?id=7135">Fourier Compose</a></p>
+
+<p>Menu path: Filters → Render → Fourier Compose</p>
+
+<h2 id="download">Download</h2>
+<table><tr>
+<td>Source tarball for Gimp-2.0:</td>
+<td><a href="http://trific.ath.cx/Ftp//gimp/fourier-compose/fourier-compose-1.0.tar.bz2">fourier-compose-1.0.tar.bz2</a></td><td>(16.2 kB)</td>
+</tr><tr>
+<td>Source tarball for Gimp-2.0 signature:</td>
+<td><a href="http://trific.ath.cx/Ftp//gimp/fourier-compose/fourier-compose-1.0.tar.bz2.sig">fourier-compose-1.0.tar.bz2.sig</a></td><td>(65 B)</td>
+</tr><tr>
+<td>Source tarball for Gimp-2.2:</td>
+<td><a href="http://trific.ath.cx/Ftp//gimp/fourier-compose/fourier-compose-1.2.tar.bz2">fourier-compose-1.2.tar.bz2</a></td><td>(16.3 kB)</td>
+</tr><tr>
+<td>Source tarball for Gimp-2.2 signature:</td>
+<td><a href="http://trific.ath.cx/Ftp//gimp/fourier-compose/fourier-compose-1.2.tar.bz2.sig">fourier-compose-1.2.tar.bz2.sig</a></td><td>(65 B)</td>
+</tr></table>
+
+<h2>Required GIMP version</h2>
+<p>GIMP 2.2 for version 1.2, GIMP 2.0 for version
+1.0.</p>
+
+<h2>Other requirements</h2>
+<p>FFTW library version 3, see <a href="http://fftw.org/">fftw.org</a>.
+It is required, the plug-in has no fallback FFT implementation.
+Most GNU/Linux distributions should contain a package of FFTW3, a FreeBSD port
+is available too.</p>
+
+<h2>Description</h2>
+<p>Fourier Compose generates tilable textures by the means of Fourier
+(spectral) synthesis.  In other words, it generates a random two-dimensional
+FFT modulus (amplitudes) and random phases, shapes the modulus by filtering
+it with specified filters, and performs backwards FFT.  The resulting values
+are then visualized.</p>
+
+<p>See also <a href="parameters/">parameter description</a>.</p>
+
+<h2>Known issues</h2>
+<p>Progress bar is not updated during FFT itself.  This is because it is
+performed by a single FFTW function call.  In my opinion speed is more
+important than smoothness of progressbar updates so this is not a bug, it's
+a feature.</p>
+
+<p>There are no limitations on image size as FFTW can transform arrays of any
+size in <span class="math"><var>O</var>(<var>n</var> log <var>n</var>)</span>
+time, however some transforms are still much slower than others.  You'd
+better stick to images with dimensions that can be expressed as
+<span class="math">2<sup><var>k</var></sup>3<sup><var>l</var></sup>5<sup><var>m</var></sup>7<sup><var>n</var></sup></span>
+(or 11 or 13 multiple of that).</p>
+
+<h2>Examples</h2>
+<table class="img-center" style="margin-left: auto; margin-right: auto;"><tr>
+<td style="width: 160px;">
+<img src="http://trific.ath.cx/Img/gimp/Fourier-SolidNoise.png" alt="" width="160" height="160"/>
+<br/>Solid Noise emulation.
+</td>
+<td style="width: 160px;">
+<img src="http://trific.ath.cx/Img/gimp/Fourier-Plasma.png" alt="" width="160" height="160"/>
+<br/>Plasma emulation
+</td>
+<td style="width: 160px;">
+<img src="http://trific.ath.cx/Img/gimp/Fourier-Turing.png" alt="" width="160" height="160"/>
+<br/>Kind of Turing pattern emulation
+</td>
+</tr></table>
+<table class="img-center" style="margin-left: auto; margin-right: auto;"><tr>
+<td style="width: 160px;">
+<img src="http://trific.ath.cx/Img/gimp/Fourier-Islands.png" alt="" width="160" height="160"/>
+<br/>Islands with controlled fractal dimension and/or maximum curvature.
+</td>
+<td style="width: 160px;">
+<img src="http://trific.ath.cx/Img/gimp/Fourier-AlienWall.png" alt="" width="160" height="160"/>
+<br/>Alien wall texture
+</td>
+<td style="width: 160px;">
+<img src="http://trific.ath.cx/Img/gimp/Fourier-Pentagon.png" alt="" width="160" height="160"/>
+<br/>Rough quasicrystal surface with pentagonal symmetry
+</td>
+</tr></table>
+
+<h2>Screenshots</h2>
+<div class="img-center" style="margin-left: auto; margin-right: auto; width: 478px;">
+<img src="http://trific.ath.cx/Img/gimp/Fourier-plugin.png" alt="" width="478" height="576"/>
+<br/>Fourier Compose 1.1 dialog screenshot
+</div>
+
+<h2>Copying</h2>
+<p>Copyright © 2005 Yeti (David Nečas) &lt;yeti at physics dot muni dot cz&gt;.</p>
+<p>Fourier Compose is free software; you can redistribute it and/or modify it under the terms of the
+<a href="http://www.gnu.org/licenses/gpl.html">GNU General Public License</a> as published by the Free Software Foundation;
+either version 2 of the License, or (at your option) any later version. For full license text see file <code class="fnm">COPYING</code> included in the source tarball.</p>
+</div>
+</td>
+
+<td class="collapsed"></td>
+</tr>
+
+<tr>
+<td class="bar-left" valign="top">
+<p class="nohl" style="margin-bottom: 8pt; background: #dcdcdc;"><a href="http://trific.ath.cx/"><img src="http://trific.ath.cx/Img/foot3.png" alt="[Trific net]" width="115" height="50"/></a></p>
+<div xml:lang="en">
+<h4><a href="http://trific.ath.cx/software/">Software</a></h4>
+<p><a href="http://trific.ath.cx/software/enca/">Enca</a></p>
+<p class="menuhl"><a href="http://trific.ath.cx/software/gimp-plugins/">Gimp plug-ins</a></p>
+<p><a href="http://gwyddion.net/">Gwyddion</a></p>
+<p><a href="http://trific.ath.cx/software/dendrofit/">DendroFit</a></p>
+<p><a href="http://trific.ath.cx/resources/python/levenshtein/">Levenshtein</a></p>
+<p><a href="http://trific.ath.cx/software/ifsgr/">IFSgr</a></p>
+<h4><a href="http://trific.ath.cx/resources/">Resources</a></h4>
+<p><a href="http://trific.ath.cx/resources/vim/">Vim</a></p>
+<p><a href="http://trific.ath.cx/resources/bash/">Bash</a></p>
+<p><a href="http://trific.ath.cx/resources/python/">Python</a></p>
+<p><a href="http://trific.ath.cx/resources/spamassassin/">SpamAssassin</a></p>
+<h4><a href="http://trific.ath.cx/tex-mf/">TeX &amp; MF</a></h4>
+<p><a href="http://trific.ath.cx/tex-mf/enctex/">EncTeX</a></p>
+<p><a href="http://trific.ath.cx/tex-mf/mitered-join/">Mitered join</a></p>
+<h4><a href="http://trific.ath.cxhttp://trific.ath.cxhttp://trific.ath.cx/yeti/">Yeti</a></h4>
+<p><a href="http://trific.ath.cx/yeti/gnupg-pubkey/">GnuPG Keys</a></p>
+</div><hr/><div xml:lang="cs">
+<h4><a href="http://trific.ath.cx/texts/">Texty</a></h4>
+<p><a href="http://trific.ath.cx/texts/absurd/">Absurdní</a></p>
+<p><a href="http://trific.ath.cx/texts/parody/">Parodie</a></p>
+<p><a href="http://trific.ath.cx/texts/opinion/">Názory</a></p>
+<p><a href="http://trific.ath.cx/texts/poem/">Ostatní</a></p>
+<p><a href="http://trific.ath.cx/texts/xml/">XML</a></p>
+<p><a href="http://trific.ath.cx/yeti/diary/">Deníček</a></p>
+<h4><a href="http://trific.ath.cx/tex,mf/">TeX &amp; MF</a></h4>
+<p><a href="http://trific.ath.cx/tex,mf/bestiary/">Bestiář</a></p>
+<p><a href="http://trific.ath.cx/tex,mf/moremath/">MoreMath</a></p>
+<p><a href="http://trific.ath.cx/tex,mf/tweak-latex/">Střeva LaTeXu</a></p>
+<p><a href="http://trific.ath.cx/tex,mf/other/">Ostatní</a></p>
+</div>
+</td>
+
+<td class="bar-right" valign="top">
+<h4><a href="http://trific.ath.cx/software/gimp-plugins/">Gimp plug-ins</a></h4>
+<p><a href="http://trific.ath.cx/software/gimp-plugins/fourier-compose/">Fourier Compose</a></p>
+<p><a href="http://trific.ath.cx/software/gimp-plugins/particle-deposition/">Particle Deposition</a></p>
+<p><a href="http://trific.ath.cx/software/gimp-plugins/plasma2/">Plasma2</a></p>
+<p><a href="http://trific.ath.cx/software/gimp-plugins/stereograph/">Stereograph</a></p>
+<p><a href="http://trific.ath.cx/software/gimp-plugins/self-som/">Self-SOM</a></p>
+<p><a href="http://trific.ath.cx/software/gimp-plugins/turing-pattern/">Turing Pattern</a></p>
+<p><a href="http://trific.ath.cx/software/gimp-plugins/tileably-shrink/">Tileably Shrink</a></p>
+<p><a href="http://trific.ath.cx/software/gimp-plugins/voronoi/">Voronoi</a></p>
+<p><a href="http://trific.ath.cx/software/gimp-plugins/water-surface/">Water Surface 2</a></p>
+<p><a href="http://trific.ath.cx/software/gimp-plugins/waves-of-chaos/">Waves of Chaos</a></p>
+<hr/>
+<h4 class="nohl">Links</h4>
+<p><a href="http://registry.gimp.org/plugin?id=7135">Fourier Compose (reg)</a></p>
+<p><a href="http://www.gnu.org/licenses/gpl.html">GNU GPL</a></p>
+<p><a href="http://www.gimp.org/">Gimp</a></p>
+<p><a href="http://fftw.org/">fftw.org</a></p>
+<hr/>
+<h4 class="nohl">Last modified</h4><p class="nohl">2006-01-03</p>
+<p style="margin-top: 5pt; margin-bottom: 5pt;"><a href="http://trific.ath.cx/copyright/">© Yeti</a></p>
+<p style="margin-top: 5pt;"><a href="http://trific.ath.cx/printable/software/gimp-plugins/fourier-compose/">Printable version</a></p>
+<p><a href="mailto:webmaster-at-trific-dot-ath-dot-cx">Webmaster</a></p>
+<p class="nohl" style="margin-bottom: 2pt;"><a href="http://www.eff.org/blueribbon/"><img src="http://br.eff.org/br.png" alt="[Join the Blue Ribbon Online Free Speech Campaign!]" height="76" width="112"/></a></p>
+<p class="nohl" style="margin-bottom: 2pt;"><a href="http://petition.eurolinux.org/"><img src="http://aful.org/images/patent_button.png" alt="[Sign the Petition for a Software Patent Free Europe!]"/></a></p>
+<p><a href="http://validator.w3.org/check?uri=http%3A%2F%2Ftrific.ath.cx%2Fsoftware%2Fgimp-plugins%2Ffourier-compose%2F&amp;charset=%28detect+automatically%29&amp;doctype=Inline">Valid XHTML 1.1</a></p>
+<p><a href="http://jigsaw.w3.org/css-validator/validator?uri=http%3A%2F%2Ftrific.ath.cx%2Fsoftware%2Fgimp-plugins%2Ffourier-compose%2F&amp;warning=1&amp;profile=css2">Valid CSS2</a></p>
+</td>
+
+</tr>
+<tr>
+<td class="bar-left-bot"></td>
+<td class="main">
+<div class="navline">
+<a href="http://trific.ath.cx/">Home</a>
+ &gt; 
+<a href="http://trific.ath.cx/software/">Software</a>
+ &gt; 
+<a href="http://trific.ath.cx/software/gimp-plugins/">Gimp plug-ins</a>
+ &gt; 
+<a href="http://trific.ath.cx/software/gimp-plugins/fourier-compose/">Fourier Compose</a>
+ &gt; 
+<a href="http://trific.ath.cx/software/gimp-plugins/fourier-compose/">Fourier Compose Gimp plug-in</a>
+</div>
+</td>
+<td class="bar-right-bot"></td>
+</tr>
+</table>
+</body>
+</html>
+>

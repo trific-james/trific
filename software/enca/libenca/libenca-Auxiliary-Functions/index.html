@@ -1,0 +1,330 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app39.us.archive.org';v.server_ms=2169;archive_analytics.send_pageview({});});</script><script type="text/javascript" src="/_static/js/playback.bundle.js?v=SOX25l-I" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=cRqOKCOw" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("http://trific.ath.cx:80/software/enca/libenca/libenca-Auxiliary-Functions/","20070601041457","http://trific.ath.cx/CSS/colors-yeti.css"/>
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII"/>
+<title>Auxiliary functions</title>
+
+<link rel="home" href="../" title="Enca Library Reference Manual"/>
+<link rel="up" href="../ch01/" title="Enca Library API"/>
+<link rel="previous" href="../libenca-Charsets-and-Surfaces/" title="Charsets and Surfaces"/>
+
+<style type="text/css"><!--
+.synopsis { background: #dedede; border: solid 1px black; padding: 0.5em; }
+.variablelist { padding: 4px; margin-left: 3em; }
+.programlisting { background: #d7e3d4; padding: 1em; }
+.navigation, .navigation a { background: #1c701c; color: white; }
+.navigation a:hover, .navigation a:active { background: white; color: #1c701c; } h1, h2, h3 { font-family: sans-serif; }
+.title { font-size: large; }
+--></style>
+<link rel="chapter" href="../ch01/" title="Enca Library API"/>
+</head>
+<body><!-- END WAYBACK TOOLBAR INSERT -->
+<table class="navigation" width="100%" summary="Navigation header" cellpadding="2" cellspacing="2">
+<tr valign="middle">
+<td><a accesskey="p" href="http://trific.ath.cx/software/enca/libenca/libenca-Charsets-and-Surfaces/">Prev
+</a></td>
+<td><a accesskey="u" href="http://trific.ath.cx/software/enca/libenca/ch01/">Up</a></td>
+<td><a accesskey="h" href="http://trific.ath.cx/software/enca/libenca/">Home</a></td>
+<th width="100%" align="center">Enca Library Reference Manual</th>
+</tr>
+</table>
+
+<div class="refentry" lang="en" id="libenca-Auxiliary-Functions">
+<div class="refnamediv">
+<table width="100%">
+<tr>
+<td valign="top">
+<h2><span class="refentrytitle">Auxiliary functions</span></h2>
+
+Auxiliary functions &mdash; Variouis auxiliary functions and
+informations about libenca.
+</td>
+<td valign="top" align="right"></td>
+</tr>
+</table>
+</div>
+
+<div class="refsynopsisdiv">
+<h2>Synopsis</h2>
+
+<pre class="synopsis">
+
+
+int         <a href="http://trific.ath.cx/software/enca/libenca/libenca-Auxiliary-Functions/#enca-charset-has-ucs2-map">enca_charset_has_ucs2_map</a>       (int charset);
+int         <a href="http://trific.ath.cx/software/enca/libenca/libenca-Auxiliary-Functions/#enca-charset-ucs2-map">enca_charset_ucs2_map</a>           (int charset,
+                                             unsigned int *buffer);
+size_t      <a href="http://trific.ath.cx/software/enca/libenca/libenca-Auxiliary-Functions/#enca-number-of-charsets">enca_number_of_charsets</a>         (void);
+const char* <a href="http://trific.ath.cx/software/enca/libenca/libenca-Auxiliary-Functions/#enca-analyser-language">enca_analyser_language</a>          (EncaAnalyser analyser);
+const char** <a href="http://trific.ath.cx/software/enca/libenca/libenca-Auxiliary-Functions/#enca-get-languages">enca_get_languages</a>             (size_t *n);
+const char* <a href="http://trific.ath.cx/software/enca/libenca/libenca-Auxiliary-Functions/#enca-language-english-name">enca_language_english_name</a>      (const char *lang);
+int*        <a href="http://trific.ath.cx/software/enca/libenca/libenca-Auxiliary-Functions/#enca-get-language-charsets">enca_get_language_charsets</a>      (const char *langname,
+                                             size_t *n);
+</pre>
+</div>
+
+<div class="refsect1" lang="en" id="id2831925">
+<h2>Description</h2>
+</div>
+
+<div class="refsect1" lang="en" id="id2831935">
+<h2>Details</h2>
+
+<div class="refsect2" lang="en" id="id2831940">
+<h3 id="enca-charset-has-ucs2-map">enca_charset_has_ucs2_map
+()</h3>
+
+
+<pre class="programlisting">
+int         enca_charset_has_ucs2_map       (int charset);
+</pre>
+
+<p>Find whether we have charset -&gt; UCS-2 map.</p>
+
+<div class="variablelist">
+<table border="0">
+<col align="left" valign="top"/>
+<tbody>
+<tr>
+<td><span class="term"><i class="parameter"><tt>charset</tt></i></span></td>
+<td>An 8bit charset.</td>
+</tr>
+
+<tr>
+<td><span class="term"><span class="emphasis"><em>Returns</em></span></span></td>
+<td>Nonzero when the map is available, zero otherwise.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<hr/>
+<div class="refsect2" lang="en" id="id2768703">
+<h3 id="enca-charset-ucs2-map">enca_charset_ucs2_map ()</h3>
+
+
+<pre class="programlisting">
+int         enca_charset_ucs2_map           (int charset,
+                                             unsigned int *buffer);
+</pre>
+
+<p>Creates map from an 8bit charset to UCS-2.</p>
+
+<p>The buffer must be at least 256*sizeof(unsigned int) long to
+hold the map.</p>
+
+<div class="variablelist">
+<table border="0">
+<col align="left" valign="top"/>
+<tbody>
+<tr>
+<td><span class="term"><i class="parameter"><tt>charset</tt></i></span></td>
+<td>An 8bit charset.</td>
+</tr>
+
+<tr>
+<td><span class="term"><i class="parameter"><tt>buffer</tt></i></span></td>
+<td>Buffer to store the map to.</td>
+</tr>
+
+<tr>
+<td><span class="term"><span class="emphasis"><em>Returns</em></span></span></td>
+<td>Nonzero when the map was successfully created, zero
+otherwise.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<hr/>
+<div class="refsect2" lang="en" id="id2768782">
+<h3 id="enca-number-of-charsets">enca_number_of_charsets ()</h3>
+
+
+<pre class="programlisting">
+size_t      enca_number_of_charsets         (void);
+</pre>
+
+<p>Returns number of known charsets.</p>
+
+<p>Charsets idetifiers are assigned successively starting from
+zero, so last charset has identifier <a href="http://trific.ath.cx/software/enca/libenca/libenca-Auxiliary-Functions/#enca-number-of-charsets"><tt class="function">enca_number_of_charsets()</tt></a> - 1.</p>
+
+<div class="variablelist">
+<table border="0">
+<col align="left" valign="top"/>
+<tbody>
+<tr>
+<td><span class="term"><span class="emphasis"><em>Returns</em></span></span></td>
+<td>The number of charsets.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<hr/>
+<div class="refsect2" lang="en" id="id2768833">
+<h3 id="enca-analyser-language">enca_analyser_language ()</h3>
+
+
+<pre class="programlisting">
+const char* enca_analyser_language          (EncaAnalyser analyser);
+</pre>
+
+<p>Returns name of language which was <i class="parameter"><tt>analyser</tt></i> initialized for.</p>
+
+<p>The returned string must be considered constant and must NOT be
+freed.</p>
+
+<div class="variablelist">
+<table border="0">
+<col align="left" valign="top"/>
+<tbody>
+<tr>
+<td><span class="term"><i class="parameter"><tt>analyser</tt></i></span></td>
+<td>An analyser.</td>
+</tr>
+
+<tr>
+<td><span class="term"><span class="emphasis"><em>Returns</em></span></span></td>
+<td>The language name.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<hr/>
+<div class="refsect2" lang="en" id="id2851027">
+<h3 id="enca-get-languages">enca_get_languages ()</h3>
+
+
+<pre class="programlisting">
+const char** enca_get_languages             (size_t *n);
+</pre>
+
+<p>Returns list of known languages.</p>
+
+<p>The returned strings are two-letter ISO-639 language codes, the
+same as <a href="http://trific.ath.cx/software/enca/libenca/libenca-Analyser/#enca-analyser-alloc"><tt class="function">enca_analyser_alloc()</tt></a> accepts.</p>
+
+<p>The list of languages has to be freed by caller; the strings
+themselves must be considered constant and must NOT be freed.</p>
+
+<div class="variablelist">
+<table border="0">
+<col align="left" valign="top"/>
+<tbody>
+<tr>
+<td><span class="term"><i class="parameter"><tt>n</tt></i></span></td>
+<td>The number of languages will be stored here.</td>
+</tr>
+
+<tr>
+<td><span class="term"><span class="emphasis"><em>Returns</em></span></span></td>
+<td>The list of languages, storing their number into *<i class="parameter"><tt>n</tt></i>.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<hr/>
+<div class="refsect2" lang="en" id="id2851104">
+<h3 id="enca-language-english-name">enca_language_english_name
+()</h3>
+
+
+<pre class="programlisting">
+const char* enca_language_english_name      (const char *lang);
+</pre>
+
+<p>Returns an English name of a language given its ISO-639
+code.</p>
+
+<p>The returned string must be considered constant and must NOT be
+freed.</p>
+
+<div class="variablelist">
+<table border="0">
+<col align="left" valign="top"/>
+<tbody>
+<tr>
+<td><span class="term"><i class="parameter"><tt>lang</tt></i></span></td>
+<td>A two-letter language code, such as obtained from <a href="http://trific.ath.cx/software/enca/libenca/libenca-Auxiliary-Functions/#enca-analyser-language"><tt class="function">enca_analyser_language()</tt></a> or <a href="http://trific.ath.cx/software/enca/libenca/libenca-Auxiliary-Functions/#enca-get-languages"><tt class="function">enca_get_languages()</tt></a>.</td>
+</tr>
+
+<tr>
+<td><span class="term"><span class="emphasis"><em>Returns</em></span></span></td>
+<td>The English language name.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<hr/>
+<div class="refsect2" lang="en" id="id2851179">
+<h3 id="enca-get-language-charsets">enca_get_language_charsets
+()</h3>
+
+
+<pre class="programlisting">
+int*        enca_get_language_charsets      (const char *langname,
+                                             size_t *n);
+</pre>
+
+<p>Returns list of identifiers of charsets supported for language
+<i class="parameter"><tt>language</tt></i>.</p>
+
+<p>The list of charset identifiers has to be freed by caller.</p>
+
+<div class="variablelist">
+<table border="0">
+<col align="left" valign="top"/>
+<tbody>
+<tr>
+<td><span class="term"><i class="parameter"><tt>langname</tt></i></span></td>
+<td>Two-letter ISO-639 language code.</td>
+</tr>
+
+<tr>
+<td><span class="term"><i class="parameter"><tt>n</tt></i></span></td>
+<td>The number of charsets will be stored here.</td>
+</tr>
+
+<tr>
+<td><span class="term"><span class="emphasis"><em>Returns</em></span></span></td>
+<td>The list of charsets, storing their number into *<i class="parameter"><tt>n</tt></i>. When language contains no
+charsets or <i class="parameter"><tt>langname</tt></i> is invalid,
+<a href="http://trific.ath.cx/software/enca/libenca/usr/share/gtk-doc/html/glib/glib-Standard-Macros/#NULL:CAPS">
+<span class="type">NULL</span></a> is returned and zero stored into
+*<i class="parameter"><tt>n</tt></i>.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+
+<table class="navigation" width="100%" summary="Navigation footer" cellpadding="2" cellspacing="0">
+<tr valign="middle">
+<td align="left"><a accesskey="p" href="http://trific.ath.cx/software/enca/libenca/libenca-Charsets-and-Surfaces/"><b>&lt;&lt;&nbsp;Charsets
+and Surfaces</b></a></td>
+<td align="right"></td>
+</tr>
+</table>
+<p><small>See also:
+<a href="http://trific.ath.cx/software/enca/">Enca home page</a>
+</small></p>
+</body>
+</html>
+>

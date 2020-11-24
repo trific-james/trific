@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app101.us.archive.org';v.server_ms=2828;archive_analytics.send_pageview({});});</script><script type="text/javascript" src="/_static/js/playback.bundle.js?v=SOX25l-I" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=cRqOKCOw" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("http://trific.ath.cx:80/resources/czech-x-keyboard/","20060716102240","http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link rel="stylesheet" type="text/css" href="http://trific.ath.cx/CSS/layout.css"/>
+<link rel="stylesheet" type="text/css" href="http://trific.ath.cx/CSS/colors.css"/>
+<title>My Czech XKB keyboard</title>
+<link rel="shortcut icon" type="image/x-icon" href="http://trific.ath.cx/Img/favicon.ico"/>
+<meta name="Author" content="David Nečas (Yeti)"/>
+</head>
+<body><!-- END WAYBACK TOOLBAR INSERT -->
+<table class="main" cellspacing="0">
+<col class="left" width="13%"/><col class="main" width="74%"/><col class="right" width="13%"/>
+
+<tr>
+<td class="collapsed"></td>
+
+<td class="main" valign="top" rowspan="2">
+<div class="topline">
+<a href="http://trific.ath.cx/">Home</a>
+ &gt; 
+<a href="http://trific.ath.cx/resources/">Resources</a>
+ &gt; 
+<a href="http://trific.ath.cx/resources/czech-x-keyboard/">My Czech XKB keyboard</a>
+</div>
+<div xml:lang="en">
+<h1>My Czech XKB keyboard</h1>
+
+<p>My keyboard called us_cz_prog_yeti is a variant of XKB us/cz programmers'
+keymap.  I mean the old good two-mode keymap, before the grand
+unification took place – leading to a keyboard which no Unix, Win or Mac user
+can actually use, because it's a mix of three keyboards, two of them being
+different of what he/she was used to. And they even dare to call this an
+improvement. Sigh.</p>
+
+<p><small>A philosophical excursion: The idea of keyboard unification is
+completely braindamaged. Unless you are an artist or an ingrained
+mouseclicker, you use keyboard most of the time you work with computer. When
+the keyboard layout doesn't suit you, it not only affects your productivity
+but makes you feel uncomfortable in addition. Everyone has the full right to
+modify keyboard layouts to his/her needs, and OS/windowing sytem/desktop
+vendors should make thess modifications as easy as possible. Unfortunately,
+keyboard layout modifications are particularly hard on Windows (impossible
+for a BFU), and not completely trivial on Unix (don't know anything about
+modifying keyboards on Mac). Sigh.</small></p>
+
+<p>My keyboard features:</p>
+
+<ul>
+<li>CapsLock nicely capitalizes Czech letters (old version; the new does it
+  too but since the new default Czech X keyboard has this feature too, there's
+  nothing special about it)</li>
+<li>NumLock is always on</li>
+<li>the NumLock key types <code>=</code> instead (in the new version
+  Shift-NumLock types <code>:</code> in addition)</li>
+<li>keypad numbers and symbols are the same as on the main keyboard, no
+  <code>KP_</code>'s</li>
+<li>Shift-1 to Shift-0 type <code>!</code> to <code>)</code> regardless of
+  the mode</li>
+<li>Win95 keys are mapped to F13, F14 and F15 (old version); Flying-Windows
+  to Mode_switch (new version – very handy, one has Alts and Mode_switches
+  on both sides of the keyboard)</li>
+<li>maybe other surprises for the unwary</li>
+<li>as a special bonus, Czech-phonetic Russian keyboard is included in newer
+  2.<var>x</var> versions (greetings to Vac)</li>
+</ul>
+
+<p>Quite suprisingly some people like it (me at the first place), most of
+them with their additional modifications, so it is available here for
+download:</p>
+
+<table><tr>
+<td>XFree86 ≤ 4.2:</td>
+<td><a href="http://trific.ath.cx/Ftp//x11/us_cz_prog_yeti-1.1.1.tar.bz2">us_cz_prog_yeti-1.1.1.tar.bz2</a></td><td>(3.23 kB)</td>
+</tr><tr>
+<td>XOrg ≤ 6.8 and XFree86 ≥ 4.3:</td>
+<td><a href="http://trific.ath.cx/Ftp//x11/us_cz_prog_yeti-2.5.tar.bz2">us_cz_prog_yeti-2.5.tar.bz2</a></td><td>(2.67 kB)</td>
+</tr><tr>
+<td>XOrg ≥ 6.9:</td>
+<td><a href="http://trific.ath.cx/Ftp//x11/us_cz_prog_yeti-2.6.tar.bz2">us_cz_prog_yeti-2.6.tar.bz2</a></td><td>(2.65 kB)</td>
+</tr></table>
+
+<p>with no documentation included (just place the contents of the tarball to
+your XKB directory). A RPM is also available in the <a href="http://trific.ath.cx/resources/rpm/">RPM section</a> (it doesn't include any documentation
+either, but may be easier to install).</p>
+
+<p>The XFree86 ≤ 4.2 version should be set up by command</p>
+<pre>
+setxkbmap -types yeti -symbols 'yeti(us_cz_prog_yeti)' -compat yeti
+</pre>
+
+<p>Xorg and XFree86 ≥ 4.3 should be set up by command</p>
+<pre>
+setxkbmap -symbols yeti -compat yeti
+</pre>
+</div>
+</td>
+
+<td class="collapsed"></td>
+</tr>
+
+<tr>
+<td class="bar-left" valign="top">
+<p class="nohl" style="margin-bottom: 8pt; background: #dcdcdc;"><a href="http://trific.ath.cx/"><img src="http://trific.ath.cx/Img/foot3.png" alt="[Trific net]" width="115" height="50"/></a></p>
+<div xml:lang="en">
+<h4><a href="http://trific.ath.cx/software/">Software</a></h4>
+<p><a href="http://trific.ath.cx/software/enca/">Enca</a></p>
+<p><a href="http://trific.ath.cx/software/gimp-plugins/">Gimp plug-ins</a></p>
+<p><a href="http://gwyddion.net/">Gwyddion</a></p>
+<p><a href="http://trific.ath.cx/software/dendrofit/">DendroFit</a></p>
+<p><a href="http://trific.ath.cx/resources/python/levenshtein/">Levenshtein</a></p>
+<p><a href="http://trific.ath.cx/software/ifsgr/">IFSgr</a></p>
+<h4 class="menuhl"><a href="http://trific.ath.cx/resources/">Resources</a></h4>
+<p><a href="http://trific.ath.cx/resources/vim/">Vim</a></p>
+<p><a href="http://trific.ath.cx/resources/bash/">Bash</a></p>
+<p><a href="http://trific.ath.cx/resources/python/">Python</a></p>
+<p><a href="http://trific.ath.cx/resources/spamassassin/">SpamAssassin</a></p>
+<h4><a href="http://trific.ath.cx/tex-mf/">TeX &amp; MF</a></h4>
+<p><a href="http://trific.ath.cx/tex-mf/enctex/">EncTeX</a></p>
+<p><a href="http://trific.ath.cx/tex-mf/mitered-join/">Mitered join</a></p>
+<h4><a href="http://trific.ath.cxhttp://trific.ath.cxhttp://trific.ath.cx/yeti/">Yeti</a></h4>
+<p><a href="http://trific.ath.cx/yeti/gnupg-pubkey/">GnuPG Keys</a></p>
+</div><hr/><div xml:lang="cs">
+<h4><a href="http://trific.ath.cx/texts/">Texty</a></h4>
+<p><a href="http://trific.ath.cx/texts/absurd/">Absurdní</a></p>
+<p><a href="http://trific.ath.cx/texts/parody/">Parodie</a></p>
+<p><a href="http://trific.ath.cx/texts/opinion/">Názory</a></p>
+<p><a href="http://trific.ath.cx/texts/poem/">Ostatní</a></p>
+<p><a href="http://trific.ath.cx/texts/xml/">XML</a></p>
+<p><a href="http://trific.ath.cx/yeti/diary/">Deníček</a></p>
+<h4><a href="http://trific.ath.cx/tex,mf/">TeX &amp; MF</a></h4>
+<p><a href="http://trific.ath.cx/tex,mf/bestiary/">Bestiář</a></p>
+<p><a href="http://trific.ath.cx/tex,mf/moremath/">MoreMath</a></p>
+<p><a href="http://trific.ath.cx/tex,mf/tweak-latex/">Střeva LaTeXu</a></p>
+<p><a href="http://trific.ath.cx/tex,mf/other/">Ostatní</a></p>
+</div>
+</td>
+
+<td class="bar-right" valign="top">
+<h4 class="nohl">Last modified</h4><p class="nohl">2006-03-27</p>
+<p style="margin-top: 5pt; margin-bottom: 5pt;"><a href="http://trific.ath.cx/copyright/">© Yeti</a></p>
+<p style="margin-top: 5pt;"><a href="http://trific.ath.cx/printable/resources/czech-x-keyboard/">Printable version</a></p>
+<p><a href="mailto:webmaster-at-trific-dot-ath-dot-cx">Webmaster</a></p>
+<p class="nohl" style="margin-bottom: 2pt;"><a href="http://www.eff.org/blueribbon/"><img src="http://br.eff.org/br.png" alt="[Join the Blue Ribbon Online Free Speech Campaign!]" height="76" width="112"/></a></p>
+<p class="nohl" style="margin-bottom: 2pt;"><a href="http://petition.eurolinux.org/"><img src="http://aful.org/images/patent_button.png" alt="[Sign the Petition for a Software Patent Free Europe!]"/></a></p>
+<p><a href="http://validator.w3.org/check?uri=http%3A%2F%2Ftrific.ath.cx%2Fresources%2Fczech-x-keyboard%2F&amp;charset=%28detect+automatically%29&amp;doctype=Inline">Valid XHTML 1.1</a></p>
+<p><a href="http://jigsaw.w3.org/css-validator/validator?uri=http%3A%2F%2Ftrific.ath.cx%2Fresources%2Fczech-x-keyboard%2F&amp;warning=1&amp;profile=css2">Valid CSS2</a></p>
+</td>
+
+</tr>
+<tr>
+<td class="bar-left-bot"></td>
+<td class="main">
+<div class="navline">
+<a href="http://trific.ath.cx/">Home</a>
+ &gt; 
+<a href="http://trific.ath.cx/resources/">Resources</a>
+ &gt; 
+<a href="http://trific.ath.cx/resources/czech-x-keyboard/">My Czech XKB keyboard</a>
+</div>
+</td>
+<td class="bar-right-bot"></td>
+</tr>
+</table>
+</body>
+</html>
+>

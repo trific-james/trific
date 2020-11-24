@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app103.us.archive.org';v.server_ms=2241;archive_analytics.send_pageview({});});</script><script type="text/javascript" src="/_static/js/playback.bundle.js?v=SOX25l-I" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=cRqOKCOw" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("http://trific.ath.cx:80/resources/python/pyenca/api/","20060818065618","http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link rel="stylesheet" type="text/css" href="http://trific.ath.cx/CSS/layout.css"/>
+<link rel="stylesheet" type="text/css" href="http://trific.ath.cx/CSS/colors.css"/>
+<title>Enca module API</title>
+<link rel="shortcut icon" type="image/x-icon" href="http://trific.ath.cx/Img/favicon.ico"/>
+<meta name="Author" content="David Nečas (Yeti)"/>
+</head>
+<body><!-- END WAYBACK TOOLBAR INSERT -->
+<table class="main" cellspacing="0">
+<col class="left" width="13%"/><col class="main" width="74%"/><col class="right" width="13%"/>
+
+<tr>
+<td class="collapsed"></td>
+
+<td class="main" valign="top" rowspan="2">
+<div class="topline">
+<a href="http://trific.ath.cx/">Home</a>
+ &gt; 
+<a href="http://trific.ath.cx/resources/">Resources</a>
+ &gt; 
+<a href="http://trific.ath.cx/resources/python/">Python</a>
+ &gt; 
+<a href="http://trific.ath.cx/resources/python/pyenca/">pyenca</a>
+ &gt; 
+<a href="http://trific.ath.cx/resources/python/pyenca/api/">Enca module API</a>
+</div>
+<div xml:lang="en">
+<h1>Enca module API</h1>
+
+<p>The API is quite similar to the
+<a href="http://trific.ath.cx/software/enca/libenca/">libenca C API</a>
+(which is also documented better).</p>
+<hr/>
+
+<p>Python interface to libenca.</p>
+<p>libenca is the Extremely Naive Charset Analyser library, a library
+for detection of encoding of East- and Central European texts.</p>
+<p><b>Functions:</b></p>
+<ul class="ltoc">
+<li><a href="#Enca-languages">languages</a>()</li>
+</ul>
+<p><b>Classes:</b></p>
+<ul class="ltoc">
+<li><a href="#Enca-Analyser">Analyser</a>([<var>language</var>], [<var>option</var>=<var>value</var>, ...])</li>
+<li><a href="#Enca-Encoding">Encoding</a>([<var>encoding_name</var>])</li>
+</ul>
+<p><b>Data:</b></p>
+<ul class="ltoc">
+<li>CHARSET_16BIT = 4</li>
+<li>CHARSET_32BIT = 8</li>
+<li>CHARSET_7BIT = 1</li>
+<li>CHARSET_8BIT = 2</li>
+<li>CHARSET_BINARY = 64</li>
+<li>CHARSET_FIXED = 16</li>
+<li>CHARSET_MULTIBYTE = 256</li>
+<li>CHARSET_REGULAR = 128</li>
+<li>CHARSET_VARIABLE = 32</li>
+<li>NAME_STYLE_CSTOCS = 2</li>
+<li>NAME_STYLE_ENCA = 0</li>
+<li>NAME_STYLE_HUMAN = 4</li>
+<li>NAME_STYLE_ICONV = 3</li>
+<li>NAME_STYLE_MIME = 5</li>
+<li>NAME_STYLE_RFC1345 = 1</li>
+<li>SURFACE_EOL_BIN = 16</li>
+<li>SURFACE_EOL_CR = 1</li>
+<li>SURFACE_EOL_CRLF = 4</li>
+<li>SURFACE_EOL_LF = 2</li>
+<li>SURFACE_EOL_MIX = 8</li>
+<li>SURFACE_MASK_ALL = 8703</li>
+<li>SURFACE_MASK_EOL = 31</li>
+<li>SURFACE_MASK_PERM = 224</li>
+<li>SURFACE_PERM_21 = 32</li>
+<li>SURFACE_PERM_4321 = 64</li>
+<li>SURFACE_PERM_MIX = 128</li>
+<li>SURFACE_QP = 256</li>
+<li>SURFACE_REMOVE = 8192</li>
+<li>SURFACE_UNKNOWN = 16384</li>
+</ul>
+<hr/>
+<dl>
+<dt id="Enca-languages">languages()</dt>
+<dd><p>Returns the list of languages supported by libenca.</p>
+<p>The languages are two letter ISO 639a codes, the same as accepted
+by Analyser.</p>
+</dd>
+</dl>
+<hr/>
+<h2 id="Enca-Analyser">Analyser([<var>language</var>], [<var>option</var>=<var>value</var>, ...])</h2>
+<p>Bases: object.</p>
+<p>Analyser object.</p>
+<p>When no language is specified, the special `none' language
+containig no 8bit encoding is assumed.  Analyser attributes
+corresponding to libenca options can be set directly during
+the initialization.</p>
+<p><b>Methods:</b></p>
+<ul class="ltoc">
+<li><a href="#Enca-Analyser-analyse">analyse</a>(<var>text</var>)</li>
+<li><a href="#Enca-Analyser-double_utf8_check">double_utf8_check</a>(<var>text</var>)</li>
+<li><a href="#Enca-Analyser-language_charsets">language_charsets</a>()</li>
+</ul>
+<p><b>Data:</b></p>
+<ul class="ltoc">
+<li>ambiguity = Whether ambiguous results are allowed.
+</li>
+<li>filtering = Whether filtering (e.g., of binary and box-drawing chars) is enabled.
+</li>
+<li>garbage_test = Whether garbage test is enabled.
+</li>
+<li>interpreted_surfaces = Whether surfaces fundamentally changing interpretation are allowed.
+</li>
+<li>language = The language this Analyser instance was initialized for (read-only).
+</li>
+<li>multibyte = Whether multibyte encodings are tested.
+</li>
+<li>significant = The required minimum number of significant characters.
+</li>
+<li>termination_strictness = Whether strict termination is required for multibyte encodings.
+</li>
+<li>threshold = The threshold for selecting a winner.
+</li>
+</ul>
+<dl>
+<dt id="Enca-Analyser-analyse">analyse(<var>text</var>)</dt>
+<dd><p>Finds the encoding of text.</p>
+</dd>
+<dt id="Enca-Analyser-double_utf8_check">double_utf8_check(<var>text</var>)</dt>
+<dd><p>Checks for double-UTF-8 encoded text.</p>
+</dd>
+<dt id="Enca-Analyser-language_charsets">language_charsets()</dt>
+<dd><p>Returns the 8bit charsets supported by this Analyser instance.</p>
+</dd>
+</dl>
+<hr/>
+<h2 id="Enca-Encoding">Encoding([<var>encoding_name</var>])</h2>
+<p>Bases: object.</p>
+<p>Encoding object holding the result of guess.</p>
+<p>Generally consists of a charset and a surface.</p>
+<p>If the encoding_name name argument is specified, it's parsed and
+Encoding is initialized to this encoding (it may become unknown as
+as a result).</p>
+<p><b>Methods:</b></p>
+<ul class="ltoc">
+<li><a href="#Enca-Encoding-charset">charset</a>([<var>name_style</var>])</li>
+<li><a href="#Enca-Encoding-charset_aliases">charset_aliases</a>()</li>
+<li><a href="#Enca-Encoding-charset_id">charset_id</a>()</li>
+<li><a href="#Enca-Encoding-is_16bit">is_16bit</a>()</li>
+<li><a href="#Enca-Encoding-is_32bit">is_32bit</a>()</li>
+<li><a href="#Enca-Encoding-is_7bit">is_7bit</a>()</li>
+<li><a href="#Enca-Encoding-is_8bit">is_8bit</a>()</li>
+<li><a href="#Enca-Encoding-is_binary">is_binary</a>()</li>
+<li><a href="#Enca-Encoding-is_fixed">is_fixed</a>()</li>
+<li><a href="#Enca-Encoding-is_known">is_known</a>()</li>
+<li><a href="#Enca-Encoding-is_multibyte">is_multibyte</a>()</li>
+<li><a href="#Enca-Encoding-is_regular">is_regular</a>()</li>
+<li><a href="#Enca-Encoding-is_variable">is_variable</a>()</li>
+<li><a href="#Enca-Encoding-surface">surface</a>([<var>name_style</var>])</li>
+<li><a href="#Enca-Encoding-surface_mask">surface_mask</a>()</li>
+</ul>
+<dl>
+<dt id="Enca-Encoding-charset">charset([<var>name_style</var>])</dt>
+<dd><p>Returns a charset name.</p>
+</dd>
+<dt id="Enca-Encoding-charset_aliases">charset_aliases()</dt>
+<dd><p>Returns a list of all charset aliases known to libenca.</p>
+</dd>
+<dt id="Enca-Encoding-charset_id">charset_id()</dt>
+<dd><p>Returns libenca charset id (not very useful in Python).</p>
+</dd>
+<dt id="Enca-Encoding-is_16bit">is_16bit()</dt>
+<dd><p>Returns True when characters are represented with 2byte words.</p>
+<p>Note this method test charset properties only.  The complete
+encoding with a complex surface (like Quoted printable) may have
+different properties.</p>
+</dd>
+<dt id="Enca-Encoding-is_32bit">is_32bit()</dt>
+<dd><p>Returns True when characters are represented with 4byte words.</p>
+<p>Note this method test charset properties only.  The complete
+encoding with a complex surface (like Quoted printable) may have
+different properties.</p>
+</dd>
+<dt id="Enca-Encoding-is_7bit">is_7bit()</dt>
+<dd><p>Returns True when characters are represented with 7bit characters.</p>
+<p>Note this method test charset properties only.  The complete
+encoding with a complex surface (like Quoted printable) may have
+different properties.</p>
+</dd>
+<dt id="Enca-Encoding-is_8bit">is_8bit()</dt>
+<dd><p>Returns True when characters are represented with bytes.</p>
+<p>Note this method test charset properties only.  The complete
+encoding with a complex surface (like Quoted printable) may have
+different properties.</p>
+</dd>
+<dt id="Enca-Encoding-is_binary">is_binary()</dt>
+<dd><p>Returns True when charset is binary from ASCII viewpoint.</p>
+<p>Note this method test charset properties only.  The complete
+encoding with a complex surface (like Quoted printable) may have
+different properties.</p>
+</dd>
+<dt id="Enca-Encoding-is_fixed">is_fixed()</dt>
+<dd><p>Returns True when one characters consists of one fundamental piece.</p>
+<p>Note this method test charset properties only.  The complete
+encoding with a complex surface (like Quoted printable) may have
+different properties.</p>
+</dd>
+<dt id="Enca-Encoding-is_known">is_known()</dt>
+<dd><p>Returns True when the encoding is not unknown.</p>
+<p>This function is probably useless in Python sice all functions
+returning Encoding objects should raise an exception when the
+encoding is not known.  The only uknown Encoding is thus a newly
+created one.</p>
+</dd>
+<dt id="Enca-Encoding-is_multibyte">is_multibyte()</dt>
+<dd><p>Returns True when charset is multibyte.</p>
+<p>Note this method test charset properties only.  The complete
+encoding with a complex surface (like Quoted printable) may have
+different properties.</p>
+</dd>
+<dt id="Enca-Encoding-is_regular">is_regular()</dt>
+<dd><p>Returns True when charset is language dependent (8bit) charset.</p>
+<p>Note this method test charset properties only.  The complete
+encoding with a complex surface (like Quoted printable) may have
+different properties.</p>
+</dd>
+<dt id="Enca-Encoding-is_variable">is_variable()</dt>
+<dd><p>Returns True when one character consists of variable number of
+fundamental pieces.</p>
+<p>Note this method test charset properties only.  The complete
+encoding with a complex surface (like Quoted printable) may have
+different properties.</p>
+</dd>
+<dt id="Enca-Encoding-surface">surface([<var>name_style</var>])</dt>
+<dd><p>Returns a surface name.</p>
+</dd>
+<dt id="Enca-Encoding-surface_mask">surface_mask()</dt>
+<dd><p>Returns libenca surface mask (not very useful in Python).</p>
+</dd>
+</dl>
+</div>
+</td>
+
+<td class="collapsed"></td>
+</tr>
+
+<tr>
+<td class="bar-left" valign="top">
+<p class="nohl" style="margin-bottom: 8pt; background: #dcdcdc;"><a href="http://trific.ath.cx/"><img src="http://trific.ath.cx/Img/foot3.png" alt="[Trific net]" width="115" height="50"/></a></p>
+<div xml:lang="en">
+<h4><a href="http://trific.ath.cx/software/">Software</a></h4>
+<p><a href="http://trific.ath.cx/software/enca/">Enca</a></p>
+<p><a href="http://trific.ath.cx/software/gimp-plugins/">Gimp plug-ins</a></p>
+<p><a href="http://gwyddion.net/">Gwyddion</a></p>
+<p><a href="http://trific.ath.cx/software/dendrofit/">DendroFit</a></p>
+<p><a href="http://trific.ath.cx/resources/python/levenshtein/">Levenshtein</a></p>
+<p><a href="http://trific.ath.cx/software/ifsgr/">IFSgr</a></p>
+<h4><a href="http://trific.ath.cx/resources/">Resources</a></h4>
+<p><a href="http://trific.ath.cx/resources/vim/">Vim</a></p>
+<p><a href="http://trific.ath.cx/resources/bash/">Bash</a></p>
+<p class="menuhl"><a href="http://trific.ath.cx/resources/python/">Python</a></p>
+<p><a href="http://trific.ath.cx/resources/spamassassin/">SpamAssassin</a></p>
+<h4><a href="http://trific.ath.cx/tex-mf/">TeX &amp; MF</a></h4>
+<p><a href="http://trific.ath.cx/tex-mf/enctex/">EncTeX</a></p>
+<p><a href="http://trific.ath.cx/tex-mf/mitered-join/">Mitered join</a></p>
+<h4><a href="http://trific.ath.cxhttp://trific.ath.cxhttp://trific.ath.cx/yeti/">Yeti</a></h4>
+<p><a href="http://trific.ath.cx/yeti/gnupg-pubkey/">GnuPG Keys</a></p>
+</div><hr/><div xml:lang="cs">
+<h4><a href="http://trific.ath.cx/texts/">Texty</a></h4>
+<p><a href="http://trific.ath.cx/texts/absurd/">Absurdní</a></p>
+<p><a href="http://trific.ath.cx/texts/parody/">Parodie</a></p>
+<p><a href="http://trific.ath.cx/texts/opinion/">Názory</a></p>
+<p><a href="http://trific.ath.cx/texts/poem/">Ostatní</a></p>
+<p><a href="http://trific.ath.cx/texts/xml/">XML</a></p>
+<p><a href="http://trific.ath.cx/yeti/diary/">Deníček</a></p>
+<h4><a href="http://trific.ath.cx/tex,mf/">TeX &amp; MF</a></h4>
+<p><a href="http://trific.ath.cx/tex,mf/bestiary/">Bestiář</a></p>
+<p><a href="http://trific.ath.cx/tex,mf/moremath/">MoreMath</a></p>
+<p><a href="http://trific.ath.cx/tex,mf/tweak-latex/">Střeva LaTeXu</a></p>
+<p><a href="http://trific.ath.cx/tex,mf/other/">Ostatní</a></p>
+</div>
+</td>
+
+<td class="bar-right" valign="top">
+<h4 class="nohl">Last modified</h4><p class="nohl">2003-11-15</p>
+<p style="margin-top: 5pt; margin-bottom: 5pt;"><a href="http://trific.ath.cx/copyright/">© Yeti</a></p>
+<p style="margin-top: 5pt;"><a href="http://trific.ath.cx/printable/resources/python/pyenca/api/">Printable version</a></p>
+<p><a href="mailto:webmaster-at-trific-dot-ath-dot-cx">Webmaster</a></p>
+<p class="nohl" style="margin-bottom: 2pt;"><a href="http://www.eff.org/blueribbon/"><img src="http://br.eff.org/br.png" alt="[Join the Blue Ribbon Online Free Speech Campaign!]" height="76" width="112"/></a></p>
+<p class="nohl" style="margin-bottom: 2pt;"><a href="http://petition.eurolinux.org/"><img src="http://aful.org/images/patent_button.png" alt="[Sign the Petition for a Software Patent Free Europe!]"/></a></p>
+<p><a href="http://validator.w3.org/check?uri=http%3A%2F%2Ftrific.ath.cx%2Fresources%2Fpython%2Fpyenca%2Fapi%2F&amp;charset=%28detect+automatically%29&amp;doctype=Inline">Valid XHTML 1.1</a></p>
+<p><a href="http://jigsaw.w3.org/css-validator/validator?uri=http%3A%2F%2Ftrific.ath.cx%2Fresources%2Fpython%2Fpyenca%2Fapi%2F&amp;warning=1&amp;profile=css2">Valid CSS2</a></p>
+</td>
+
+</tr>
+<tr>
+<td class="bar-left-bot"></td>
+<td class="main">
+<div class="navline">
+<a href="http://trific.ath.cx/">Home</a>
+ &gt; 
+<a href="http://trific.ath.cx/resources/">Resources</a>
+ &gt; 
+<a href="http://trific.ath.cx/resources/python/">Python</a>
+ &gt; 
+<a href="http://trific.ath.cx/resources/python/pyenca/">pyenca</a>
+ &gt; 
+<a href="http://trific.ath.cx/resources/python/pyenca/api/">Enca module API</a>
+</div>
+</td>
+<td class="bar-right-bot"></td>
+</tr>
+</table>
+</body>
+</html>
+>

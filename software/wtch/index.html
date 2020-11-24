@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head><script src="//archive.org/includes/analytics.js?v=cf34f82" type="text/javascript"></script>
+<script type="text/javascript">window.addEventListener('DOMContentLoaded',function(){var v=archive_analytics.values;v.service='wb';v.server_name='wwwb-app56.us.archive.org';v.server_ms=342;archive_analytics.send_pageview({});});</script><script type="text/javascript" src="/_static/js/playback.bundle.js?v=SOX25l-I" charset="utf-8"></script>
+<script type="text/javascript" src="/_static/js/wombat.js?v=cRqOKCOw" charset="utf-8"></script>
+<script type="text/javascript">
+  __wm.init("http://trific.ath.cx:80/software/wtch/","20051123011415","http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link rel="stylesheet" type="text/css" href="http://trific.ath.cx/CSS/layout.css"/>
+<link rel="stylesheet" type="text/css" href="http://trific.ath.cx/CSS/colors.css"/>
+<title>Wtch</title>
+<link rel="shortcut icon" type="image/x-icon" href="http://trific.ath.cx/Img/favicon.ico"/>
+<meta name="Author" content="David Nečas (Yeti)"/>
+<meta name="ICBM" content="49.22283, 16.62547"/>
+<meta name="DC.title" content="Trific net (Yeti's personal pages)"/>
+<meta name="Description" content="Wtch periodically runs a shell command, watches its output, and runs another command when the output changes."/>
+</head>
+<body><!-- END WAYBACK TOOLBAR INSERT -->
+<table class="main" cellspacing="0">
+<col class="left" width="13%"/><col class="main" width="74%"/><col class="right" width="13%"/>
+
+<tr>
+<td class="collapsed"></td>
+
+<td class="main" valign="top" rowspan="2">
+<div class="topline">
+<a href="http://trific.ath.cx/">Home</a>
+ &gt; 
+<a href="http://trific.ath.cx/software/">Software</a>
+ &gt; 
+<a href="http://trific.ath.cx/software/wtch/">Wtch</a>
+</div>
+<div xml:lang="en">
+<h1>Wtch</h1>
+
+<p>Current version of wtch is 0.5.</p>
+
+<p>This is an “unofficial” wtch page. The “official” one is
+<a href="http://www.physics.muni.cz/~polcar/wtch/">http://www.physics.muni.cz/~polcar/wtch/</a>.</p>
+
+<h2>Download</h2>
+<table><tr>
+<td>Source tarball (gzip):</td>
+<td><a href="http://trific.ath.cx/Ftp//perl/wtch/wtch-0.5.tar.gz">wtch-0.5.tar.gz</a></td><td>(14.2 kB)</td>
+</tr><tr>
+<td>Source tarball (bzip2):</td>
+<td><a href="http://trific.ath.cx/Ftp//perl/wtch/wtch-0.5.tar.bz2">wtch-0.5.tar.bz2</a></td><td>(13.6 kB)</td>
+</tr><tr>
+<td>RPM package for (any arch):</td>
+<td><a href="http://trific.ath.cx/Ftp//perl/wtch/wtch-0.5-1.noarch.rpm">wtch-0.5-1.noarch.rpm</a></td><td>(21.6 kB)</td>
+</tr></table>
+
+<p>Note the RPM package will probably work on RedHat 8.0 and 9, Fedora
+Core 1, etc.</p>
+
+<h2>Description</h2>
+<p>wtch periodically runs a shell command, watches its output, and
+runs another command when the output changes.</p>
+
+<p>More precisely, it watches for an <em>event</em>, defined as an occurence
+of certain pattern in the sequence of outputs; watching for any change is
+only the default (and most useful) behaviour.</p>
+
+<p>It can be used for simple monitoring in cases where fully-featured monitor
+either doesn't exist or would be overkill.</p>
+
+<p>Some simple examples:</p>
+<pre>
+wtch --pattern x:xy \
+     --watch 'test -N $MAIL &amp;&amp; echo' \
+     --action 'echo NEW MAIL'
+</pre>
+<p>prints “NEW MAIL” when first new mail arrives (and then again after you
+read it and a new mail arrives, etc.).</p>
+
+<pre>
+wtch --once --watch 'grep keyboard /proc/interrupts' \
+     --action 'echo Somebody is typing on my keyboard!'
+</pre>
+<p>prints “Somebody is typing on my keyboard!” when somebody starts typing on
+your keyboard ;-) and then exits.</p>
+
+<h2>Requirements</h2>
+<p><a href="http://www.perl.org/">Perl</a> 5.6
+is enough, it may work with 5.00x, but it was not tested.</p>
+
+<p>Perl module Opt is required, donwloadable on the official
+<a href="http://www.physics.muni.cz/~polcar/wtch/">wtch home page</a>.</p>
+
+<p>Beside that, it uses
+<a href="http://search.cpan.org/author/JHI/perl-5.8.0/pod/perlfunc.pod#fork"><code>fork()</code></a>,
+and it may or may not work on non-Unix/POSIX systems with
+<a href="http://search.cpan.org/author/JHI/perl-5.8.0/pod/perlfork.pod">Perl <code>fork()</code> emulation</a>.</p>
+
+<p>Moreover, all current versions of Perl simply break when one uses
+<a href="http://search.cpan.org/author/JHI/perl-5.8.0/pod/perlfunc.pod#system"><code>system()</code></a> inside
+<a href="http://search.cpan.org/author/JHI/perl-5.8.0/pod/perlfunc.pod#eval"><code>eval()</code></a>, and everything related to
+processes starts behaving extremely strangely. We can't do anything about
+it.</p>
+
+<h2>Copying</h2>
+<p>Copyright © 2002-2003 Jiří Polcar &lt;polcar at physics dot muni dot cz&gt;<br/>
+Copyright © 2003 Yeti (David Nečas) &lt;yeti at physics dot muni dot cz&gt;.</p>
+<p>Wtch is free software; you can redistribute it and/or modify it under the terms of the
+<a href="http://www.gnu.org/licenses/gpl.html">GNU General Public License</a> as published by the Free Software Foundation;
+either version 2 of the License, or (at your option) any later version. For full license text see file <code class="fnm">COPYING</code> included in the source tarball.</p>
+
+<p>Note: Jiří is the primary author of wtch, I'm only author of
+<code>--pattern</code> (both idea and implementation), most of documentation,
+and some smaller ideas and improvements.</p>
+</div>
+</td>
+
+<td class="collapsed"></td>
+</tr>
+
+<tr>
+<td class="bar-left" valign="top">
+<p class="nohl" style="margin-bottom: 8pt; background: #dcdcdc;"><a href="http://trific.ath.cx/"><img src="http://trific.ath.cx/Img/foot3.png" alt="[Trific net]" width="115" height="50"/></a></p>
+<div xml:lang="en">
+<h4><a href="http://trific.ath.cx/software/">Software</a></h4>
+<p><a href="http://trific.ath.cx/software/enca/">Enca</a></p>
+<p><a href="http://trific.ath.cx/software/gimp-plugins/">Gimp plug-ins</a></p>
+<p><a href="http://trific.ath.cx/software/gwyddion/">Gwyddion</a></p>
+<p><a href="http://trific.ath.cx/software/dendrofit/">DendroFit</a></p>
+<p><a href="http://trific.ath.cx/resources/python/levenshtein/">Levenshtein</a></p>
+<p><a href="http://trific.ath.cx/software/ifsgr/">IFSgr</a></p>
+<p><a href="http://trific.ath.cx/software/shmclean/">Shmclean</a></p>
+<p class="menuhl"><a href="http://trific.ath.cx/software/wtch/">Wtch</a></p>
+<h4><a href="http://trific.ath.cx/resources/">Resources</a></h4>
+<p><a href="http://trific.ath.cx/resources/deobfuscate/">Deobfuscator</a></p>
+<p><a href="http://trific.ath.cx/resources/perl2rpm/">Perl2RPM</a></p>
+<p><a href="http://trific.ath.cx/resources/vim/">Vim</a></p>
+<p><a href="http://trific.ath.cx/resources/bash/">Bash</a></p>
+<p><a href="http://trific.ath.cx/resources/rpm/">RPM packages</a></p>
+<p><a href="http://trific.ath.cx/resources/python/">Python</a></p>
+<p><a href="http://trific.ath.cx/resources/spamassassin/">SpamAssassin</a></p>
+<h4><a href="http://trific.ath.cx/tex-mf/">TeX &amp; MF</a></h4>
+<p><a href="http://trific.ath.cx/tex-mf/enctex/">EncTeX</a></p>
+<p><a href="http://trific.ath.cx/tex-mf/mitered-join/">Mitered join</a></p>
+<h4><a href="http://trific.ath.cx/graphics/">Graphics</a></h4>
+<p><a href="http://trific.ath.cx/graphics/povray/">PoV-Ray</a></p>
+<h4><a href="http://trific.ath.cx/toys/">Random Toys</a></h4>
+<p><a href="http://trific.ath.cx/toys/gtkanim/">Gtkanim</a></p>
+<h4><a href="http://trific.ath.cxhttp://trific.ath.cxhttp://trific.ath.cxhttp://trific.ath.cxhttp://trific.ath.cx/yeti/">Yeti</a></h4>
+<p><a href="http://trific.ath.cx/yeti/gnupg-pubkey/">GnuPG Keys</a></p>
+<p><a href="http://trific.ath.cx/yeti/trific/">What is Trific</a></p>
+</div><hr/><div xml:lang="cs">
+<h4><a href="http://trific.ath.cx/texts/">Texty</a></h4>
+<p><a href="http://trific.ath.cx/texts/absurd/">Absurdní</a></p>
+<p><a href="http://trific.ath.cx/texts/parody/">Parodie</a></p>
+<p><a href="http://trific.ath.cx/texts/opinion/">Názory</a></p>
+<p><a href="http://trific.ath.cx/texts/poem/">Ostatní</a></p>
+<p><a href="http://trific.ath.cx/texts/xml/">XML</a></p>
+<p><a href="http://trific.ath.cx/yeti/diary/">Deníček</a></p>
+<h4><a href="http://trific.ath.cx/tex,mf/">TeX &amp; MF</a></h4>
+<p><a href="http://trific.ath.cx/tex,mf/bestiary/">Bestiář</a></p>
+<p><a href="http://trific.ath.cx/tex,mf/moremath/">MoreMath</a></p>
+<p><a href="http://trific.ath.cx/tex,mf/tweak-latex/">Střeva LaTeXu</a></p>
+<p><a href="http://trific.ath.cx/tex,mf/other/">Ostatní</a></p>
+</div>
+</td>
+
+<td class="bar-right" valign="top">
+<h4 class="nohl">Links</h4>
+<p><a href="http://search.cpan.org/author/JHI/perl-5.8.0/pod/perlfunc.pod#eval"><code>eval()</code></a></p>
+<p><a href="http://search.cpan.org/author/JHI/perl-5.8.0/pod/perlfunc.pod#fork"><code>fork()</code></a></p>
+<p><a href="http://search.cpan.org/author/JHI/perl-5.8.0/pod/perlfunc.pod#system"><code>system()</code></a></p>
+<p><a href="http://www.gnu.org/licenses/gpl.html">GNU GPL</a></p>
+<p><a href="http://www.perl.org/">Perl</a></p>
+<p><a href="http://search.cpan.org/author/JHI/perl-5.8.0/pod/perlfork.pod">Perl <code>fork()</code> emulation</a></p>
+<p><a href="http://www.physics.muni.cz/~polcar/wtch/">wtch home page</a></p>
+<hr/>
+<h4 class="nohl">Last modified</h4><p class="nohl">2004-01-24</p>
+<p style="margin-top: 5pt; margin-bottom: 5pt;"><a href="http://trific.ath.cx/copyright/">© Yeti</a></p>
+<p style="margin-top: 5pt;"><a href="http://trific.ath.cx/printable/software/wtch/">Printable version</a></p>
+<p><a href="http://trific.ath.cx/preferences/">Preferences</a></p>
+<p><a href="mailto:webmaster at trific dot ath dot cx">Webmaster</a></p>
+<p style="margin-bottom: 8pt;"><a href="http://trific.ath.cx/fuckoffspam/?id=194471660">Fakemails!</a></p>
+<p class="nohl" style="margin-bottom: 2pt;"><a href="http://www.eff.org/blueribbon/"><img src="http://br.eff.org/br.png" alt="[Join the Blue Ribbon Online Free Speech Campaign!]" height="76" width="112"/></a></p>
+<p class="nohl" style="margin-bottom: 2pt;"><a href="http://petition.eurolinux.org/"><img src="http://aful.org/images/patent_button.png" alt="[Sign the Petition for a Software Patent Free Europe!]"/></a></p>
+<p><a href="http://validator.w3.org/check?uri=http%3A%2F%2Ftrific.ath.cx%2Fsoftware%2Fwtch%2F&amp;charset=%28detect+automatically%29&amp;doctype=Inline">Valid XHTML 1.1</a></p>
+<p><a href="http://jigsaw.w3.org/css-validator/validator?uri=http%3A%2F%2Ftrific.ath.cx%2Fsoftware%2Fwtch%2F&amp;warning=1&amp;profile=css2">Valid CSS2</a></p>
+<p><a href="http://burnallgifs.org/">No GIFs</a></p>
+<p><a href="http://geourl.org/near/alt.html?p=http://trific.ath.cx/&amp;dist=200">GeoURL</a></p>
+</td>
+
+</tr>
+<tr>
+<td class="bar-left-bot"></td>
+<td class="main">
+<div class="navline">
+<a href="http://trific.ath.cx/">Home</a>
+ &gt; 
+<a href="http://trific.ath.cx/software/">Software</a>
+ &gt; 
+<a href="http://trific.ath.cx/software/wtch/">Wtch</a>
+</div>
+</td>
+<td class="bar-right-bot"></td>
+</tr>
+</table>
+</body>
+</html>
+>
